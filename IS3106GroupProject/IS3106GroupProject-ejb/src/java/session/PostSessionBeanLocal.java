@@ -5,13 +5,18 @@
  */
 package session;
 
+import entity.Post;
+import error.NoResultException;
 import javax.ejb.Local;
 
-/**
- *
- * @author Cze_J
- */
 @Local
 public interface PostSessionBeanLocal {
 
+    public void createPost(Post p);
+
+    public void updatePost(Post p) throws NoResultException;
+
+    public void deletePost(Long pId) throws NoResultException;
+
+    public void searchPostsByCompany(Long cId) throws NoResultException;
 }

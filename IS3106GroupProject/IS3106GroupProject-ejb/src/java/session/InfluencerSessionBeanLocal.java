@@ -7,10 +7,6 @@ package session;
 
 import javax.ejb.Local;
 
-/**
- *
- * @author Cze_J
- */
 @Local
 public interface InfluencerSessionBeanLocal {
 

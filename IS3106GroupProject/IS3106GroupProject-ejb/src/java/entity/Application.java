@@ -28,6 +28,7 @@ public class Application implements Serializable {
     private int influencerRank;
     private String accepted;
     private String rejectReason;
+    //Influencer
 
     public Application() {
     }

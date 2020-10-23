@@ -5,6 +5,8 @@
  */
 package session;
 
+import entity.Application;
+import error.NoResultException;
 import javax.ejb.Stateless;
 
 /**
@@ -14,6 +16,24 @@ import javax.ejb.Stateless;
 @Stateless
 public class ApplicationSessionBean implements ApplicationSessionBeanLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public void createApplication(Application a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateApplication(Application a) throws NoResultException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteApplication(Long aId) throws NoResultException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void searchApplicationsByInfluencer(Long iId) throws NoResultException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

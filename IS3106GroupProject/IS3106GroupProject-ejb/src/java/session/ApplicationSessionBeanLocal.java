@@ -5,13 +5,18 @@
  */
 package session;
 
+import entity.Application;
+import error.NoResultException;
 import javax.ejb.Local;
 
-/**
- *
- * @author Cze_J
- */
 @Local
 public interface ApplicationSessionBeanLocal {
 
+    public void createApplication(Application a);
+
+    public void updateApplication(Application a) throws NoResultException;
+
+    public void deleteApplication(Long aId) throws NoResultException;
+
+    public void searchApplicationsByInfluencer(Long iId) throws NoResultException;
 }

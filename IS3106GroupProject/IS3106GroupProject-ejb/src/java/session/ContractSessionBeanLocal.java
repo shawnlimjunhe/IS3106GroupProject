@@ -5,13 +5,18 @@
  */
 package session;
 
+import entity.Contract;
+import error.NoResultException;
 import javax.ejb.Local;
 
-/**
- *
- * @author Cze_J
- */
 @Local
 public interface ContractSessionBeanLocal {
 
+    public void createContract(Contract c);
+
+    public void deleteContract(Long cId);
+
+    public void searchContractsByInfluencer(Long iId) throws NoResultException;
+
+    public void searchContractsByCompany(Long cId) throws NoResultException;
 }

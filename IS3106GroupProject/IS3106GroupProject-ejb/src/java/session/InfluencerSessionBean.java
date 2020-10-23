@@ -7,10 +7,6 @@ package session;
 
 import javax.ejb.Stateless;
 
-/**
- *
- * @author Cze_J
- */
 @Stateless
 public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
 

@@ -5,13 +5,19 @@
  */
 package session;
 
+import entity.Company;
+import error.NoResultException;
+import java.util.List;
 import javax.ejb.Local;
 
-/**
- *
- * @author Cze_J
- */
 @Local
 public interface CompanySessionBeanLocal {
 
+    public void createCompany(Company c);
+
+    public List<Company> searchCompanies(String name);
+
+    public void updateCompany(Company c) throws NoResultException;
+
+    public void deleteCompany(Long cId) throws NoResultException;
 }
