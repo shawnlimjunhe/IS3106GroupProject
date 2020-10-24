@@ -16,10 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author Cze_J
- */
 @Entity
 public class Contract implements Serializable {
 

@@ -11,10 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- *
- * @author Cze_J
- */
 @Entity
 public class Application implements Serializable {
 
@@ -23,7 +19,7 @@ public class Application implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //Picture attribute
+    //Picture attribute maybe Path or smth
     private String caption;
     private int influencerRank;
     private String accepted;

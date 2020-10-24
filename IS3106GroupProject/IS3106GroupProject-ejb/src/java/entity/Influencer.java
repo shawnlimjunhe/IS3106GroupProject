@@ -6,16 +6,17 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-/**
- *
- * @author Cze_J
- */
 @Entity
 public class Influencer implements Serializable {
 
@@ -31,7 +32,11 @@ public class Influencer implements Serializable {
     private int ranking;
     private double balance; //maybe BigDecimal
 
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Application> applications;
+
     public Influencer() {
+        this.applications = new ArrayList<>();
     }
 
     public Influencer(String username, String password, int numberFollowers, int ranking, double balance) {
@@ -89,6 +94,14 @@ public class Influencer implements Serializable {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
     @Override
