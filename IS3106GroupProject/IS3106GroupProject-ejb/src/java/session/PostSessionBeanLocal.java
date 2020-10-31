@@ -7,6 +7,7 @@ package session;
 
 import entity.Post;
 import error.NoResultException;
+import java.util.List;
 import javax.ejb.Local;
 
 @Local
@@ -18,5 +19,5 @@ public interface PostSessionBeanLocal {
 
     public void deletePost(Long pId) throws NoResultException;
 
-    public void searchPostsByCompany(Long cId) throws NoResultException;
+    public List<Post> searchPostsByCompany(Long cId) throws NoResultException;
 }

@@ -5,31 +5,77 @@
  */
 package session;
 
+import entity.Company;
 import entity.Contract;
+import entity.Influencer;
 import error.NoResultException;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateless
 public class ContractSessionBean implements ContractSessionBeanLocal {
 
+    @PersistenceContext
+    private EntityManager em;
+    
     @Override
     public void createContract(Contract c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.persist(c);
     }
 
     @Override
-    public void deleteContract(Long cId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deleteContract(Long cId) throws NoResultException {
+        Contract c = em.find(Contract.class, cId);
+        if(c != null) {
+           Query q = em.createQuery("SELECT i FROM Influencer i WHERE :contract MEMBER OF i.contracts");
+           q.setParameter("contract", c);
+
+            for (Object influencer : q.getResultList()) {
+                Influencer i = (Influencer) influencer;
+                i.getContracts().remove(c);
+            }
+            
+           Query q1 = em.createQuery("SELECT c FROM Company c WHERE :contract MEMBER OF c.contracts");
+           q1.setParameter("contract", c);
+
+            for (Object company : q.getResultList()) {
+                Company com = (Company) company;
+                com.getContracts().remove(c);
+            }
+            
+            em.remove(c);
+        } else {
+            throw new NoResultException("Not found");
+        }
     }
 
     @Override
-    public void searchContractsByInfluencer(Long iId) throws NoResultException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Contract> searchContractsByInfluencer(Long iId) throws NoResultException {
+        Influencer i = em.find(Influencer.class, iId);
+        Query q;
+        if ( i!= null) {
+            q = em.createQuery("SELECT c FROM Contract c, Influencer i WHERE c MEMBER OF i.contracts");
+        } else {
+            return null;
+        }
+        
+        return q.getResultList();
     }
 
     @Override
-    public void searchContractsByCompany(Long cId) throws NoResultException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Contract> searchContractsByCompany(Long cId) throws NoResultException {
+        Company c = em.find(Company.class, cId);
+        Query q;
+        if ( c!= null) {
+            q = em.createQuery("SELECT c FROM Contract c, Company com WHERE c MEMBER OF com.contracts");
+        } else {
+            return null;
+        }
+        
+        return q.getResultList();
     }
 
 }
