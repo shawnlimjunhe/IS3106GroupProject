@@ -7,6 +7,7 @@ package session;
 
 import entity.Application;
 import error.NoResultException;
+import java.util.List;
 import javax.ejb.Local;
 
 @Local
@@ -18,5 +19,5 @@ public interface ApplicationSessionBeanLocal {
 
     public void deleteApplication(Long aId) throws NoResultException;
 
-    public void searchApplicationsByInfluencer(Long iId) throws NoResultException;
+    public List<Application> searchApplicationsByInfluencer(Long iId) throws NoResultException;
 }

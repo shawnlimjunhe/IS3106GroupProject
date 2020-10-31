@@ -34,6 +34,9 @@ public class Influencer implements Serializable {
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Application> applications;
+    
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Contract> contracts;
 
     public Influencer() {
         this.applications = new ArrayList<>();
@@ -102,6 +105,14 @@ public class Influencer implements Serializable {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
     @Override

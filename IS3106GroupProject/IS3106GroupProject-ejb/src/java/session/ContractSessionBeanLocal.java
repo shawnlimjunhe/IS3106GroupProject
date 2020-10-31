@@ -7,6 +7,7 @@ package session;
 
 import entity.Contract;
 import error.NoResultException;
+import java.util.List;
 import javax.ejb.Local;
 
 @Local
@@ -14,9 +15,9 @@ public interface ContractSessionBeanLocal {
 
     public void createContract(Contract c);
 
-    public void deleteContract(Long cId);
+    public void deleteContract(Long cId) throws NoResultException;
 
-    public void searchContractsByInfluencer(Long iId) throws NoResultException;
+    public List<Contract> searchContractsByInfluencer(Long iId) throws NoResultException;
 
-    public void searchContractsByCompany(Long cId) throws NoResultException;
+    public List<Contract> searchContractsByCompany(Long cId) throws NoResultException;
 }
