@@ -21,4 +21,6 @@ public interface InfluencerSessionBeanLocal {
     public void updateInfluencer(Influencer i) throws NoResultException;
 
     public void deleteInfluencer(Long iId) throws NoResultException;
+
+    public Influencer login(String username, String password) throws NoResultException;
 }

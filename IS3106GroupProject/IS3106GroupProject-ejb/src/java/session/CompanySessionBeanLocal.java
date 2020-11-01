@@ -20,4 +20,8 @@ public interface CompanySessionBeanLocal {
     public void updateCompany(Company c) throws NoResultException;
 
     public void deleteCompany(Long cId) throws NoResultException;
+
+    public Company getCompany(Long cId) throws NoResultException;
+
+    public Company login(String companyName, String password) throws NoResultException;
 }

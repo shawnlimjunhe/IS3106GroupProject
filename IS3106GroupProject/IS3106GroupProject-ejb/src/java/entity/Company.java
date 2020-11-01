@@ -26,6 +26,7 @@ public class Company implements Serializable {
 
     private String name;
     private double balance;
+    private String password;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Post> posts;
@@ -81,6 +82,14 @@ public class Company implements Serializable {
 
     public void setContracts(List<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

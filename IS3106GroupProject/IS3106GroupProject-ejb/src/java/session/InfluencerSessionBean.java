@@ -24,6 +24,32 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
     public void createInfluencer(Influencer i) {
         em.persist(i);
     }
+    
+    @Override
+    public Influencer login(String username, String password) throws NoResultException {
+        Query query = em.createQuery("SELECT i FROM Influencer i WHERE i.username = :username");
+        query.setParameter("username", username);
+        Influencer i = null;
+        try
+        {
+            i = (Influencer)query.getSingleResult();
+        }
+        catch(Exception ex)
+        {
+          return null;
+        }
+        
+        if (i != null) {
+            if (i.getPassword().equals(password)) {
+                return i;
+            }
+            else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
 
     @Override
     public Influencer getInfluencer(Long iId) throws NoResultException {
