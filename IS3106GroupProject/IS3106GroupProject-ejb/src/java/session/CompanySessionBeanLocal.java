@@ -13,11 +13,13 @@ import javax.ejb.Local;
 @Local
 public interface CompanySessionBeanLocal {
 
-    public void createCompany(Company c);
+	public void createCompany(Company c);
 
-    public List<Company> searchCompanies(String name);
+	public Company getCompany(Long cId) throws NoResultException;
 
-    public void updateCompany(Company c) throws NoResultException;
+	public List<Company> searchCompanies(String name);
 
-    public void deleteCompany(Long cId) throws NoResultException;
+	public void updateCompany(Company c) throws NoResultException;
+
+	public void deleteCompany(Long cId) throws NoResultException;
 }
