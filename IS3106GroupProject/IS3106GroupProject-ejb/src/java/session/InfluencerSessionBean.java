@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package session;
 
 import entity.Application;
@@ -24,26 +19,22 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
     public void createInfluencer(Influencer i) {
         em.persist(i);
     }
-    
+
     @Override
     public Influencer login(String username, String password) throws NoResultException {
         Query query = em.createQuery("SELECT i FROM Influencer i WHERE i.username = :username");
         query.setParameter("username", username);
         Influencer i = null;
-        try
-        {
-            i = (Influencer)query.getSingleResult();
+        try {
+            i = (Influencer) query.getSingleResult();
+        } catch (Exception ex) {
+            return null;
         }
-        catch(Exception ex)
-        {
-          return null;
-        }
-        
+
         if (i != null) {
             if (i.getPassword().equals(password)) {
                 return i;
-            }
-            else {
+            } else {
                 return null;
             }
         } else {
@@ -54,17 +45,17 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
     @Override
     public Influencer getInfluencer(Long iId) throws NoResultException {
         Influencer influencer = em.find(Influencer.class, iId);
-        
-        if(influencer != null) {
+
+        if (influencer != null) {
             return influencer;
         } else {
             throw new NoResultException("Not found");
         }
     }
-    
+
     @Override
     public List<Influencer> searchInfluencers(String name) {
-         Query q;
+        Query q;
         if (name != null) {
             q = em.createQuery("SELECT i FROM Influencer i WHERE "
                     + "LOWER(i.username) LIKE :name");
@@ -79,8 +70,8 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
     @Override
     public void updateInfluencer(Influencer i) throws NoResultException {
         Influencer oldI = em.find(Influencer.class, i.getId());
-        
-        if(oldI != null) {
+
+        if (oldI != null) {
             oldI.setUsername(i.getUsername());
             oldI.setPassword(i.getPassword());
         } else {
@@ -91,11 +82,11 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
     @Override
     public void deleteInfluencer(Long iId) throws NoResultException {
         Influencer i = em.find(Influencer.class, iId);
-        
-        if(i == null) {
+
+        if (i == null) {
             throw new NoResultException("Not found");
         }
-        
+
         List<Application> applications = i.getApplications();
         i.setApplications(null);
         for (Application a : applications) {
@@ -104,6 +95,4 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
         em.remove(i);
     }
 
-    
-    
 }

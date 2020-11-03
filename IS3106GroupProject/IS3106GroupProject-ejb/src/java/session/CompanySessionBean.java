@@ -25,26 +25,22 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
     public void createCompany(Company c) {
         em.persist(c);
     }
-    
+
     @Override
-    public Company login(String companyName, String password) throws NoResultException {
-        Query query = em.createQuery("SELECT c FROM Company c WHERE c.name = :name");
-        query.setParameter("name", companyName);
+    public Company login(String username, String password) throws NoResultException {
+        Query query = em.createQuery("SELECT c FROM Company c WHERE c.username = :username");
+        query.setParameter("username", username);
         Company c = null;
-        try
-        {
-            c = (Company)query.getSingleResult();
+        try {
+            c = (Company) query.getSingleResult();
+        } catch (Exception ex) {
+            return null;
         }
-        catch(Exception ex)
-        {
-          return null;
-        }
-        
+
         if (c != null) {
             if (c.getPassword().equals(password)) {
                 return c;
-            }
-            else {
+            } else {
                 return null;
             }
         } else {
@@ -102,12 +98,12 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
 
         em.remove(comp);
     }
-    
+
     @Override
     public Company getCompany(Long cId) throws NoResultException {
         Company company = em.find(Company.class, cId);
-        
-        if(company != null) {
+
+        if (company != null) {
             return company;
         } else {
             throw new NoResultException("Not found");

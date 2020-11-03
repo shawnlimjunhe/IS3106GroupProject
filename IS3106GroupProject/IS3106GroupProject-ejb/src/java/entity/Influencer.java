@@ -27,6 +27,7 @@ public class Influencer implements Serializable {
 
     @Column(nullable = false)
     private String username;
+    private String name;
     private String password;
     private int numberFollowers;
     private int ranking;
@@ -34,7 +35,7 @@ public class Influencer implements Serializable {
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Application> applications;
-    
+
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Contract> contracts;
 
@@ -43,9 +44,10 @@ public class Influencer implements Serializable {
         this.contracts = new ArrayList<>();
     }
 
-    public Influencer(String username, String password, int numberFollowers, int ranking, double balance) {
+    public Influencer(String username, String name, String password, int numberFollowers, int ranking, double balance) {
         this();
         this.username = username;
+        this.name = name;
         this.password = password;
         this.numberFollowers = numberFollowers;
         this.ranking = ranking;
@@ -58,6 +60,14 @@ public class Influencer implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUsername() {

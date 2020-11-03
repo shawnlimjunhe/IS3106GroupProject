@@ -25,6 +25,7 @@ public class Company implements Serializable {
     private Long id;
 
     private String name;
+    private String username;
     private double balance;
     private String password;
 
@@ -38,10 +39,19 @@ public class Company implements Serializable {
         this.posts = new ArrayList<>();
     }
 
-    public Company(String name, double balance) {
+    public Company(String username, String name, double balance) {
         this();
+        this.username = username;
         this.name = name;
         this.balance = balance;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
