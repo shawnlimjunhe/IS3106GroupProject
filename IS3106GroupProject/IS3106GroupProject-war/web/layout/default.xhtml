@@ -51,9 +51,9 @@
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="#{request.contextPath}" class="brand-link">
-                    <img src="dist/img/AdminLTELogo.png" alt="Placeholder Logo" class="brand-image img-circle elevation-3" style="opacity: .8" />
-                    <span class="brand-text font-weight-light"> <!-- CHANGE THIS LOGO -->
-                        <b>Project</b>Placeholder
+                    <img src="dist/img/AdminLTELogo.png" alt="Project logo thing" class="brand-image img-circle elevation-3" style="opacity: .8" />
+                    <span class="brand-text font-weight-light"> <!-- change the logo -->
+                        <b>Placeholder</b>
                     </span>
                 </a>
 
@@ -66,34 +66,34 @@
                             <!-- Add icons to the links using the .nav-icon class
                                 with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/registerCompany.xhtml" class="nav-link #{(request.requestURI == '/CRM-war/registerCompany.xhtml' and request.queryString == null) ? 'active' : ''}">
+                                <a href="#{request.contextPath}/registerInfluencer.xhtml" class="nav-link #{(request.requestURI == '/CRM-war/registerInfluencer.xhtml' and request.queryString == null) ? 'active' : ''}">
                                     <i class="nav-icon fa fa-plus-circle"></i>
                                     <p>
-                                        Register New Company
+                                        Register As Influencer <!-- for UI/UX we probably want this to be 2 expandable buttons Company/Influencer then under these 2 we have login/register but this will do for now -->
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/searchCompanies.xhtml" class="nav-link #{request.requestURI == '/CRM-war/searchCompanies.xhtml' ? 'active' : ''}">
+                                <a href="#{request.contextPath}/registerCompany.xhtml" class="nav-link #{request.requestURI == '/CRM-war/registerCompany.xhtml' ? 'active' : ''}">
                                     <i class="nav-icon fa fa-users"></i>
                                     <p>
-                                        List Companies
+                                        Register As Company
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/createJob.xhtml" class="nav-link #{request.requestURI == '/CRM-war/createJob.xhtml' ? 'active' : ''}">
+                                <a href="#{request.contextPath}/companyLogin.xhtml" class="nav-link #{request.requestURI == '/CRM-war/companyLogin.xhtml' ? 'active' : ''}">
                                     <i class="nav-icon fa fa-users"></i>
                                     <p>
-                                        Post Job
+                                        Login As Company
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/searchInfluencers.xhtml" class="nav-link #{request.requestURI == '/CRM-war/searchInfluencers.xhtml' ? 'active' : ''}">
+                                <a href="#{request.contextPath}/influencerLogin.xhtml" class="nav-link #{request.requestURI == '/CRM-war/influencerLogin.xhtml' ? 'active' : ''}">
                                     <i class="nav-icon fa fa-users"></i>
                                     <p>
-                                        View Influencers
+                                        Login As Influencer
                                     </p>
                                 </a>
                             </li>
@@ -111,7 +111,7 @@
             <!-- /.content-wrapper -->
 
             <footer class="main-footer">
-                <strong>Copyright &copy; Placeholder.</strong> All rights
+                <strong>Copyright &copy; Placeholder Studios.</strong> All rights
                 reserved.
             </footer>
 
