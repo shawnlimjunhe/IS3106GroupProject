@@ -29,7 +29,7 @@ public class InfluencerManagedBean implements Serializable {
     
     private String password;
     
-    private String followers;
+    private int followers;
     
     private Influencer selectedInfluencer;
     
@@ -45,11 +45,13 @@ public class InfluencerManagedBean implements Serializable {
     public String createInfluencer() throws Exception {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
+        System.out.println(followers);
         try {
             Influencer i = new Influencer();
             i.setUsername(username);
             i.setPassword(password);
-            i.setNumberFollowers(Integer.parseInt(followers));
+            i.setNumberFollowers(followers);
+            
             influencerSessionBeanLocal.createInfluencer(i);
             return "influencerLogin.xhtml?faces-redirect=true";
         } catch (Exception e) {
@@ -64,7 +66,7 @@ public class InfluencerManagedBean implements Serializable {
             selectedInfluencer = influencerSessionBeanLocal.getInfluencer(iId);
             username = selectedInfluencer.getUsername();
             balance = selectedInfluencer.getBalance();
-            followers = String.valueOf(selectedInfluencer.getNumberFollowers());
+            followers = selectedInfluencer.getNumberFollowers();
             ranking = selectedInfluencer.getRanking();
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load influencer"));
@@ -87,13 +89,14 @@ public class InfluencerManagedBean implements Serializable {
         this.password = password;
     }
 
-    public String getFollowers() {
+    public int getFollowers() {
         return followers;
     }
 
-    public void setFollowers(String followers) {
+    public void setFollowers(int followers) {
         this.followers = followers;
-    } 
+    }
+
 
     public Influencer getSelectedInfluencer() {
         return selectedInfluencer;

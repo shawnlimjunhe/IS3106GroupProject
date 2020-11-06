@@ -27,9 +27,9 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
     }
 
     @Override
-    public Company login(String username, String password) throws NoResultException {
-        Query query = em.createQuery("SELECT c FROM Company c WHERE c.username = :username");
-        query.setParameter("username", username);
+    public Company login(String companyName, String password) throws NoResultException {
+        Query query = em.createQuery("SELECT c FROM Company c WHERE c.name = :name");
+        query.setParameter("name", companyName);
         Company c = null;
         try {
             c = (Company) query.getSingleResult();
