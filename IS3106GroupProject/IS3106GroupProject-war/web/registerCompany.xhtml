@@ -42,7 +42,7 @@
                             <h:outputLabel for="companyName">Company name</h:outputLabel>
                             <h:inputText
                                 binding="#{companyName}"
-                                id="email" value="#{companyManagedBean.companyName}" required="true"
+                                id="email" value="#{companyManagedBean.name}" required="true"
                                 requiredMessage="Company name is required" class="form-control #{companyName.valid ? '' :'is-invalid'}"/>
                             <h:message for="companyName" class="invalid-feedback" />
                         </div>
