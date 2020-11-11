@@ -74,6 +74,7 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
         if (oldI != null) {
             oldI.setUsername(i.getUsername());
             oldI.setPassword(i.getPassword());
+            oldI.setNumberFollowers(i.getNumberFollowers());
         } else {
             throw new NoResultException("Not found");
         }

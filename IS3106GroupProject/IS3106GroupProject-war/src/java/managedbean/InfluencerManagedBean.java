@@ -72,6 +72,23 @@ public class InfluencerManagedBean implements Serializable {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load influencer"));
         }
     }
+    
+    public String updateInfluencer() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        selectedInfluencer.setUsername(username);
+        selectedInfluencer.setPassword(password);
+        selectedInfluencer.setNumberFollowers(followers);
+        try {
+            influencerSessionBeanLocal.updateInfluencer(selectedInfluencer);
+        } catch (Exception e) {
+            //show with an error icon
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to update profile"));
+        }
+
+        context.addMessage(null, new FacesMessage("Successfully updated profile!", ""));
+        return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + iid + "&faces-redirect=true";
+    }
 
     public String getUsername() {
         return username;

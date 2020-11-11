@@ -1,14 +1,113 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../layout/influencerTemplate.xhtml">
+                template="./../layout/influencerTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns="http://www.w3.org/1999/xhtml">
 
     <ui:define name="title">
         Edit My Profile
     </ui:define>
 
     <ui:define name="content">
-        content
+        <f:metadata>
+            <!-- to get the uId and bind it to a uId in managed bean -->
+            <f:viewParam name="iId" value="#{influencerManagedBean.iid}" />
+            <!-- load the selected user -->
+            <f:event type="preRenderView" listener="#{influencerManagedBean.loadSelectedInfluencer}"/>
+        </f:metadata>
+
+        <h:form id="form">
+            <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark"></h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="#{request.contextPath}/influencerSecret/influencerLandingPage.xhtml">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <h:link outcome="viewInfluencerProfile">
+                                        My Profile
+                                        <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+                                    </h:link>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Edit Profile
+                                </li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <section class="content">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            #{influencerManagedBean.username}'s Profile
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td width="100px">Username</td>
+                                <td>
+                                    <h:inputText binding="#{username}" id="username" class="form-control #{username.valid ? '' :'is-invalid'}" p:placeholder="Username" p:autofocus="" 
+                                                 value="#{influencerManagedBean.username}" 
+                                                 required="true"
+                                                 requiredMessage="Username is required"/>
+                                    <h:message for="username" class="invalid-feedback"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100px">Password</td>
+                                <td>
+                                    <h:inputSecret binding="#{password}" id="password" class="form-control #{password.valid ? '' :'is-invalid'}" p:placeholder="Password"  
+                                                   value="#{influencerManagedBean.password}" 
+                                                   required="true"
+                                                   requiredMessage="Password is required"/>
+                                    <h:message for="password" class="invalid-feedback"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  width="100px">Number of Followers</td>
+                                <td>
+                                    <h:inputText binding="#{followers}" id="followers" class="form-control #{followers.valid ? '' :'is-invalid'}" p:placeholder="Number of Followers"
+                                                 value="#{influencerManagedBean.followers}"
+                                                 required="true"
+                                                 requiredMessage="Number of followers is required"/>
+                                    <h:message for="followers" class="invalid-feedback"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+             <span style="padding-right:430px;"/>
+             <h:commandButton value="Upload proof for follower count" class="btn btn-primary">
+            </h:commandButton>
+             <br/>
+             <br/>
+             <span style="padding-right:500px;"/>
+             <h:commandButton value="Submit" class="btn btn-primary" action="#{influencerManagedBean.updateInfluencer}">
+            </h:commandButton>
+        </h:form>
     </ui:define>
 
     <ui:define name="script">
