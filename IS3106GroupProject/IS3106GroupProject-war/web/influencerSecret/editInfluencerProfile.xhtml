@@ -92,21 +92,23 @@
                                                  required="true"
                                                  requiredMessage="Number of followers is required"/>
                                     <h:message for="followers" class="invalid-feedback"/>
+                                    <h:commandButton value="Upload proof for follower count" class="btn btn-primary">
+                                    </h:commandButton>
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </section>
-            
-             <span style="padding-right:430px;"/>
-             <h:commandButton value="Upload proof for follower count" class="btn btn-primary">
+
+            <span style="padding-right:430px;"/>
+
+            <br/>
+            <br/>
+            <span style="padding-right:500px;"/>
+            <h:commandButton value="Submit" class="btn btn-primary" action="#{influencerManagedBean.updateInfluencer}">
             </h:commandButton>
-             <br/>
-             <br/>
-             <span style="padding-right:500px;"/>
-             <h:commandButton value="Submit" class="btn btn-primary" action="#{influencerManagedBean.updateInfluencer}">
-            </h:commandButton>
+
         </h:form>
     </ui:define>
 

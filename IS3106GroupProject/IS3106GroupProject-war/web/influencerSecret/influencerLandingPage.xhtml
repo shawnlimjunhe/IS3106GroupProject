@@ -12,8 +12,17 @@
 
     <ui:define name="content">
         <h:form id="form">
-            <h2 style="padding-left: 5px">Hi #{influencerAuthenticationManagedBean.username}, welcome back! </h2> 
-            <br/>
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="col-sm-8">
+                        <p style="font-family: verdana">
+                            <h2 class="m-0 text-blue">
+                                Hi #{influencerAuthenticationManagedBean.username}, welcome back!
+                            </h2>
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -39,7 +48,7 @@
                                                 <f:param name="iId" value="#{influencer.id}" />
                                             </h:link>
                                         </h:column>
-                                         <h:column>
+                                        <h:column>
                                             <f:facet name="header">Number of Followers</f:facet>
                                             <h:outputText value="#{influencer.numberFollowers}" />
                                         </h:column>
