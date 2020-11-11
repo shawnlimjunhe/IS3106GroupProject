@@ -49,7 +49,7 @@ public class InfluencerAuthenticationManagedBean implements Serializable {
             return "influencerLogin.xhtml?faces-redirect=true";
         } else {
             influencerId = influencer.getId();
-            return "...";
+            return "/influencerSecret/influencerLandingPage.xhtml?faces-redirect=true";
         }
     }
     
