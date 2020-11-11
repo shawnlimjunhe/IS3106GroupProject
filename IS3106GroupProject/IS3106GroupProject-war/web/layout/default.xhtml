@@ -65,9 +65,9 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class
                                 with font-awesome or any other icon font library -->
-                            <li class="nav-item">
+                            =                                <li class="nav-item">
                                 <a href="#{request.contextPath}/registerInfluencer.xhtml" class="nav-link #{(request.requestURI == '/CRM-war/registerInfluencer.xhtml' and request.queryString == null) ? 'active' : ''}">
-                                    <i class="nav-icon fa fa-plus-circle"></i>
+                                    <i class="fas fa-user-check"></i>
                                     <p>
                                         Register As Influencer <!-- for UI/UX we probably want this to be 2 expandable buttons Company/Influencer then under these 2 we have login/register but this will do for now -->
                                     </p>
@@ -75,7 +75,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#{request.contextPath}/registerCompany.xhtml" class="nav-link #{request.requestURI == '/CRM-war/registerCompany.xhtml' ? 'active' : ''}">
-                                    <i class="nav-icon fa fa-users"></i>
+                                    <i class="fas fa-briefcase"></i>
                                     <p>
                                         Register As Company
                                     </p>
@@ -83,7 +83,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#{request.contextPath}/companyLogin.xhtml" class="nav-link #{request.requestURI == '/CRM-war/companyLogin.xhtml' ? 'active' : ''}">
-                                    <i class="nav-icon fa fa-users"></i>
+                                    <i class="fas fa-sign-in-alt"></i>
                                     <p>
                                         Login As Company
                                     </p>
@@ -91,7 +91,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#{request.contextPath}/influencerLogin.xhtml" class="nav-link #{request.requestURI == '/CRM-war/influencerLogin.xhtml' ? 'active' : ''}">
-                                    <i class="nav-icon fa fa-users"></i>
+                                    <i class="fas fa-sign-in-alt"></i>
                                     <p>
                                         Login As Influencer
                                     </p>
