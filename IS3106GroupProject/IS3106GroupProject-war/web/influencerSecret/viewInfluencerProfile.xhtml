@@ -83,6 +83,9 @@
             </h:button>
             <br/>
             <br/>
+            <h:button value="View Transaction History OR Withdraw Balance" class="btn btn-primary" outcome=".." rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
+                <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+            </h:button>
         </h:form>
 
     </ui:define>
