@@ -1,18 +1,82 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Login</title>
     </h:head>
-    <h:body>
-        <h:form>
-            Username: <h:inputText value="#{influencerAuthenticationManagedBean.username}"/><br/>
-            Password: <h:inputSecret value="#{influencerAuthenticationManagedBean.password}"/><br/>
+    
+     <ui:composition template="./layout/default.xhtml">
 
-            <!-- using action instead of actionListener -->
-            <h:commandButton value="Login" action="#{influencerAuthenticationManagedBean.login}"/>
-        </h:form>
-    </h:body>
+        <ui:define name="title">
+            Login to Influenza
+        </ui:define>
+         <ui:define name="content">
+
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="col-sm-8">
+                        <p style="font-family: verdana">
+                            <font size = "20">
+                                <h1 class="m-0 text-blue">
+                                    Ready to partner with big brands?
+                                </h1>
+                            </font>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-blue">
+                <div class="card-header ">
+                    <h3 class="card-title">
+                        Login to Influenza
+                    </h3>
+                </div>
+                <h:form>
+                    <div class="card-body">
+                        <!-- username -->
+                        <div class="form-group">
+                            <h:outputLabel for="username">Username</h:outputLabel>
+                            <h:inputText
+                                binding="#{username}"
+                                id="username" value="#{influencerAuthenticationManagedBean.username}" required="true"
+                                requiredMessage="Username is required" class="form-control #{username.valid ? '' :'is-invalid'}"/>
+                            <h:message for="username" class="invalid-feedback" />
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="password">Password</h:outputLabel>
+                            <h:inputSecret
+                                binding="#{password}"
+                                id="password" value="#{influencerAuthenticationManagedBean.password}" required="true"
+                                requiredMessage="Password is required" class="form-control #{password.valid ? '' :'is-invalid'}"/>
+                            <h:message for="password" class="invalid-feedback" />
+
+                        </div>
+
+                        <a href="companyLogin.xhtml">
+                            I'm a Business!
+                        </a>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="col-md-12 text-center">
+                            <h:commandButton
+                                value="Login"
+                                class="btn btn-outline-primary btn-block"
+                                action="#{influencerAuthenticationManagedBean.login}"
+                                />
+                        </div>
+                    </div>
+                </h:form>
+
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
 </html>
 
