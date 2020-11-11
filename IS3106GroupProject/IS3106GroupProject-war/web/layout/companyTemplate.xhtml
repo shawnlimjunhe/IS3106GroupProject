@@ -49,9 +49,9 @@
                     <!-- Sidebar Menu --> 
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div>
-                            <h:link outcome="viewInfluencerProfile" class="nav-link">
-                                <span style="padding-right:10px;"/><i class="nav-icon fa fa-user"></i> <span style="padding-right:15px;"/>My Profile
-                                <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+                            <h:link outcome="viewCompanyProfile" class="nav-link">
+                                <span style="padding-right:10px;"/><i class="nav-icon fa fa-user"></i> <span style="padding-right:15px;"/>Company Profile
+                                <f:param name="cId" value="#{companyAuthenticationManagedBean.companyId}" />
                             </h:link>
                         </div>
                     </div>
@@ -59,23 +59,23 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/influencerSecret/jobFeed.xhtml"
+                                <a href="#{request.contextPath}/companySecret/posts.xhtml"
                                    class="nav-link">
                                     <i class="nav-icon fa fa-briefcase"></i><span style="padding-right:15px;"/>
                                     <p>
-                                        Job Feed
+                                        Company Posts
                                     </p> </a>
                             </li>
                             <li class="nav-item">
-                                <h:link outcome="viewInfluencerContracts" class="nav-link">
+                                <h:link outcome="viewCompanyContracts" class="nav-link">
                                     <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>Contracts
-                                    <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+                                    <f:param name="cId" value="#{companyAuthenticationManagedBean.companyId}" />
                                 </h:link>
 
                             </li>
 
                             <h:form>
-                                <span style="padding-right:70px;"/><h:commandButton value="Logout" class="btn btn-primary" action="#{influencerAuthenticationManagedBean.logout}"/>
+                                <span style="padding-right:70px;"/><h:commandButton value="Logout" class="btn btn-primary" action="#{companyAuthenticationManagedBean.logout}"/>
                             </h:form>
 
                         </ul> </nav>
