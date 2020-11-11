@@ -8,32 +8,35 @@
         <ui:composition template="./layout/default.xhtml">
 
             <ui:define name="title">
-                Welcome to Placeholder
+                Influenza
             </ui:define>
 
             <ui:define name="content">
                 <!-- Content Header (Page header) -->
-                <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Welcome to Placeholder</h1>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item active">
-                                        <a href="#{request.contextPath}">Home</a>
-                                    </li>
-                                </ol>
-                            </div>
-                            <!-- /.col -->
+                <div class="jumbotron bg-teal text-dark">
+
+                    <div class="jumbotron-fluid">
+
+                        <h1 class="display-4">
+                            Welcome to Influenza
+                        </h1>
+
+                        <p class="lead">Helping you drive viral growth worldwide</p>
+                        <hr class="my-4"/>
+                        <p>Join our network of 1 million partners and growing </p>
+
+                        <div class="btn btn-light btn-lg">
+                            <a  href="registerInfluencer.xhtml"
+                                role="button">Join as Influencer</a>
                         </div>
-                        <!-- /.row -->
+
+                        <div class="btn btn-light btn-lg">
+                            <a  href="registerCompany.xhtml"
+                                role="button">Join as Business</a>
+                        </div>
                     </div>
-                    <!-- /.container-fluid -->
+
                 </div>
-                <!-- /.content-header -->
 
                 <!-- Main content -->
                 <section class="content">
