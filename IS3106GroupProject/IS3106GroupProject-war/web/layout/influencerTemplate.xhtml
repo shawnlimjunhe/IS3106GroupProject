@@ -68,10 +68,15 @@
                             </li>
                             <li class="nav-item">
                                 <h:link outcome="viewInfluencerContracts" class="nav-link">
-                                    <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>Contracts
+                                    <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>My Contracts
                                     <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
                                 </h:link>
-
+                            </li>
+                            <li class="nav-item">
+                                <h:link outcome="viewInfluencerJobs" class="nav-link">
+                                    <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>My Jobs
+                                    <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+                                </h:link>
                             </li>
 
                             <h:form>

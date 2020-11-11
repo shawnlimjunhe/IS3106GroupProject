@@ -7,6 +7,8 @@ package managedbean;
 
 import entity.Influencer;
 import java.io.Serializable;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -38,6 +40,10 @@ public class InfluencerManagedBean implements Serializable {
     private double balance;
     
     private int ranking;
+    
+    private List<Influencer> influencers;
+    
+    private String searchString;
 
     public InfluencerManagedBean() {
     }
@@ -88,6 +94,15 @@ public class InfluencerManagedBean implements Serializable {
 
         context.addMessage(null, new FacesMessage("Successfully updated profile!", ""));
         return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + iid + "&faces-redirect=true";
+    }
+    
+    @PostConstruct
+    public void conductSearch() {
+        if(searchString == null || searchString.equals("")) {
+            influencers = influencerSessionBeanLocal.searchInfluencers(null);
+        } else {
+            influencers = influencerSessionBeanLocal.searchInfluencers(searchString);
+        }
     }
 
     public String getUsername() {
@@ -145,6 +160,22 @@ public class InfluencerManagedBean implements Serializable {
 
     public void setRanking(int ranking) {
         this.ranking = ranking;
+    }
+
+    public List<Influencer> getInfluencers() {
+        return influencers;
+    }
+
+    public void setInfluencers(List<Influencer> influencers) {
+        this.influencers = influencers;
+    }
+
+    public String getSearchString() {
+        return searchString;
+    }
+
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
     }
     
     
