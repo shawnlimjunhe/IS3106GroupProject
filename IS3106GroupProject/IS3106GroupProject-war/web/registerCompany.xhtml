@@ -42,7 +42,7 @@
                             <h:outputLabel for="companyName">Company name</h:outputLabel>
                             <h:inputText
                                 binding="#{companyName}"
-                                id="email" value="#{companyAuthenticationManagedBean.companyName}" required="true"
+                                id="email" value="#{companyManagedBean.companyName}" required="true"
                                 requiredMessage="Company name is required" class="form-control #{companyName.valid ? '' :'is-invalid'}"/>
                             <h:message for="companyName" class="invalid-feedback" />
                         </div>
@@ -51,7 +51,7 @@
                             <h:outputLabel for="companyPassword">Password</h:outputLabel>
                             <h:inputText
                                 binding="#{companyPassword}"
-                                id="password" value="#{companyAuthenticationManagedBean.password}" required="true"
+                                id="password" value="#{companyManagedBean.password}" required="true"
                                 requiredMessage="Password is required" class="form-control #{companyPassword.valid ? '' :'is-invalid'}"/>
                             <h:message for="companyPassword" class="invalid-feedback" />
                         </div>

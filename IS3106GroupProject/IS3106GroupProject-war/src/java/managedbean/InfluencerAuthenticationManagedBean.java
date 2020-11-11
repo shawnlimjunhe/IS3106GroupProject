@@ -45,7 +45,7 @@ public class InfluencerAuthenticationManagedBean implements Serializable {
             username = null;
             password = null;
             influencerId = new Long(-1);
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong login information"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong login information!", ""));
             return "influencerLogin.xhtml?faces-redirect=true";
         } else {
             influencerId = influencer.getId();
