@@ -33,7 +33,7 @@ public class InfluencerManagedBean implements Serializable {
     
     private Influencer selectedInfluencer;
     
-    private Long iId;
+    private Long iid;
     
     private double balance;
     
@@ -63,7 +63,7 @@ public class InfluencerManagedBean implements Serializable {
     public void loadSelectedInfluencer() {
         FacesContext context = FacesContext.getCurrentInstance();
         try {
-            selectedInfluencer = influencerSessionBeanLocal.getInfluencer(iId);
+            selectedInfluencer = influencerSessionBeanLocal.getInfluencer(iid);
             username = selectedInfluencer.getUsername();
             balance = selectedInfluencer.getBalance();
             followers = selectedInfluencer.getNumberFollowers();
@@ -106,12 +106,12 @@ public class InfluencerManagedBean implements Serializable {
         this.selectedInfluencer = selectedInfluencer;
     }
 
-    public Long getiId() {
-        return iId;
+    public Long getIid() {
+        return iid;
     }
 
-    public void setiId(Long iId) {
-        this.iId = iId;
+    public void setIid(Long iid) {
+        this.iid = iid;
     }
 
     public double getBalance() {

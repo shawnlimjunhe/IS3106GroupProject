@@ -1,14 +1,90 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../layout/influencerTemplate.xhtml">
+                template="./../layout/influencerTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml">
 
     <ui:define name="title">
         View Profile
     </ui:define>
 
     <ui:define name="content">
-        content
+        <f:metadata>
+            <!-- to get the uId and bind it to a uId in managed bean -->
+            <f:viewParam name="iId" value="#{influencerManagedBean.iid}" />
+            <!-- load the selected user -->
+            <f:event type="preRenderView" listener="#{influencerManagedBean.loadSelectedInfluencer}"/>
+        </f:metadata>
+        <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark"></h1>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="#{request.contextPath}/influencerSecret/influencerLandingPage.xhtml">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                View Profile
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <section class="content">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        #{influencerManagedBean.username}'s Profile
+                    </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td width="100px">Username</td>
+                            <td>#{influencerManagedBean.username}</td>
+                        </tr>
+
+                        <tr>
+                            <td width="100px">Number of Followers</td>
+                            <td>#{influencerManagedBean.followers}</td>
+                        </tr>
+                        <tr>
+                            <td  width="100px">Account Balance</td>
+                            <td>#{influencerManagedBean.balance}</td>
+                        </tr>
+                        <tr>
+                            <td  width="100px">Current Ranking</td>
+                            <td>##{influencerManagedBean.ranking}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <h:form>
+            <span style="padding-right:500px;"/>
+            <h:button value="Edit Profile" class="btn btn-primary" outcome="editInfluencerProfile" rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
+                <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+            </h:button>
+            <br/>
+            <br/>
+        </h:form>
+
     </ui:define>
 
     <ui:define name="script">
