@@ -26,24 +26,26 @@ public class InfluencerManagedBean implements Serializable {
 
     @EJB
     private InfluencerSessionBeanLocal influencerSessionBeanLocal;
-    
+
     private String username;
-    
+
     private String password;
-    
+
     private int followers;
-    
+
     private Influencer selectedInfluencer;
-    
+
     private Long iid;
-    
+
     private double balance;
-    
+
     private int ranking;
-    
+
     private List<Influencer> influencers;
-    
+
     private String searchString;
+
+    private double withdrawAmount;
 
     public InfluencerManagedBean() {
     }
@@ -57,7 +59,7 @@ public class InfluencerManagedBean implements Serializable {
             i.setUsername(username);
             i.setPassword(password);
             i.setNumberFollowers(followers);
-            
+
             influencerSessionBeanLocal.createInfluencer(i);
             return "influencerLogin.xhtml?faces-redirect=true";
         } catch (Exception e) {
@@ -65,7 +67,7 @@ public class InfluencerManagedBean implements Serializable {
             return "index.xhtml?faces-redirect=true";
         }
     }
-    
+
     public void loadSelectedInfluencer() {
         FacesContext context = FacesContext.getCurrentInstance();
         try {
@@ -78,7 +80,7 @@ public class InfluencerManagedBean implements Serializable {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load influencer"));
         }
     }
-    
+
     public String updateInfluencer() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
@@ -95,14 +97,34 @@ public class InfluencerManagedBean implements Serializable {
         context.addMessage(null, new FacesMessage("Successfully updated profile!", ""));
         return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + iid + "&faces-redirect=true";
     }
-    
+
     @PostConstruct
     public void conductSearch() {
-        if(searchString == null || searchString.equals("")) {
+        if (searchString == null || searchString.equals("")) {
             influencers = influencerSessionBeanLocal.searchInfluencers(null);
         } else {
             influencers = influencerSessionBeanLocal.searchInfluencers(searchString);
         }
+    }
+
+    public String updateBalance() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        double currentBalance = selectedInfluencer.getBalance();
+        if (currentBalance < withdrawAmount) {
+            context.addMessage(null, new FacesMessage("Unable to withdraw because amount is more than account balance!", ""));
+            return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + iid + "&faces-redirect=true";
+        }
+        selectedInfluencer.setBalance(currentBalance - withdrawAmount);
+        try {
+            influencerSessionBeanLocal.updateBalance(selectedInfluencer);
+        } catch (Exception e) {
+            //show with an error icon
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unable to withdraw!", ""));
+        }
+
+        context.addMessage(null, new FacesMessage("Successfully withdrew amount!", ""));
+        return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + iid + "&faces-redirect=true";
     }
 
     public String getUsername() {
@@ -128,7 +150,6 @@ public class InfluencerManagedBean implements Serializable {
     public void setFollowers(int followers) {
         this.followers = followers;
     }
-
 
     public Influencer getSelectedInfluencer() {
         return selectedInfluencer;
@@ -177,6 +198,13 @@ public class InfluencerManagedBean implements Serializable {
     public void setSearchString(String searchString) {
         this.searchString = searchString;
     }
-    
-    
+
+    public double getWithdrawAmount() {
+        return withdrawAmount;
+    }
+
+    public void setWithdrawAmount(double withdrawAmount) {
+        this.withdrawAmount = withdrawAmount;
+    }
+
 }

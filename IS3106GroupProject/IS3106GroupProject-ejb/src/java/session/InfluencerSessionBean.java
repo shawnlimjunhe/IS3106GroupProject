@@ -95,5 +95,16 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
         }
         em.remove(i);
     }
+    
+    @Override
+    public void updateBalance(Influencer i) throws NoResultException {
+        Influencer oldI = em.find(Influencer.class, i.getId());
+
+        if (oldI != null) {
+            oldI.setBalance(i.getBalance());
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
 
 }
