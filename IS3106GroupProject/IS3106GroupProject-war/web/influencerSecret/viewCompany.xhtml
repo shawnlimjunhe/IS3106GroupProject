@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/influencerTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="title">
+        title
+    </ui:define>
+
+    <ui:define name="content">
+        <f:metadata>
+            <!-- to get the uId and bind it to a uId in managed bean -->
+            <f:viewParam name="cId" value="#{companyManagedBean.cId}" />
+            <!-- to get the uId and bind it to a uId in managed bean -->
+            <f:viewParam name="pId" value="#{companyManagedBean.pId}" />
+            <!-- load the selected user -->
+            <f:event type="preRenderView" listener="#{companyManagedBean.loadSelectedCompany}"/>
+        </f:metadata>
+        <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark"></h1>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="#{request.contextPath}/influencerSecret/influencerLandingPage.xhtml">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <h:link outcome="viewJob">
+                                    View Job
+                                    <f:param name="pId" value="#{companyManagedBean.pId}" />
+                                </h:link>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                View Company Profile
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <section class="content">
+            <!-- general form elements -->
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        #{companyManagedBean.name}
+                    </h4>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td width="200px">Company Name</td>
+                            <td>#{companyManagedBean.name}</td>
+                        </tr>
+                        <tr>
+                            <td  width="200px">Uploaded Posts</td>
+                            <td>#{companyManagedBean.posts.size()}</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </section>
+    </ui:define>
+
+    <ui:define name="script">
+        script
+    </ui:define>
+
+</ui:composition>

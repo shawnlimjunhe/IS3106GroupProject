@@ -3,27 +3,56 @@
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../layout/influencerTemplate.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
 
     <ui:define name="title">
         Job Feed
     </ui:define>
 
     <ui:define name="content">
+        <f:metadata>
+            <!-- to get the uId and bind it to a uId in managed bean -->
+            <f:viewParam name="pId" value="#{applicationManagedBean.postId}" />
+            <!-- load the selected user -->
+            <f:event type="preRenderView" listener="#{applicationManagedBean.loadAllPosts}"/>
+        </f:metadata>
         <div class="content-header">
-            <div class="container-fluid">
-                <div class="col-sm-8">
-                    <p style="font-family: verdana">
-                        <h2 class="m-0 text-blue">
-                            Start your job search here
-                        </h2>
-                    </p>
-                </div>
-            </div>
+            <p style="font-family: verdana">
+                <h3 class="m-0 text-blue">
+                    Start your job search here
+                </h3>
+            </p>
         </div>
-        <h:button value="Apply Now" class="btn btn-primary" outcome="createApplication">
-            <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
-        </h:button>
+        <h:form id="form">
+            <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+
+            <h:dataTable id="table" style="width: 100%;" var="post" value="#{applicationManagedBean.posts}" border="5">
+                <h:column>
+                    <f:facet name="header">Company</f:facet>
+                    <h:outputText value="#{post.company.name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Job Title</f:facet>
+                    <a href="#{request.contextPath}/influencerSecret/viewJob.xhtml?pId=#{post.id}">
+                        #{post.title}
+                    </a>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Followers Required</f:facet>
+                    <h:outputText value="#{post.minFollowers}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Salary</f:facet>
+                    <h:outputText value="#{post.salary}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Status</f:facet>
+                    <h:outputText value="#{post.deadline}" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
     </ui:define>
 
     <ui:define name="script">

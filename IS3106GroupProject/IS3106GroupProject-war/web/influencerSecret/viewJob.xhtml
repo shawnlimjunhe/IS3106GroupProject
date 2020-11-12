@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/influencerTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="title">
+        #{applicationManagedBean.selectedPost.title}
+    </ui:define>
+    <div class="col-sm-9" style="margin: auto">
+        <ui:define name="content">
+            <f:metadata>
+                <f:viewParam name="pId" value="#{applicationManagedBean.postId}" />
+                <f:event type="preRenderView"
+                         listener="#{applicationManagedBean.loadSelectedPost}" />
+            </f:metadata>
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">
+                                View Post
+                            </h1>
+                        </div>
+                        <!-- /.row -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="#{request.contextPath}/influencerSecret/influencerLandingPage.xhtml">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    View Job
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <section class="content">
+                    <!-- form start -->
+                    <div class="card card-secondary mb-3">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                #{applicationManagedBean.selectedPost.title}
+                            </h3>
+                        </div>
+
+                        <div class='card-body'>
+                            <dl class="row">
+                                <dt class="col-sm-2">Company</dt>
+                                <dd class="col-sm-10">
+                                    <h:link outcome="viewCompany">
+                                        #{applicationManagedBean.selectedPost.company.name}
+                                        <f:param name="pId" value="#{applicationManagedBean.selectedPost.id}" />
+                                        <f:param name="cId" value="#{applicationManagedBean.selectedPost.company.id}" />
+                                    </h:link>
+                                </dd>
+
+                                <dt class="col-sm-2">Description</dt>
+                                <dd class="col-sm-10">#{applicationManagedBean.selectedPost.description}</dd>
+
+                                <dt class="col-sm-2">Deadline</dt>
+                                <dd class="col-sm-10">                                                
+                                    <h:outputText value="${applicationManagedBean.selectedPost.deadline}">
+                                        <f:convertDateTime type="date" pattern="y-M-d"/>
+                                    </h:outputText>
+                                </dd>
+
+                                <dt class="col-sm-2">Pay out</dt>
+                                <dd class="col-sm-10">$${applicationManagedBean.selectedPost.salary}</dd>
+
+                            </dl>
+                        </div>
+
+                        <h:button value="Apply Now" class="btn btn-primary" outcome="createApplication">
+                            <f:param name="pId" value="#{applicationManagedBean.selectedPost.id}" />
+                        </h:button>
+                    </div>
+
+                    <!-- /.card -->
+                </section>
+                <!-- /.content -->
+            </div>
+        </ui:define>
+    </div>
+
+    <ui:define name="script">
+        script
+    </ui:define>
+
+</ui:composition>

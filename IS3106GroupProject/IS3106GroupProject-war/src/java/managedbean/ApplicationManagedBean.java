@@ -123,6 +123,22 @@ public class ApplicationManagedBean implements Serializable {
     public void setPostId(Long postId) {
         this.postId = postId;
     }
+
+    public Post getSelectedPost() {
+        return selectedPost;
+    }
+
+    public void setSelectedPost(Post selectedPost) {
+        this.selectedPost = selectedPost;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
     
     
 
