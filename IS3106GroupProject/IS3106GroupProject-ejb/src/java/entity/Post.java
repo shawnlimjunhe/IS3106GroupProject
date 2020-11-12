@@ -25,7 +25,7 @@ public class Post implements Serializable {
     private int minFollowers;
     private String title;
     private String description;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date deadline;
     private double salary;
 

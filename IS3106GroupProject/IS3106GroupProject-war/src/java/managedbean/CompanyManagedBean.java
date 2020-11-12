@@ -74,11 +74,15 @@ public class CompanyManagedBean implements Serializable {
         try {
             Post p = new Post(postTitle, postDescription, postDeadline, postSalary, minFollowers);
             postSB.createPost(p);
-            return "companySecret/posts.xhtml";
+            return "posts.xhtml";
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to create company account!"));
-            return "companySecret/managePost.xhtml";
+            return "managePost.xhtml";
         }
+    }
+
+    public String postAction() {
+        return this.createPost();
     }
 
     public void loadSelectedCompany() {

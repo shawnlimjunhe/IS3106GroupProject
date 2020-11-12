@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <body>
 
@@ -67,47 +68,48 @@
                                     <h:inputTextarea  id="postDescription"
                                                       value="#{companyManagedBean.postDescription}" 
                                                       class="form-control" />
+                                    <small class="form-text text-muted"> A description of what you want the Influencer to post</small>
                                 </div>
                                 <div class="form-group">
-                                    <h:outputLabel for="inputDOB">Date of Birth
-                                        (dd/mm/yyyy)</h:outputLabel>
-                                    <div class="input-group date" id="dobpicker" data-targetinput="nearest">
-                                        <div class="input-group-prepend" data-target="#dobpicker" datatoggle="datetimepicker">
+                                    <h:outputLabel for="postDeadline">Date of Birth</h:outputLabel>
+                                    <div class="input-group date" id="postDeadlinepicker" data-targetinput="nearest">
+                                        <div class="input-group-prepend" data-target="#postDeadlinepicker" datatoggle="datetimepicker">
                                             <span class="input-group-text">
                                                 <i class="fa fa-calendar"></i>
                                             </span>
                                         </div>
-                                        <h:inputText binding="#{inputDOB}" id="inputDOB"
-                                                     value="#{customerManagedBean.dob}" required="true" requiredMessage="DOB
+                                        <h:inputText binding="#{postDeadline}" id="postDeadline"
+                                                     value="#{companyManagedBean.postDeadline}" required="true" requiredMessage="deadline
                                                      is required"
-                                                     converterMessage="Format should be dd/mm/yyy" class="formcontrol datepicker #{inputDOB.valid ? '' :'is-invalid'}" a:datatarget="#dobpicker" a:data-toggle="datetimepicker">
-                                            <f:convertDateTime pattern="dd/MM/yyy" />
+                                                     converterMessage="Format should be dd/mm/yyyy" class="formcontrol datepicker #{postDeadline.valid ? '' :'is-invalid'}"
+                                                     a:datatarget="#postDeadlinepicker" a:data-toggle="datetimepicker">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
-                                        <h:message for="inputDOB" class="invalid-feedback" />
+                                        <h:message for="postDeadline" class="invalid-feedback" />
                                     </div>
+                                    <small class="form-text text-muted">Format should be dd/MM/yyyy</small>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel for="postSalary">Salary</h:outputLabel>
+                                    <h:inputText  id="postSalary"
+                                                  value="#{companyManagedBean.postSalary}" 
+                                                  class="form-control" />
+                                    <small class="form-text text-muted">Should in 2 decimal places</small>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel for="minFollowers">Min. Followers</h:outputLabel>
+                                    <h:inputText  id="minFollowers"
+                                                  value="#{companyManagedBean.minFollowers}"
+                                                  class="form-control" />
                                 </div>
                             </div>
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel for="postSalary">Salary</h:outputLabel>
-                        <h:inputText  id="postSalary"
-                                      value="#{companyManagedBean.postSalary}" 
-                                      class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <h:outputLabel for="minFollowers">Min. Followers</h:outputLabel>
-                        <h:inputText  id="minFollowers"
-                                      value="#{companyManagedBean.minFollowers}"
-                                      class="form-control" />
-                    </div>
-                    </div>
-                    <div class="card-footer">
-                        <h:commandButton class="btn btn-outline-danger" value="Delete Post (not working)" style="display: #{companyManagedBean.selectedPost == null? 'none': 'in-line'}" />
-                        <h:commandButton value="#{companyManagedBean.selectedPost == null ? 'Create my Post': 'Update my Post details'}"
-                                         class="btn btn-outline-warning float-right"
-                                         action="#{controllerManagedBean.postAction}"/>
-                    </div>
-                    </h:form>
+                            <div class="card-footer">
+                                <h:commandButton class="btn btn-outline-danger" value="Delete Post (not working)" style="display: #{companyManagedBean.selectedPost == null? 'none': 'in-line'}" />
+                                <h:commandButton value="#{companyManagedBean.selectedPost == null ? 'Create my Post': 'Update my Post details'}"
+                                                 class="btn btn-outline-warning float-right"
+                                                 action="#{companyManagedBean.postAction}"/>
+                            </div>
+                        </h:form>
                     </div>
                     <!-- /.card -->
                 </section>
@@ -115,6 +117,12 @@
             </ui:define>
 
             <ui:define name="script">
+                <script>
+                    //Date picker
+                    $('#postDeadlinepicker').datetimepicker({
+                        format: 'DD/MM/YYYY'
+                    });
+                </script>
             </ui:define>
 
         </ui:composition>
