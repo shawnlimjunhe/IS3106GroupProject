@@ -12,7 +12,7 @@
             <ui:define name="title">
                 <f:metadata>
                     <f:event type="preRenderView"
-                             listener="#{companyManagedBean.loadcompanyPosts()}" />
+                             listener="#{companyManagedBean.loadcompanyPosts}" />
                 </f:metadata>
                 Your Posts
             </ui:define>
@@ -43,8 +43,6 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </div>
-
-
 
                             <div class="btn-group" role="group">
 
