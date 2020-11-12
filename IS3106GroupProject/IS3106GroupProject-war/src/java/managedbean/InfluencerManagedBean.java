@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import session.InfluencerSessionBeanLocal;
 
 /**
@@ -27,9 +28,16 @@ public class InfluencerManagedBean implements Serializable {
     @EJB
     private InfluencerSessionBeanLocal influencerSessionBeanLocal;
 
+    @Inject
+    private InfluencerAuthenticationManagedBean influencerAuthenticationManagedBean;
+
     private String username;
 
     private String password;
+
+    private String oldPassword;
+
+    private String newPassword;
 
     private int followers;
 
@@ -85,7 +93,6 @@ public class InfluencerManagedBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
         selectedInfluencer.setUsername(username);
-        selectedInfluencer.setPassword(password);
         selectedInfluencer.setNumberFollowers(followers);
         try {
             influencerSessionBeanLocal.updateInfluencer(selectedInfluencer);
@@ -95,6 +102,25 @@ public class InfluencerManagedBean implements Serializable {
         }
 
         context.addMessage(null, new FacesMessage("Successfully updated profile!", ""));
+        return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + iid + "&faces-redirect=true";
+    }
+
+    public String changePassword() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        if (oldPassword.equals(selectedInfluencer.getPassword())) {
+            selectedInfluencer.setPassword(newPassword);
+            try {
+                influencerSessionBeanLocal.changePassword(selectedInfluencer);
+                context.addMessage(null, new FacesMessage("Password is changed successfully!", ""));
+            } catch (Exception e) {
+                //show with an error icon
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to change password", ""));
+            }
+        } else {
+            context.addMessage(null, new FacesMessage("Old password is wrong, please try again!", ""));
+            return "/influencerSecret/passwordChange.xhtml?iId=" + iid + "&faces-redirect=true";
+        }
         return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + iid + "&faces-redirect=true";
     }
 
@@ -126,6 +152,21 @@ public class InfluencerManagedBean implements Serializable {
         context.addMessage(null, new FacesMessage("Successfully withdrew amount!", ""));
         return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + iid + "&faces-redirect=true";
     }
+
+    public String deleteInfluencer() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+
+        try {
+            influencerSessionBeanLocal.deleteInfluencer(influencerAuthenticationManagedBean.getInfluencerId());
+            context.addMessage(null, new FacesMessage("Successfully deleted account!", ""));
+        } catch (Exception e) {
+            //show with an error icon
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to delete account", ""));
+        }
+        return "/registerInfluencer.xhtml" + "&faces-redirect=true";
+
+    } //end delete
 
     public String getUsername() {
         return username;
@@ -205,6 +246,22 @@ public class InfluencerManagedBean implements Serializable {
 
     public void setWithdrawAmount(double withdrawAmount) {
         this.withdrawAmount = withdrawAmount;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
 }

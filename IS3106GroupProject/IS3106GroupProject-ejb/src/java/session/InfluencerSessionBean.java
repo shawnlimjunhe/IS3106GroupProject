@@ -1,6 +1,7 @@
 package session;
 
 import entity.Application;
+import entity.Contract;
 import entity.Influencer;
 import error.NoResultException;
 import java.util.List;
@@ -73,8 +74,18 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
 
         if (oldI != null) {
             oldI.setUsername(i.getUsername());
-            oldI.setPassword(i.getPassword());
             oldI.setNumberFollowers(i.getNumberFollowers());
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
+    
+     @Override
+    public void changePassword(Influencer i) throws NoResultException {
+        Influencer oldI = em.find(Influencer.class, i.getId());
+
+        if (oldI != null) {
+            oldI.setPassword(i.getPassword());
         } else {
             throw new NoResultException("Not found");
         }
@@ -92,6 +103,12 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
         i.setApplications(null);
         for (Application a : applications) {
             em.remove(a);
+        }
+        
+        List<Contract> contracts = i.getContracts();
+        i.setContracts(null);
+        for (Contract c : contracts) {
+            em.remove(c);
         }
         em.remove(i);
     }
