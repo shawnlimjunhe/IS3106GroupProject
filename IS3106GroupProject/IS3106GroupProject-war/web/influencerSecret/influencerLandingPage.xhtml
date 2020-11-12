@@ -33,7 +33,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Search Influencers: " />
                                             <h:inputText p:placeholder="Enter username" value="#{influencerManagedBean.searchString}" p:autofocus="">
-                                                <f:ajax event="keyup" delay="500" render="table1" listener="#{influencerManagedBean.conductSearch}" />
+                                                <f:ajax event="keyup" delay="150" render="table1" listener="#{influencerManagedBean.conductSearch}" />
                                             </h:inputText>
                                             <br/>
                                             <h:outputText style="font-style: italic; color: red" value="No influencers found." rendered="#{empty influencerManagedBean.influencers}" />
