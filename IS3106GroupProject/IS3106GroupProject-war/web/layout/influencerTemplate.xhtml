@@ -77,24 +77,58 @@
                             </li>
                             <li class="nav-item">
                                 <h:link outcome="viewInfluencerContracts" class="nav-link">
-                                    <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>My Contracts
+                                    <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>
+                                    My Contracts
                                     <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
                                 </h:link>
                             </li>
                             <li class="nav-item">
                                 <h:link outcome="viewInfluencerJobs" class="nav-link">
-                                    <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>My Job Applications
+                                    <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>
+                                    My Job Applications
                                     <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
                                 </h:link>
                             </li>
 
-                            <h:form>
-                                <span style="padding-right:70px;"/><h:commandButton value="Logout" class="btn btn-primary" action="#{influencerAuthenticationManagedBean.logout}"/>
-                            </h:form>
+                            <!-- Influencer Log out -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#influencerLogoutModal" data-toggle="modal" data-target="#influencerLogoutModal">
+                                    <i class="fas fa-sign-out-alt"></i> <span style="padding-right:18px;"/>
+                                    <p>
+                                        Log out
+                                    </p>
+                                </a>
+                            </li>
 
-                        </ul> </nav>
+
+                        </ul>
+                    </nav>
                     <!-- /.sidebar-menu --> </div>
                 <!-- /.sidebar --> </aside>
+
+            <!-- .Influencer logout Modal -->
+            <div class="modal fade" id="influencerLogoutModal" tabindex="-1" role="dialog" aria-labelledby="influencerLogoutModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="influencerLogoutModalLabel">Confirm log out?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            We'll return you to our home page :)
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <h:form>
+                                <h:commandButton class="btn btn-warning" action="#{influencerAuthenticationManagedBean.logout}" value="Logout"  ></h:commandButton>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / Influencer.logout Modal -->
 
             <!-- Content Wrapper. Contains page content --> <div class="content-wrapper">
                 <ui:insert name="content">Content</ui:insert> </div>

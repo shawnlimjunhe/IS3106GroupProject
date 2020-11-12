@@ -6,14 +6,65 @@ and open the template in the editor.
 -->
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../layout/companyTemplate.xhtml">
+                template="./../layout/companyTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Welcome
     </ui:define>
 
     <ui:define name="content">
-        Welcome back
+        <h:form id="form">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="col-sm-8">
+                        <p style="font-family: verdana">
+                            <h2 class="m-0 text-blue">
+                                Hi #{companyAuthenticationManagedBean.companyName}, welcome back!
+                            </h2>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h:dataTable id="table1" style="width: 100%;" var="influencer" value="#{influencerManagedBean.influencers}" border="1">
+                                        <f:facet name="header">
+                                            <h:outputText value="Search Influencers: " />
+                                            <h:inputText p:placeholder="Enter username" value="#{influencerManagedBean.searchString}" p:autofocus="">
+                                                <f:ajax event="keyup" delay="150" render="table1" listener="#{influencerManagedBean.conductSearch}" />
+                                            </h:inputText>
+                                            <br/>
+                                            <h:outputText style="font-style: italic; color: red" value="No influencers found." rendered="#{empty influencerManagedBean.influencers}" />
+                                        </f:facet>
+                                        <h:column>
+                                            <f:facet name="header">Rank</f:facet>
+                                            <h:outputText value="#{influencer.ranking}" />
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Username</f:facet>
+                                            <h:link outcome="viewInfluencerProfile" value="#{influencer.username}">
+                                                <f:param name="iId" value="#{influencer.id}" />
+                                            </h:link>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Number of Followers</f:facet>
+                                            <h:outputText value="#{influencer.numberFollowers}" />
+                                        </h:column>
+                                    </h:dataTable>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </h:form>
     </ui:define>
 
     <ui:define name="script">
