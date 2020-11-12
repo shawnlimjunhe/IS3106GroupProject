@@ -23,74 +23,74 @@ import session.CompanySessionBeanLocal;
 @SessionScoped
 public class CompanyAuthenticationManagedBean implements Serializable {
 
-	private String companyName = null;
-	private String password = null;
-	private Long companyId = new Long(-1);
+    private String companyName = null;
+    private String password = null;
+    private Long companyId = new Long(-1);
 
-	private Company company;
+    private Company company;
 
-	@EJB
-	private CompanySessionBeanLocal companySessionBeanLocal;
+    @EJB
+    private CompanySessionBeanLocal companySessionBeanLocal;
 
-	public CompanyAuthenticationManagedBean() {
-	}
+    public CompanyAuthenticationManagedBean() {
+    }
 
-	public String login() throws NoResultException {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getFlash().setKeepMessages(true);
-		company = companySessionBeanLocal.login(companyName, password);
+    public String login() throws NoResultException {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        company = companySessionBeanLocal.login(companyName, password);
 
-		if (company == null) {
-			//login failed
-			companyName = null;
-			password = null;
-			companyId = new Long(-1);
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong login information"));
-			return "companyLogin.xhtml?faces-redirect=true";
-		} else {
-			companyId = company.getId();
-			return "/companySecret/companyLandingPage.xhtml?faces-redirect=true";
-		}
-	}
+        if (company == null) {
+            //login failed
+            companyName = null;
+            password = null;
+            companyId = new Long(-1);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong login information"));
+            return "companyLogin.xhtml?faces-redirect=true";
+        } else {
+            companyId = company.getId();
+            return "/companySecret/posts.xhtml?faces-redirect=true";
+        }
+    }
 
-	public String logout() {
-		companyName = null;
-		password = null;
-		companyId = new Long(-1);
+    public String logout() {
+        companyName = null;
+        password = null;
+        companyId = new Long(-1);
 
-		return "/companyLogin.xhtml?faces-redirect=true";
-	} //end logout
+        return "/companyLogin.xhtml?faces-redirect=true";
+    } //end logout
 
-	public String getCompanyName() {
-		return companyName;
-	}
+    public String getCompanyName() {
+        return companyName;
+    }
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public Long getCompanyId() {
-		return companyId;
-	}
+    public Long getCompanyId() {
+        return companyId;
+    }
 
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
-	}
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
 
-	public Company getCompany() {
-		return company;
-	}
+    public Company getCompany() {
+        return company;
+    }
 
-	public void setCompany(Company company) {
-		this.company = company;
-	}
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
 }
