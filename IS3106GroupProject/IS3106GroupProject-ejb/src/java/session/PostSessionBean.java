@@ -106,4 +106,18 @@ public class PostSessionBean implements PostSessionBeanLocal {
         return q.getResultList();
     }
 
+    @Override
+    public List<Post> getAllPosts(String name) throws NoResultException {
+        Query q;
+        if (name != null) {
+            q = em.createQuery("SELECT p FROM Post p WHERE "
+                    + "LOWER(p.title) LIKE :name");
+            q.setParameter("name", "%" + name.toLowerCase() + "%");
+        } else {
+            q = em.createQuery("SELECT p FROM Post p");
+        }
+
+        return q.getResultList();
+    }
+
 }

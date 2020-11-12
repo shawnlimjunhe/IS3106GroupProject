@@ -8,8 +8,12 @@ package managedbean;
 import entity.Application;
 import entity.Influencer;
 import entity.Post;
+import error.NoResultException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -48,6 +52,8 @@ public class ApplicationManagedBean implements Serializable {
     private Long postId;
     
     private Post selectedPost;
+    
+    private List<Post> posts;
 
     public ApplicationManagedBean() {
     }
@@ -73,6 +79,7 @@ public class ApplicationManagedBean implements Serializable {
     
     public void loadSelectedPost() {
         FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
         if (postId != null) {
             try {
                 selectedPost = postSessionBeanLocal.getPost(postId);
@@ -81,7 +88,16 @@ public class ApplicationManagedBean implements Serializable {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load post"));
             }
         }
-
+    }
+    
+    public void loadAllPosts() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        try {
+            posts = postSessionBeanLocal.getAllPosts(null);
+        } catch (NoResultException ex) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to load jobs", ""));
+        }
     }
 
     public String getCaption() {
