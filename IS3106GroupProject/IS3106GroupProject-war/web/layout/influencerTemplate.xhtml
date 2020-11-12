@@ -84,7 +84,7 @@
                             </li>
                             <li class="nav-item">
                                 <h:link outcome="viewInfluencerJobs" class="nav-link">
-                                    <i class="nav-icon fa fa-file-signature"></i><span style="padding-right:15px;"/>
+                                    <i class="nav-icon fa fa-file-import"></i><span style="padding-right:15px;"/>
                                     My Job Applications
                                     <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
                                 </h:link>
@@ -122,7 +122,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <h:form>
-                                <h:commandButton class="btn btn-warning" action="#{influencerAuthenticationManagedBean.logout}" value="Logout"  ></h:commandButton>
+                                <h:commandButton class="btn btn-danger" action="#{influencerAuthenticationManagedBean.logout}" value="Logout"  ></h:commandButton>
                             </h:form>
                         </div>
                     </div>
