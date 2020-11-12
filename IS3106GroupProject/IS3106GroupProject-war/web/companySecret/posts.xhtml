@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../layout/companyTemplate.xhtml">
+
+            <ui:define name="title">
+                Your Posts
+            </ui:define>
+
+            <ui:define name="content">
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">
+                                    Manage Your Posts
+                                </h1>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <section class="content">
+                    <!-- general form elements -->
+                    <nav class="navbar navbar-dark bg-warning" style="border-radius: 3px;">
+                        <a class="btn btn-secondary" href="#{request.contextPath}/companySecret/managePost.xhtml"
+                           role="button">
+                            <span class="text-light">
+                                New Posts
+                            </span>
+                        </a>
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Not working" aria-label="Search"/>
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </nav>
+
+                    <!-- /.card-header -->
+                    <!-- form start -->
+
+                    <!-- /.card -->
+                </section>
+                <!-- /.content -->
+
+            </ui:define>
+
+            <ui:define name="script">
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

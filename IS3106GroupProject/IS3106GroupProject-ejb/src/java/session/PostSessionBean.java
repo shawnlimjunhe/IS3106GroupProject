@@ -26,6 +26,17 @@ public class PostSessionBean implements PostSessionBeanLocal {
     }
 
     @Override
+    public Post getPost(Long pId) throws NoResultException {
+        Post post = em.find(Post.class, pId);
+
+        if (post != null) {
+            return post;
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
+
+    @Override
     public void updatePost(Post p) throws NoResultException {
         Post oldP = em.find(Post.class, p.getId());
 

@@ -23,19 +23,22 @@ public class Post implements Serializable {
     private Long id;
 
     private int minFollowers;
+    private String title;
     private String description;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date deadline;
     private double salary;
 
     public Post() {
     }
 
-    public Post(String description, Date deadline, double salary) {
+    public Post(String title, String description, Date deadline, double salary, int minFollowers) {
         this();
+        this.title = title;
         this.description = description;
         this.deadline = deadline;
         this.salary = salary;
+        this.minFollowers = minFollowers;
     }
 
     public Long getId() {
@@ -101,6 +104,14 @@ public class Post implements Serializable {
     @Override
     public String toString() {
         return "entity.Post[ id=" + id + " ]";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
 }
