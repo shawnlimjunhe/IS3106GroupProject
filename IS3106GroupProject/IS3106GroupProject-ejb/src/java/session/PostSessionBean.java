@@ -5,7 +5,9 @@
  */
 package session;
 
+import entity.Application;
 import entity.Company;
+import entity.Influencer;
 import entity.Post;
 import error.NoResultException;
 import java.util.List;
@@ -120,4 +122,15 @@ public class PostSessionBean implements PostSessionBeanLocal {
         return q.getResultList();
     }
 
+    @Override
+    public void addApplication(Post p, Application a) throws NoResultException {
+        Post post = em.find(Post.class, p.getId());
+        Application app = em.find(Application.class, a.getId());
+
+        if (post != null && app != null) {
+            post.getApplications().add(a);
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
 }

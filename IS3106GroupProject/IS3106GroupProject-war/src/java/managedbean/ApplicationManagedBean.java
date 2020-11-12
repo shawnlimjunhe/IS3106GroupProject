@@ -41,18 +41,18 @@ public class ApplicationManagedBean implements Serializable {
 
     @EJB
     private InfluencerSessionBeanLocal influencerSessionBeanLocal;
-    
+
     @EJB
     private PostSessionBeanLocal postSessionBeanLocal;
 
     private String caption;
 
     private String companyName;
-    
+
     private Long postId;
-    
+
     private Post selectedPost;
-    
+
     private List<Post> posts;
 
     public ApplicationManagedBean() {
@@ -67,16 +67,18 @@ public class ApplicationManagedBean implements Serializable {
             a.setInfluencerRank(i.getRanking());
             a.setCaption(caption);
             a.setCompanyName(companyName);
+            applicationSessionBeanLocal.createApplication(a);
+            influencerSessionBeanLocal.addApplication(i, a);
+            postSessionBeanLocal.addApplication(selectedPost, a);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Post successfully created!", ""));
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unable to apply for job right now!", ""));
             return "/influencerSecret/jobFeed.xhtml" + "&faces-redirect=true";
         }
-        applicationSessionBeanLocal.createApplication(a);
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Post successfully created!", ""));
 
         return "/influencerSecret/viewInfluencerJobs.xhtml?iId=" + influencerAuthenticationManagedBean.getInfluencerId() + "&faces-redirect=true";
     }
-    
+
     public void loadSelectedPost() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
@@ -89,7 +91,7 @@ public class ApplicationManagedBean implements Serializable {
             }
         }
     }
-    
+
     public void loadAllPosts() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
@@ -139,7 +141,5 @@ public class ApplicationManagedBean implements Serializable {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
-    
-    
 
 }

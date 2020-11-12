@@ -20,4 +20,6 @@ public interface ApplicationSessionBeanLocal {
     public void deleteApplication(Long aId) throws NoResultException;
 
     public List<Application> searchApplicationsByInfluencer(Long iId) throws NoResultException;
+
+    public Application getApplication(Long aId) throws NoResultException;
 }

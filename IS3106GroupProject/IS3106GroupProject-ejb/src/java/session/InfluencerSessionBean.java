@@ -79,8 +79,8 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
             throw new NoResultException("Not found");
         }
     }
-    
-     @Override
+
+    @Override
     public void changePassword(Influencer i) throws NoResultException {
         Influencer oldI = em.find(Influencer.class, i.getId());
 
@@ -104,7 +104,7 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
         for (Application a : applications) {
             em.remove(a);
         }
-        
+
         List<Contract> contracts = i.getContracts();
         i.setContracts(null);
         for (Contract c : contracts) {
@@ -112,7 +112,7 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
         }
         em.remove(i);
     }
-    
+
     @Override
     public void updateBalance(Influencer i) throws NoResultException {
         Influencer oldI = em.find(Influencer.class, i.getId());
@@ -124,4 +124,15 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
         }
     }
 
+    @Override
+    public void addApplication(Influencer i, Application a) throws NoResultException {
+        Influencer inf = em.find(Influencer.class, i.getId());
+        Application app = em.find(Application.class, a.getId());
+
+        if (inf != null && app != null) {
+            inf.getApplications().add(app);
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
 }

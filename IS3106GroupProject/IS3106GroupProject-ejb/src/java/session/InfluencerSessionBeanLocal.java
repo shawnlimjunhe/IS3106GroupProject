@@ -5,6 +5,7 @@
  */
 package session;
 
+import entity.Application;
 import entity.Influencer;
 import error.NoResultException;
 import java.util.List;
@@ -12,8 +13,9 @@ import javax.ejb.Local;
 
 @Local
 public interface InfluencerSessionBeanLocal {
+
     public void createInfluencer(Influencer i);
-    
+
     public Influencer getInfluencer(Long iId) throws NoResultException;
 
     public List<Influencer> searchInfluencers(String name);
@@ -27,4 +29,6 @@ public interface InfluencerSessionBeanLocal {
     public void updateBalance(Influencer i) throws NoResultException;
 
     public void changePassword(Influencer i) throws NoResultException;
+
+    public void addApplication(Influencer i, Application a) throws NoResultException;
 }

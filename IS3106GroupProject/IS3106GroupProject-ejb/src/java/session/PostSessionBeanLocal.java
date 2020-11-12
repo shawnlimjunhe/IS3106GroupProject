@@ -5,6 +5,7 @@
  */
 package session;
 
+import entity.Application;
 import entity.Post;
 import error.NoResultException;
 import java.util.List;
@@ -28,4 +29,6 @@ public interface PostSessionBeanLocal {
     public List<Post> searchPostsFromCompany(String queryTerm, Long cId);
 
     public List<Post> getAllPosts(String name) throws NoResultException;
+
+    public void addApplication(Post p, Application a) throws NoResultException;
 }
