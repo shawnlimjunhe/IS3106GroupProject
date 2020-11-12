@@ -8,6 +8,7 @@ package managedbean;
 import entity.Company;
 import entity.Contract;
 import entity.Post;
+import entity.Application;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -42,6 +43,7 @@ public class CompanyManagedBean implements Serializable {
 
     private List<Post> posts;
     private List<Contract> contracts;
+    private List<Application> applications;
 
     private Post selectedPost;
 
@@ -103,7 +105,7 @@ public class CompanyManagedBean implements Serializable {
             setPosts(selectedCompany.getPosts());
 
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load user"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load posts"));
         }
     }
 
@@ -124,8 +126,9 @@ public class CompanyManagedBean implements Serializable {
         if (pId != null) {
             try {
                 selectedPost = postSB.getPost(pId);
+                applications = selectedPost.getApplications();
             } catch (Exception e) {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load user"));
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load post"));
             }
         }
 
@@ -241,6 +244,14 @@ public class CompanyManagedBean implements Serializable {
 
     public void setContracts(List<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
 }
