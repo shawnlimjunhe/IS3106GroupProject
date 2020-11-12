@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../layout/influencerTemplate.xhtml">
+                template="./../layout/influencerTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Job Feed
@@ -9,16 +11,19 @@
 
     <ui:define name="content">
         <div class="content-header">
-                <div class="container-fluid">
-                    <div class="col-sm-8">
-                        <p style="font-family: verdana">
-                            <h2 class="m-0 text-blue">
-                                Start your job search here
-                            </h2>
-                        </p>
-                    </div>
+            <div class="container-fluid">
+                <div class="col-sm-8">
+                    <p style="font-family: verdana">
+                        <h2 class="m-0 text-blue">
+                            Start your job search here
+                        </h2>
+                    </p>
                 </div>
             </div>
+        </div>
+        <h:button value="Apply Now" class="btn btn-primary" outcome="createApplication">
+            <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+        </h:button>
     </ui:define>
 
     <ui:define name="script">
