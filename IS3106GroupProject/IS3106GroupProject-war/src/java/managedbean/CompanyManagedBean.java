@@ -143,8 +143,11 @@ public class CompanyManagedBean implements Serializable {
     }
 
     public String searchPosts() {
-        FacesContext context = FacesContext.getCurrentInstance();
         return "posts.xhtml?searchTerm=" + searchTerm + "&faces-redirect=true";
+    }
+
+    public String searchApplications() {
+        return "viewPost.xhtml?pId=" + pId + "&searchTerm=" + searchTerm + "&faces-redirect=true";
     }
 
     public String getName() {
