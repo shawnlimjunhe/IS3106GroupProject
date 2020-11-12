@@ -17,15 +17,15 @@ import javax.persistence.Query;
 
 @Stateless
 public class CompanySessionBean implements CompanySessionBeanLocal {
-
+    
     @PersistenceContext
     private EntityManager em;
-
+    
     @Override
     public void createCompany(Company c) {
         em.persist(c);
     }
-
+    
     @Override
     public Company login(String companyName, String password) throws NoResultException {
         Query query = em.createQuery("SELECT c FROM Company c WHERE c.name = :name");
@@ -36,7 +36,7 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
         } catch (Exception ex) {
             return null;
         }
-
+        
         if (c != null) {
             if (c.getPassword().equals(password)) {
                 return c;
@@ -47,7 +47,7 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
             return null;
         }
     }
-
+    
     @Override
     public List<Company> searchCompanies(String name) {
         Query q;
@@ -60,54 +60,56 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
         }
         return q.getResultList();
     }
-
+    
     @Override
     public void updateCompany(Company c) throws NoResultException {
         Company oldC = em.find(Company.class, c.getId());
-
+        
         if (oldC != null) {
             oldC.setName(c.getName());
             oldC.setPassword(c.getPassword());
+            oldC.setPosts(c.getPosts());
+            oldC.setContracts(c.getContracts());
             //whats there to change for company
         } else {
             throw new NoResultException("Not found");
         }
     }
-
+    
     @Override
     public void deleteCompany(Long cId) throws NoResultException {
         Company comp = em.find(Company.class, cId);
-
+        
         if (comp == null) {
             throw new NoResultException("Not found");
         }
-
+        
         List<Post> posts = comp.getPosts();
         comp.setPosts(null);
         List<Contract> contracts = comp.getContracts(); //need to add check whether contracts have been paid/fulfilled
         comp.setContracts(null);
-
+        
         for (Post p : posts) { //might throw a concurrentmodificationexception, change to for int i loop if that happens
             em.remove(p);
         }
-
+        
         for (Contract cont : contracts) {
             //need to remove contract from influencer also? maybe use contractSessionBeanLocal to remove
             em.remove(cont);
         }
-
+        
         em.remove(comp);
     }
-
+    
     @Override
     public Company getCompany(Long cId) throws NoResultException {
         Company company = em.find(Company.class, cId);
-
+        
         if (company != null) {
             return company;
         } else {
             throw new NoResultException("Not found");
         }
     }
-
+    
 }

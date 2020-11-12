@@ -21,8 +21,11 @@ public class PostSessionBean implements PostSessionBeanLocal {
     private EntityManager em;
 
     @Override
-    public void createPost(Post p) {
+    public Long createPost(Post p) {
         em.persist(p);
+        em.flush();
+
+        return p.getId();
     }
 
     @Override
@@ -37,6 +40,16 @@ public class PostSessionBean implements PostSessionBeanLocal {
     }
 
     @Override
+    public void addCompanyToPost(Long pId, Long cId) {
+        Post post = em.find(Post.class, pId);
+        Company company = em.find(Company.class, cId);
+
+        post.setCompany(company);
+        company.addPost(post);
+        em.flush();
+    }
+
+    @Override
     public void updatePost(Post p) throws NoResultException {
         Post oldP = em.find(Post.class, p.getId());
 
@@ -45,6 +58,7 @@ public class PostSessionBean implements PostSessionBeanLocal {
             oldP.setDescription(p.getDescription());
             oldP.setMinFollowers(p.getMinFollowers());
             oldP.setSalary(p.getSalary());
+            oldP.setCompany(p.getCompany());
         }
     }
 
