@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,6 +34,9 @@ public class Post implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date deadline;
     private double salary;
+
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Company company;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Application> applications;
@@ -129,6 +133,18 @@ public class Post implements Serializable {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    public void addApplication(Application a) {
+        this.applications.add(a);
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
 }
