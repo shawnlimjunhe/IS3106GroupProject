@@ -6,11 +6,16 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,6 +34,9 @@ public class Post implements Serializable {
     private Date deadline;
     private double salary;
 
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Application> applications;
+
     public Post() {
     }
 
@@ -39,6 +47,7 @@ public class Post implements Serializable {
         this.deadline = deadline;
         this.salary = salary;
         this.minFollowers = minFollowers;
+        this.applications = new ArrayList();
     }
 
     public Long getId() {
@@ -112,6 +121,14 @@ public class Post implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
 }

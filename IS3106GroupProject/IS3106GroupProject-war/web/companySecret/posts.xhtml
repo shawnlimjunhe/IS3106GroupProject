@@ -2,13 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../layout/companyTemplate.xhtml">
 
             <ui:define name="title">
+                <f:metadata>
+                    <f:event type="preRenderView"
+                             listener="#{companyManagedBean.loadcompanyPosts()}" />
+                </f:metadata>
                 Your Posts
             </ui:define>
 
@@ -45,7 +50,48 @@
 
                     <!-- /.card-header -->
                     <!-- form start -->
+                    <div class="card card-warning mb-3">
+                        <div class='card-body'>
+                            <table class="table" id="viewPost">
+                                <thead>
+                                    <td>
+                                        Title
+                                    </td>
+                                    <td>
+                                        Deadline
+                                    </td>
+                                    <td>
+                                        Number of applications
+                                    </td>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat var="post" value="${companyManagedBean.posts}">
+                                        <tr>
+                                            <td>
+                                                #{post.title}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <h:outputText value="${post.deadline}">
+                                                    <f:convertDateTime type="date" pattern="y-M-d 'at' h:mm a"/>
+                                                </h:outputText>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                        </tr>
 
+                                    </ui:repeat>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class='card-footer'>
+                        </div>
+
+                    </div>
                     <!-- /.card -->
                 </section>
                 <!-- /.content -->

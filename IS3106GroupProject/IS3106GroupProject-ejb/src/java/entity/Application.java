@@ -6,10 +6,13 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Application implements Serializable {
@@ -26,6 +29,8 @@ public class Application implements Serializable {
     private String accepted;
     private String rejectReason;
     //Influencer
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Post post;
 
     public Application() {
     }
@@ -110,6 +115,14 @@ public class Application implements Serializable {
     @Override
     public String toString() {
         return "entity.Application[ id=" + id + " ]";
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
 }

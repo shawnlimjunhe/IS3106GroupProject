@@ -6,9 +6,11 @@
 package managedbean;
 
 import entity.Company;
+import entity.Contract;
 import entity.Post;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -33,6 +35,9 @@ public class CompanyManagedBean implements Serializable {
     private String name;
 
     private Company selectedCompany;
+
+    private List<Post> posts;
+    private List<Contract> contracts;
 
     private Post selectedPost;
 
@@ -83,6 +88,17 @@ public class CompanyManagedBean implements Serializable {
 
     public String postAction() {
         return this.createPost();
+    }
+
+    public void loadcompanyPosts() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            selectedCompany = companySessionBeanLocal.getCompany(cId);
+            setPosts(selectedCompany.getPosts());
+
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load user"));
+        }
     }
 
     public void loadSelectedCompany() {
@@ -199,6 +215,22 @@ public class CompanyManagedBean implements Serializable {
 
     public void setMinFollowers(int minFollowers) {
         this.minFollowers = minFollowers;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
 }
