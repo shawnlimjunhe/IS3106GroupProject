@@ -11,99 +11,131 @@
         Influencer Contracts
     </ui:define>
 
-    <ui:define name="content">
-        <f:metadata>
-            <!-- to get the uId and bind it to a uId in managed bean -->
-            <f:viewParam name="iId" value="#{influencerManagedBean.iid}" />
-            <!-- load the selected user -->
-            <f:event type="preRenderView" listener="#{influencerManagedBean.loadSelectedInfluencer}"/>
-        </f:metadata>
-        <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"></h1>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item">
-                                <a href="#{request.contextPath}/influencerSecret/viewInfluencerContracts.xhtml">Home</a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                Contracts Feed
-                            </li>
-                        </ol>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-        <section class="content">
-            <!-- general form elements -->
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        #{influencerManagedBean.username}'s Contracts
-                    </h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <c:forEach var="contract" items="#{influencerManagedBean.selectedInfluencer.contracts}">
-                            <tr>
-                                <td width="200px">Start Date</td>
-                                <td>#{contract.startDate}</td>
-                            </tr>
-
-                            <tr>
-                                <td width="200px">End Date</td>
-                                <td>#{contract.endDate}</td>
-                            </tr>
-                            <tr>
-                                <td width="200px">Approved</td>
-                                <td>#{contract.approved}</td>
-                            </tr>
-                            <tr>
-                                <td width="200px">Links</td>
-                                <c:forEach var="link" items="#{contract.links}">
-                                    <td>#{link}</td>
-                                </c:forEach>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </div>
-            </div>
-        </section>
-        need add company name
-        
-         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header p-2">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="#ongoing" data-toggle="tab">Ongoing</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#past" data-toggle="tab">Past</a></li>
-                    </ul>
-                </div><!-- /.card-header -->
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="active tab-pane" id="ongoing">
-                            ongoing
+    <div class="col-sm-9" style="margin-auto">
+        <ui:define name="content">
+            <f:metadata>
+                <!-- to get the uId and bind it to a uId in managed bean -->
+                <f:viewParam name="iId" value="#{influencerManagedBean.iid}" />
+                <!-- load the selected user -->
+                <f:event type="preRenderView" listener="#{influencerManagedBean.loadSelectedInfluencer}"/>
+            </f:metadata>
+            <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark"></h1>
                         </div>
-                        <div class="tab-pane" id="past">
-                            past
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="#{request.contextPath}/influencerSecret/viewInfluencerContracts.xhtml">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Contracts Feed
+                                </li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <section class="content">
+                <!-- general form elements -->
+            </section>
+            shifted the tables into the tabs alr need separate the ongoing/past contracts
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#ongoing" data-toggle="tab">Ongoing</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#past" data-toggle="tab">Past</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="ongoing">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            #{influencerManagedBean.username}'s Contracts
+                                        </h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <table class="table table-bordered">
+                                            <c:forEach var="contract" items="#{influencerManagedBean.selectedInfluencer.contracts}">
+                                                <tr>
+                                                    <td width="200px">Start Date</td>
+                                                    <td>#{contract.startDate}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="200px">End Date</td>
+                                                    <td>#{contract.endDate}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="200px">Approved</td>
+                                                    <td>#{contract.approved}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="200px">Links</td>
+                                                    <c:forEach var="link" items="#{contract.links}">
+                                                        <td>#{link}</td>
+                                                    </c:forEach>
+                                                </tr>
+                                            </c:forEach>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="past">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">
+                                            #{influencerManagedBean.username}'s Contracts
+                                        </h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <table class="table table-bordered">
+                                            <c:forEach var="contract" items="#{influencerManagedBean.selectedInfluencer.contracts}">
+                                                <tr>
+                                                    <td width="200px">Start Date</td>
+                                                    <td>#{contract.startDate}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td width="200px">End Date</td>
+                                                    <td>#{contract.endDate}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="200px">Approved</td>
+                                                    <td>#{contract.approved}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="200px">Links</td>
+                                                    <c:forEach var="link" items="#{contract.links}">
+                                                        <td>#{link}</td>
+                                                    </c:forEach>
+                                                </tr>
+                                            </c:forEach>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </ui:define>
-
+        </ui:define>
+    </div>
     <ui:define name="script">
         script
     </ui:define>

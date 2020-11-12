@@ -24,6 +24,7 @@ public class Contract implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String companyName;
     private List<String> links;
     @Temporal(TemporalType.DATE)
     private Date startDate; //to represent time limit
@@ -35,12 +36,21 @@ public class Contract implements Serializable {
         this.links = new ArrayList<>();
     }
 
-    public Contract(List<String> links, Date startDate, Date endDate, boolean approved) {
+    public Contract(String companyName, List<String> links, Date startDate, Date endDate, boolean approved) {
         this();
+        this.companyName = companyName;
         this.links = links;
         this.startDate = startDate;
         this.endDate = endDate;
         this.approved = approved;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public List<String> getLinks() {

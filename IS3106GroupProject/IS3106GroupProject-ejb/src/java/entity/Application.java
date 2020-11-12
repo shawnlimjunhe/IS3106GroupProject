@@ -20,6 +20,7 @@ public class Application implements Serializable {
     private Long id;
 
     //Picture attribute maybe Path or smth
+    private String companyName;
     private String caption;
     private int influencerRank;
     private String accepted;
@@ -29,12 +30,21 @@ public class Application implements Serializable {
     public Application() {
     }
 
-    public Application(String caption, int influencerRank, String accepted, String rejectReason) {
+    public Application(String companyName, String caption, int influencerRank, String accepted, String rejectReason) {
         this();
+        this.companyName = companyName;
         this.caption = caption;
         this.influencerRank = influencerRank;
         this.accepted = accepted;
         this.rejectReason = rejectReason;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getCaption() {

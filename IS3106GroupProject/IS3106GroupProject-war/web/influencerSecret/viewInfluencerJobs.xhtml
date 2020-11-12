@@ -11,94 +11,144 @@
         My Job Applications
     </ui:define>
 
-    <ui:define name="content">
-        <f:metadata>
-            <!-- to get the uId and bind it to a uId in managed bean -->
-            <f:viewParam name="iId" value="#{influencerManagedBean.iid}" />
-            <!-- load the selected user -->
-            <f:event type="preRenderView" listener="#{influencerManagedBean.loadSelectedInfluencer}"/>
-        </f:metadata>
-        <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"></h1>
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item">
-                                <a href="#{request.contextPath}/influencerSecret/viewInfluencerJobs.xhtml">Home</a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                My Job Applications
-                            </li>
-                        </ol>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-        <section class="content">
-            <!-- general form elements -->
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        #{influencerManagedBean.username}'s Job Applications
-                    </h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <c:forEach var="application" items="#{influencerManagedBean.selectedInfluencer.applications}">
-                            <tr>
-                                <td width="200px">Caption</td>
-                                <td>#{application.caption}</td>
-                            </tr>
-
-                            <tr>
-                                <td width="200px">Accepted</td>
-                                <td>#{application.accepted}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        table of current applications. maybe can filter, or go by different tabs: past and ongoing
-        need add company name probably
-
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header p-2">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="nav-link active" href="#accepted" data-toggle="tab">Accepted</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#processing" data-toggle="tab">Processing</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#rejected" data-toggle="tab">Rejected</a></li>
-                    </ul>
-                </div><!-- /.card-header -->
-                <div class="card-body">
-                    <div class="tab-content">
-                        <div class="active tab-pane" id="accepted">
-                            accepted applications here, but should refer to contract from here on
+    <div class="col-sm-9" style="margin-auto">
+        <ui:define name="content">
+            <f:metadata>
+                <!-- to get the uId and bind it to a uId in managed bean -->
+                <f:viewParam name="iId" value="#{influencerManagedBean.iid}" />
+                <!-- load the selected user -->
+                <f:event type="preRenderView" listener="#{influencerManagedBean.loadSelectedInfluencer}"/>
+            </f:metadata>
+            <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark"></h1>
                         </div>
-                        <div class="tab-pane" id="processing">
-                            applications that don't have replies from companies yet
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="#{request.contextPath}/influencerSecret/viewInfluencerJobs.xhtml">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    My Job Applications
+                                </li>
+                            </ol>
                         </div>
-                        <div class="tab-pane" id="rejected">
-                            applications that were rejected and reasons will be presented
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            table of current applications. maybe can filter, or go by different tabs: past and ongoing
+            need add company name probably
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#accepted" data-toggle="tab">Accepted</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#processing" data-toggle="tab">Processing</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#rejected" data-toggle="tab">Rejected</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="accepted">
+                                <section class="content">
+                                    <!-- general form elements -->
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                #{influencerManagedBean.username}'s Job Applications (ACCEPTED LOGIK NOT DONE YET)
+                                            </h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <c:forEach var="application" items="#{influencerManagedBean.selectedInfluencer.applications}">
+                                                    <tr>
+                                                        <td width="200px">Caption</td>
+                                                        <td>#{application.caption}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="200px">Accepted</td>
+                                                        <td>#{application.accepted}</td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="tab-pane" id="processing">
+                                <section class="content">
+                                    <!-- general form elements -->
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                #{influencerManagedBean.username}'s Job Applications (PROCESSING)
+                                            </h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <c:forEach var="application" items="#{influencerManagedBean.selectedInfluencer.applications}">
+                                                    <tr>
+                                                        <td width="200px">Caption</td>
+                                                        <td>#{application.caption}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="200px">Accepted</td>
+                                                        <td>#{application.accepted}</td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="tab-pane" id="rejected">
+                                <section class="content">
+                                    <!-- general form elements -->
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                #{influencerManagedBean.username}'s Job Applications (REJECTED)
+                                            </h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <c:forEach var="application" items="#{influencerManagedBean.selectedInfluencer.applications}">
+                                                    <tr>
+                                                        <td width="200px">Caption</td>
+                                                        <td>#{application.caption}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td width="200px">Accepted</td>
+                                                        <td>#{application.accepted}</td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </ui:define>
+        </ui:define>
+    </div>
 
     <ui:define name="script">
         script
