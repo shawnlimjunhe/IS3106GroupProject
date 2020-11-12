@@ -73,7 +73,7 @@
                                     <ui:repeat var="post" value="${companyManagedBean.posts}">
                                         <tr>
                                             <td>
-                                                <a href="#">
+                                                <a href="#{request.contextPath}/companySecret/viewPost.xhtml?pId=#{post.id}">
                                                     #{post.title}
                                                 </a>
                                             </td>
