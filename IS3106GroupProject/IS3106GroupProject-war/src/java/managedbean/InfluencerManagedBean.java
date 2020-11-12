@@ -7,7 +7,9 @@ package managedbean;
 
 import entity.Influencer;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -54,6 +56,12 @@ public class InfluencerManagedBean implements Serializable {
     private String searchString;
 
     private double withdrawAmount;
+
+    private Date today = new Date();
+    
+    private Date deadline;
+    
+    private int difference;
 
     public InfluencerManagedBean() {
     }
@@ -168,6 +176,12 @@ public class InfluencerManagedBean implements Serializable {
 
     } //end delete
 
+    public void daysLeft() {
+        if (today != null && deadline != null) {
+            difference = (int) ((today.getTime() - deadline.getTime()) / (1000 * 60 * 60 * 24));
+        }
+    }
+
     public String getUsername() {
         return username;
     }
@@ -262,6 +276,30 @@ public class InfluencerManagedBean implements Serializable {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public Date getToday() {
+        return today;
+    }
+
+    public void setToday(Date today) {
+        this.today = today;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    public int getDifference() {
+        return difference;
+    }
+
+    public void setDifference(int difference) {
+        this.difference = difference;
     }
 
 }
