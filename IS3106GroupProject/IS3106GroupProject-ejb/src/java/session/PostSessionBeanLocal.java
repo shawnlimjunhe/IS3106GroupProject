@@ -13,7 +13,7 @@ import javax.ejb.Local;
 @Local
 public interface PostSessionBeanLocal {
 
-    public void createPost(Post p);
+    public Long createPost(Post p);
 
     public void updatePost(Post p) throws NoResultException;
 

@@ -83,9 +83,11 @@ public class CompanyManagedBean implements Serializable {
         try {
             setSelectedCompany(companySB.getCompany(caMB.getCompanyId()));
             Post p = new Post(postTitle, postDescription, postDeadline, postSalary, minFollowers);
-            p.setCompany(selectedCompany);
-            postSB.createPost(p);
+            Long createdPostId = postSB.createPost(p);
+            Post createdPost = postSB.getPost(createdPostId);
+            createdPost.setCompany(selectedCompany);
             selectedCompany.addPost(p);
+            postSB.updatePost(createdPost);
             companySB.updateCompany(selectedCompany);
             return "posts.xhtml";
         } catch (Exception e) {
@@ -123,11 +125,14 @@ public class CompanyManagedBean implements Serializable {
     
     public void loadSelectedPost() {
         FacesContext context = FacesContext.getCurrentInstance();
-        try {
-            selectedPost = postSB.getPost(pId);
-        } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load user"));
+        if (pId != null) {
+            try {
+                selectedPost = postSB.getPost(pId);
+            } catch (Exception e) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load user"));
+            }
         }
+        
     }
     
     public String getName() {
