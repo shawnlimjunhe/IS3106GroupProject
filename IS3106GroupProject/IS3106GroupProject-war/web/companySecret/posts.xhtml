@@ -61,30 +61,28 @@
                     <!-- form start -->
                     <div class="card card-warning mb-3">
                         <div class='card-body'>
-                            <table class="table" id="viewPost">
+                            <table class="table table-hover" id="viewPost">
                                 <thead>
-                                    <td>
-                                        Title
-                                    </td>
-                                    <td>
-                                        Deadline
-                                    </td>
-                                    <td>
-                                        Number of applications
-                                    </td>
+                                    <th>Title </th>
+                                    <th>Deadline</th>
+                                    <th class="text-right">Applications</th>
                                 </thead>
+
+
                                 <tbody>
                                     <ui:repeat var="post" value="${companyManagedBean.posts}">
                                         <tr>
                                             <td>
-                                                #{post.title}
+                                                <a href="#">
+                                                    #{post.title}
+                                                </a>
                                             </td>
                                             <td>
                                                 <h:outputText value="${post.deadline}">
-                                                    <f:convertDateTime type="date" pattern="y-M-d 'at' h:mm a"/>
+                                                    <f:convertDateTime type="date" pattern="y-M-d"/>
                                                 </h:outputText>
                                             </td>
-                                            <td>
+                                            <td class="text-right">
                                                 #{post.applications.size()}
                                             </td>
                                         </tr>
