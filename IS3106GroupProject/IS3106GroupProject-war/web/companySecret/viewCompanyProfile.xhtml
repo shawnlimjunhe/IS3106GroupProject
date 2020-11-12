@@ -47,9 +47,9 @@
             <!-- general form elements -->
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">
+                    <h4 class="card-title">
                         #{companyManagedBean.name}
-                    </h3>
+                    </h4>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -63,6 +63,12 @@
                             <td  width="100px">Account Balance</td>
                             <td>#{companyManagedBean.balance}</td>
                         </tr>
+
+                        <tr>
+                            <td  width="100px">Uploaded Posts</td>
+                            <td>#{companyManagedBean.posts.size()}</td>
+                        </tr>
+
                     </table>
                 </div>
             </div>
