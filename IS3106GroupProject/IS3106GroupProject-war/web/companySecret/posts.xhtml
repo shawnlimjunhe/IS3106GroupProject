@@ -36,12 +36,23 @@
                 <section class="content">
                     <!-- general form elements -->
                     <nav class="navbar navbar-dark bg-warning" style="border-radius: 3px;">
-                        <a class="btn btn-secondary" href="#{request.contextPath}/companySecret/managePost.xhtml"
-                           role="button">
-                            <span class="text-light">
-                                New Posts
-                            </span>
-                        </a>
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group mr-2" role="group">
+                                <a class="btn btn-outline-success" href="#{request.contextPath}/companySecret/managePost.xhtml"
+                                   role="button">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+
+
+
+                            <div class="btn-group" role="group">
+
+                                <button type="button" class="btn btn-outline-secondary">Active</button>
+                                <button type="button" class="btn btn-outline-secondary">Finished</button>
+                            </div>
+                        </div>
+
                         <form class="form-inline">
                             <input class="form-control mr-sm-2" type="search" placeholder="Not working" aria-label="Search"/>
                             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
@@ -70,16 +81,13 @@
                                             <td>
                                                 #{post.title}
                                             </td>
-                                        </tr>
-                                        <tr>
                                             <td>
                                                 <h:outputText value="${post.deadline}">
                                                     <f:convertDateTime type="date" pattern="y-M-d 'at' h:mm a"/>
                                                 </h:outputText>
                                             </td>
-                                        </tr>
-                                        <tr>
                                             <td>
+                                                #{post.applications.size()}
                                             </td>
                                         </tr>
 
