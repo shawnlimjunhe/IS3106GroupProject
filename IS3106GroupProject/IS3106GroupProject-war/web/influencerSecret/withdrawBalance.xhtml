@@ -67,6 +67,27 @@
                                 <td>#{influencerManagedBean.balance}</td>
                             </tr>
                             <tr>
+                                <td  width="300px">Transfer to Bank</td>
+                                <td> <select class="form-control">
+                                        <option>Citibank</option>
+                                        <option>DBS</option>
+                                        <option>HSBC</option>
+                                        <option>Maybank</option>
+                                        <option>OCBC</option>
+                                        <option>POSB</option>
+                                        <option>UOB</option>
+                                        <option>Standard Chartered Bank</option>
+                                    </select></td>
+                            </tr>
+                             <tr>
+                                <td  width="300px">Name as per Bank Account</td>
+                                <td><input type="text" class="form-control" placeholder="Account name"></input></td>
+                            </tr>
+                            <tr>
+                                <td  width="300px">Bank Account No.</td>
+                                <td><input type="text" class="form-control" placeholder="Account number without hyphen or space"></input></td>
+                            </tr>
+                            <tr>
                                 <td  width="300px">How much would you like to withdraw?</td>
                                 <td>
                                     <h:inputText binding="#{withdrawAmount}" id="withdrawAmount" class="form-control #{withdrawAmount.valid ? '' :'is-invalid'}" p:autofocus="" p:placeholder="Amount to withdraw"

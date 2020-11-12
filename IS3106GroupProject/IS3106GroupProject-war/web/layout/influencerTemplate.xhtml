@@ -48,12 +48,18 @@
                 <div class="sidebar bg-navy">
                     <!-- Sidebar Menu --> 
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div>
-                            <h:link outcome="viewInfluencerProfile" class="nav-link">
-                                <span style="padding-right:10px;"/><i class="nav-icon fa fa-user"></i> <span style="padding-right:15px;"/>My Profile
-                                <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
-                            </h:link>
-                        </div>
+                        <ul class="nav nav-pills nav-sidebar flex-column" datawidget="treeview" role="menu" data-accordion="false">
+                            <li class="nav-item">
+                                 <a href="#{request.contextPath}/influencerSecret/viewInfluencerProfile.xhtml?iId=#{influencerAuthenticationManagedBean.influencerId}"
+                                   class="nav-link">
+                                    <i class="nav-icon fa fa-user"></i><span style="padding-right:15px;"/>
+                                    <p>
+                                        My Profile
+                                    </p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </div>
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">

@@ -4,7 +4,8 @@
                 template="./../layout/influencerTemplate.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns="http://www.w3.org/1999/xhtml">
 
     <ui:define name="title">
         My Job Applications
@@ -32,7 +33,7 @@
                                 <a href="#{request.contextPath}/influencerSecret/viewInfluencerJobs.xhtml">Home</a>
                             </li>
                             <li class="breadcrumb-item active">
-                                Job Feed
+                                My Job Applications
                             </li>
                         </ol>
                     </div>
@@ -72,6 +73,31 @@
 
         table of current applications. maybe can filter, or go by different tabs: past and ongoing
         need add company name probably
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a class="nav-link active" href="#accepted" data-toggle="tab">Accepted</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#processing" data-toggle="tab">Processing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#rejected" data-toggle="tab">Rejected</a></li>
+                    </ul>
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="accepted">
+                            accepted applications here, but should refer to contract from here on
+                        </div>
+                        <div class="tab-pane" id="processing">
+                            applications that don't have replies from companies yet
+                        </div>
+                        <div class="tab-pane" id="rejected">
+                            applications that were rejected and reasons will be presented
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ui:define>
 
     <ui:define name="script">
