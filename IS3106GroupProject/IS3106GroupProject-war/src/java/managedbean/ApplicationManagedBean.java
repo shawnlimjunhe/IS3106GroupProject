@@ -7,6 +7,7 @@ package managedbean;
 
 import entity.Application;
 import entity.Influencer;
+import entity.Post;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
@@ -18,6 +19,7 @@ import javax.inject.Inject;
 import session.ApplicationSessionBean;
 import session.ApplicationSessionBeanLocal;
 import session.InfluencerSessionBeanLocal;
+import session.PostSessionBeanLocal;
 
 /**
  *
@@ -35,15 +37,22 @@ public class ApplicationManagedBean implements Serializable {
 
     @EJB
     private InfluencerSessionBeanLocal influencerSessionBeanLocal;
+    
+    @EJB
+    private PostSessionBeanLocal postSessionBeanLocal;
 
     private String caption;
 
     private String companyName;
+    
+    private Long postId;
+    
+    private Post selectedPost;
 
     public ApplicationManagedBean() {
     }
 
-    public String createAPost() {
+    public String createApplication() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
         Application a = new Application();
@@ -61,5 +70,44 @@ public class ApplicationManagedBean implements Serializable {
 
         return "/influencerSecret/viewInfluencerJobs.xhtml?iId=" + influencerAuthenticationManagedBean.getInfluencerId() + "&faces-redirect=true";
     }
+    
+    public void loadSelectedPost() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (postId != null) {
+            try {
+                selectedPost = postSessionBeanLocal.getPost(postId);
+                companyName = selectedPost.getCompany().getName();
+            } catch (Exception e) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load post"));
+            }
+        }
+
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+    
+    
 
 }
