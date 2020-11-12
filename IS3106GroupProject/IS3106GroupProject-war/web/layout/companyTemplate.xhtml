@@ -54,7 +54,9 @@
                         <ul class="nav nav-pills nav-sidebar flex-column" datawidget="treeview" role="menu" data-accordion="false">
                             <li class="nav-item">
                                 <a href="#{request.contextPath}/companySecret/viewCompanyProfile.xhtml?cId=#{companyAuthenticationManagedBean.companyId}"
-                                   class="nav-link">
+                                   class="nav-link"
+                                   style="background-color: #{request.requestURI == '/IS3106GroupProject-war/companySecret/viewCompanyProfile.xhtml' ? '#ffc107' : ''}"
+                                   >
                                     <i class="nav-icon fa fa-user"></i><span style="padding-right:15px;"/>
                                     <p>
                                         Company Profile
@@ -69,7 +71,7 @@
                             <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                             <li class="nav-item">
                                 <a href="#{request.contextPath}/companySecret/posts.xhtml"
-                                   class="nav-link">
+                                   class="nav-link" style="background-color: #{request.requestURI == '/IS3106GroupProject-war/companySecret/posts.xhtml' ? '#ffc107' : ''}">
                                     <i class="nav-icon fa fa-briefcase"></i><span style="padding-right:15px;"/>
                                     <p>
                                         Company Jobs
@@ -78,7 +80,8 @@
                             </li>
                             <li class="nav-item">
                                 <a href="#{request.contextPath}/companySecret/contracts.xhtml"
-                                   class="nav-link">
+                                   class="nav-link" 
+                                   style="background-color: #{request.requestURI == '/IS3106GroupProject-war/companySecret/contracts.xhtml' ? '#ffc107' : ''}">
                                     <i class="nav-icon fa fa-signature"></i><span style="padding-right:15px;"/>
                                     <p>
                                         Company Contracts
