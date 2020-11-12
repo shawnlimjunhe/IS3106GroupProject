@@ -38,6 +38,7 @@ public class CompanyManagedBean implements Serializable {
     private PostSessionBeanLocal postSB;
 
     private String name;
+    private String searchTerm;
 
     private Company selectedCompany;
 
@@ -100,12 +101,19 @@ public class CompanyManagedBean implements Serializable {
 
     public void loadcompanyPosts() {
         FacesContext context = FacesContext.getCurrentInstance();
-        try {
-            setSelectedCompany(companySB.getCompany(caMB.getCompanyId()));
-            setPosts(selectedCompany.getPosts());
 
-        } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load posts"));
+        if (searchTerm == null) {
+            System.out.print("reloading");
+            try {
+                setSelectedCompany(companySB.getCompany(caMB.getCompanyId()));
+                setPosts(selectedCompany.getPosts());
+
+            } catch (Exception e) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load posts"));
+            }
+        } else {
+            posts = postSB.searchPostsFromCompany(searchTerm, caMB.getCompanyId());
+            setSearchTerm(null);
         }
     }
 
@@ -132,6 +140,11 @@ public class CompanyManagedBean implements Serializable {
             }
         }
 
+    }
+
+    public String searchPosts() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        return "posts.xhtml?searchTerm=" + searchTerm + "&faces-redirect=true";
     }
 
     public String getName() {
@@ -252,6 +265,14 @@ public class CompanyManagedBean implements Serializable {
 
     public void setApplications(List<Application> applications) {
         this.applications = applications;
+    }
+
+    public String getSearchTerm() {
+        return searchTerm;
+    }
+
+    public void setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
     }
 
 }

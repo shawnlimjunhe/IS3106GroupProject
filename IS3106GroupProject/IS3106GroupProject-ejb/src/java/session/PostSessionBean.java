@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TemporalType;
 
 @Stateless
 public class PostSessionBean implements PostSessionBeanLocal {
@@ -87,6 +88,19 @@ public class PostSessionBean implements PostSessionBeanLocal {
             q = em.createQuery("SELECT p FROM Post p, Company c WHERE p MEMBER OF c.posts");
         } else {
             return null;
+        }
+
+        return q.getResultList();
+    }
+
+    public List<Post> searchPostsFromCompany(String queryTerm, Long cId) {
+        Company c = em.find(Company.class, cId);
+        Query q;
+        if (queryTerm != null) {
+            q = em.createQuery("SELECT p FROM Post p, Company c WHERE p MEMBER OF c.posts AND LOWER(p.title) LIKE :name");
+            q.setParameter("name", "%" + queryTerm.toLowerCase() + "%");
+        } else {
+            q = em.createQuery("SELECT p FROM Post p, Company c WHERE p MEMBER OF c.posts");
         }
 
         return q.getResultList();

@@ -11,6 +11,7 @@
 
             <ui:define name="title">
                 <f:metadata>
+                    <f:viewParam name="searchTerm" value="#{companyManagedBean.searchTerm}" />
                     <f:event type="preRenderView"
                              listener="#{companyManagedBean.loadcompanyPosts}" />
                 </f:metadata>
@@ -51,10 +52,10 @@
                             </div>
                         </div>
 
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Not working" aria-label="Search"/>
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
+                        <h:form class="form-inline">
+                            <h:inputText class="form-control mr-sm-2" value="#{companyManagedBean.searchTerm}"/>
+                            <h:commandLink class="btn btn-secondary my-2 my-sm-0" action="#{companyManagedBean.searchPosts}">Search</h:commandLink>
+                        </h:form>
                     </nav>
 
                     <!-- /.card-header -->

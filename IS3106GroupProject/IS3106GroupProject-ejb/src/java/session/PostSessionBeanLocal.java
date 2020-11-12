@@ -24,4 +24,6 @@ public interface PostSessionBeanLocal {
     public Post getPost(Long pId) throws NoResultException;
 
     public void addCompanyToPost(Long pId, Long cId);
+
+    public List<Post> searchPostsFromCompany(String queryTerm, Long cId);
 }
