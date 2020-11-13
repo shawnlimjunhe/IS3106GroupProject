@@ -115,20 +115,43 @@
                                             #{influencerManagedBean.username}'s Past Contracts
                                         </h3>
                                     </div>
-                                    <div class="card card-primary">
+                                    
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <ui:repeat var="contract" value="#{contractManagedBean.infPastContracts}">
-                                                <div class="card" style="width: 18rem;">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Contract with <b>#{companyManagedBean.getCompanyName(contract.companyId)}</b></h5>
-                                                        <p class="card-text">Start Date: #{contract.startDate}</p>
-                                                        <p class="card-text">End Date: #{contract.endDate}</p>
-                                                    </div>
+                                                <div class="small-box bg-warning">
+                                                <div class="inner">
+                                                    <h3><b>#{companyManagedBean.getCompanyName(contract.companyId)}</b></h3>
+
+                                                    Start Date: <h:outputText value="#{contract.startDate}">
+                                                        <f:convertDateTime type="date" pattern="y-M-d"/>
+                                                    </h:outputText><br/>
+                                                    End Date: <h:outputText value="#{contract.endDate}">
+                                                        <f:convertDateTime type="date" pattern="y-M-d"/>
+                                                    </h:outputText><br/>
+                                                    <h:panelGroup rendered="#{contract.link != null}">
+                                                       Link: <h:outputText value="#{contract.link}"/>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{contract.link == null}">
+                                                        <h:form>
+                                                            <h:inputText id="link" value="#{link}" required="true" style="width: 100%"/>
+                                                            <h:commandButton
+                                                                value="Upload Link"
+                                                                class="btn btn-primary btn-block"
+                                                                action="#{contractManagedBean.uploadLink(contract.id, link)}"
+                                                                />
+                                                        </h:form>
+                                                    </h:panelGroup>
                                                 </div>
+                                                <div class="icon">
+                                                    <i class="ion ion-person-add"></i>
+                                                </div>
+
+                                            </div>
+
                                             </ui:repeat>
                                         </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
