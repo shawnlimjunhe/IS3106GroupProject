@@ -1,18 +1,104 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./../layout/companyTemplate.xhtml">
 
             <ui:define name="title">
-                contracts
+                <f:metadata>
+                    <f:viewParam name="searchTerm" value="#{companyManagedBean.searchTerm}" />
+                    <f:event type="preRenderView"
+                             listener="#{companyManagedBean.loadcompanyContracts}" />
+                </f:metadata>
+                Your Contracts
             </ui:define>
 
             <ui:define name="content">
-                contracts
+
+
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">
+                                    Manage Your Contracts
+                                </h1>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.content-header -->
+
+                <section class="content">
+                    <!-- general form elements -->
+                    <nav class="navbar navbar-dark bg-warning" style="border-radius: 3px;">
+                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group" role="group">
+
+                                <button type="button" class="btn btn-outline-secondary">Active</button>
+                                <button type="button" class="btn btn-outline-secondary">Finished</button>
+                            </div>
+                        </div>
+
+                        <h:form class="form-inline">
+                            <h:inputText class="form-control mr-sm-2" value="#{companyManagedBean.searchTerm}"/>
+                            <h:commandLink class="btn btn-secondary my-2 my-sm-0" action="#{companyManagedBean.searchPosts}">Search Posts</h:commandLink>
+                        </h:form>
+                    </nav>
+
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <div class="card card-warning mb-3">
+                        <div class='card-body'>
+                            <table class="table table-hover" id="viewPost">
+                                <thead>
+                                    <th>Username</th>
+                                    <th>Start Date</th>
+                                    <th >End Date</th>
+
+
+                                </thead>
+
+
+                                <tbody>
+                                    <ui:repeat var="contract" value="${companyManagedBean.contracts}">
+                                        <tr>
+                                            <td>
+                                                <a href="#{request.contextPath}/companySecret/viewContract.xhtml?contractId=#{contract.id}">
+                                                    placeholder
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="${contract.startDate}">
+                                                    <f:convertDateTime type="date" pattern="y-M-d"/>
+                                                </h:outputText>
+                                            </td>
+                                            <td>
+                                                <h:outputText value="${contract.endDate}">
+                                                    <f:convertDateTime type="date" pattern="y-M-d"/>
+                                                </h:outputText>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class='card-footer'>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                </section>
+
+
             </ui:define>
 
             <ui:define name="script">

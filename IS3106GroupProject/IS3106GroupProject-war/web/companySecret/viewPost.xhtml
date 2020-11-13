@@ -61,7 +61,7 @@
                         <div class="card-header">
                             <p class="card-title text-right">
                                 <h:form class="float-right">
-                                    <h:commandLink class="btn btn-outline-danger text-danger" value="End Post" action="#{companyManagedBean.endPost}"/>
+                                    <h:commandLink class="btn btn-outline-danger text-danger #{companyManagedBean.selectedPost.active? '': 'disabled'}" value="End Post" action="#{companyManagedBean.endPost}"/>
                                 </h:form>
                             </p>
                         </div>

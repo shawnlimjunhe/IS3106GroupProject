@@ -150,6 +150,19 @@ public class CompanyManagedBean implements Serializable {
         }
     }
 
+    public void loadcompanyContracts() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        try {
+            setSelectedCompany(companySB.getCompany(caMB.getCompanyId()));
+            setContracts(selectedCompany.getContracts());
+
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load application"));
+        }
+
+    }
+
     public void loadSelectedCompany() {
         FacesContext context = FacesContext.getCurrentInstance();
         try {
