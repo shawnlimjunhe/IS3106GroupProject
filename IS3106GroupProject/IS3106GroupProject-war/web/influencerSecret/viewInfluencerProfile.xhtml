@@ -77,17 +77,16 @@
             </section>
 
             <h:form>
-                <span style="padding-right:250px;"/>
-                <h:button value="Edit Profile" class="btn btn-primary" outcome="editInfluencerProfile" rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
-                    <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
-                </h:button><span style="padding-right:100px;"/>
-                <h:button value="Change Password" class="btn btn-primary" outcome="passwordChange" rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
+                <span style="padding-right:450px;"/>
+                <h:button value="Edit Profile" class="btn btn-outline-primary btn-block" outcome="editInfluencerProfile" rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
                     <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
                 </h:button>
-                <br/>
-                <br/>
-                <span style="padding-right:325px;"/>
-                <h:button value="Withdraw Balance" class="btn btn-primary" outcome="withdrawBalance" rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
+                <h:button value="Change Password" class="btn btn-outline-primary btn-block" outcome="passwordChange" rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
+                    <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+                </h:button>
+
+                <span style="padding-right:475px;"/>
+                <h:button value="Withdraw Balance" class="btn btn-primary btn-block" outcome="withdrawBalance" rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
                     <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
                 </h:button>
             </h:form>
