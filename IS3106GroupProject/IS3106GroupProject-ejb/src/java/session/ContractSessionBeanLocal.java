@@ -28,4 +28,8 @@ public interface ContractSessionBeanLocal {
     public void updateContract(Contract c) throws NoResultException;
 
     public void setContractCompanyandInfluencer(Long contractId, Long cId, Long iId);
+
+    public Contract getContract(Long cId) throws NoResultException;
+
+    public void addLink(Long contractId, String link) throws NoResultException;
 }

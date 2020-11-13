@@ -8,6 +8,7 @@ package managedbean;
 import entity.Contract;
 import error.NoResultException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -57,6 +58,18 @@ public class ContractManagedBean implements Serializable {
         } catch (NoResultException ex) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to load contracts", ""));
             return null;
+        }
+    }
+
+    public void uploadLink(Long contractId, String link) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+
+        try {
+            contractSessionBeanLocal.addLink(contractId, link);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Link uploaded!", ""));
+        } catch (NoResultException ex) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to load contracts", ""));
         }
     }
 

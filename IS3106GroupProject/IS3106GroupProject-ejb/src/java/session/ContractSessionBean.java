@@ -27,6 +27,17 @@ public class ContractSessionBean implements ContractSessionBeanLocal {
     }
 
     @Override
+    public Contract getContract(Long cId) throws NoResultException {
+        Contract c = em.find(Contract.class, cId);
+
+        if (c != null) {
+            return c;
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
+
+    @Override
     public void deleteContract(Long cId) throws NoResultException {
         Contract c = em.find(Contract.class, cId);
         if (c != null) {
@@ -128,5 +139,16 @@ public class ContractSessionBean implements ContractSessionBeanLocal {
         c.setCompanyId(cId);
         c.setInfluencerId(iId);
         em.flush();
+    }
+
+    @Override
+    public void addLink(Long contractId, String link) throws NoResultException {
+        Contract c = em.find(Contract.class, contractId);
+
+        if (c != null) {
+            c.setLink(link);
+        } else {
+            throw new NoResultException("Not found");
+        }
     }
 }
