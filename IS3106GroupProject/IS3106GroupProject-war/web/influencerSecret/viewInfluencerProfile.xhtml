@@ -63,10 +63,12 @@
                                 <td width="200px">Number of Followers</td>
                                 <td>#{influencerManagedBean.followers}</td>
                             </tr>
-                            <tr>
-                                <td  width="200px">Account Balance</td>
-                                <td>#{influencerManagedBean.balance}</td>
-                            </tr>
+                            <h:panelGroup rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
+                                <tr>
+                                    <td  width="200px">Account Balance</td>
+                                    <td>#{influencerManagedBean.balance}</td>
+                                </tr>
+                            </h:panelGroup>
                             <tr>
                                 <td  width="200px">Current Ranking</td>
                                 <td>##{influencerManagedBean.ranking}</td>
