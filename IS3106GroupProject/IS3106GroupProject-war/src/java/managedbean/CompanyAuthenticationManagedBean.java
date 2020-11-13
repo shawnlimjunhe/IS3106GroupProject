@@ -24,6 +24,7 @@ import session.CompanySessionBeanLocal;
 public class CompanyAuthenticationManagedBean implements Serializable {
 
     private String companyName = null;
+    private String companyUsername = null;
     private String password = null;
     private Long companyId = new Long(-1);
 
@@ -38,11 +39,12 @@ public class CompanyAuthenticationManagedBean implements Serializable {
     public String login() throws NoResultException {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
-        company = companySessionBeanLocal.login(companyName, password);
+        company = companySessionBeanLocal.login(companyUsername, password);
 
         if (company == null) {
             //login failed
             companyName = null;
+            companyUsername = null;
             password = null;
             companyId = new Long(-1);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong login information"));
@@ -67,6 +69,14 @@ public class CompanyAuthenticationManagedBean implements Serializable {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getCompanyUsername() {
+        return companyUsername;
+    }
+
+    public void setCompanyUsername(String companyUsername) {
+        this.companyUsername = companyUsername;
     }
 
     public String getPassword() {

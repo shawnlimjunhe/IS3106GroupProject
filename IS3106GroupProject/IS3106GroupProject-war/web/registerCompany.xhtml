@@ -43,9 +43,18 @@
                             <h:outputLabel for="companyName">Company name</h:outputLabel>
                             <h:inputText
                                 binding="#{companyName}"
-                                id="email" value="#{companyManagedBean.name}" required="true"
+                                id="name" value="#{companyManagedBean.name}" required="true"
                                 requiredMessage="Company name is required" class="form-control #{companyName.valid ? '' :'is-invalid'}"/>
                             <h:message for="companyName" class="invalid-feedback" />
+                        </div>
+
+                        <div class="form-group">
+                            <h:outputLabel for="companyUsername">Account Username</h:outputLabel>
+                            <h:inputText
+                                binding="#{companyUsername}"
+                                id="username" value="#{companyManagedBean.username}" required="true"
+                                requiredMessage="Company name is required and must be unique" class="form-control #{(companyUsername.valid) &amp;&amp; (companyManagedBean.checkDuplicate()) ? '' :'is-invalid'}"/>
+                            <h:message for="companyUsername" class="invalid-feedback" />
                         </div>
 
                         <div class="form-group">

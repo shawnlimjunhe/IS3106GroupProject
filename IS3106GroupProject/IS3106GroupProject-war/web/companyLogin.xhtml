@@ -40,12 +40,12 @@
                     <div class="card-body">
                         <!-- username -->
                         <div class="form-group">
-                            <h:outputLabel for="companyName">Company name</h:outputLabel>
+                            <h:outputLabel for="companyUser">Company Username</h:outputLabel>
                             <h:inputText
                                 binding="#{username}"
-                                id="username" value="#{companyAuthenticationManagedBean.companyName}" required="true"
-                                requiredMessage="Company name is required" class="form-control #{companyName.valid ? '' :'is-invalid'}"/>
-                            <h:message for="companyName" class="invalid-feedback" />
+                                id="username" value="#{companyAuthenticationManagedBean.companyUsername}" required="true"
+                                requiredMessage="Company username is required for login" class="form-control #{companyName.valid ? '' :'is-invalid'}"/>
+                            <h:message for="companyUsername" class="invalid-feedback" />
                         </div>
 
                         <div class="form-group">
@@ -53,7 +53,7 @@
                             <h:inputSecret
                                 binding="#{password}"
                                 id="password" value="#{companyAuthenticationManagedBean.password}" required="true"
-                                requiredMessage="Password is required" class="form-control #{password.valid ? '' :'is-invalid'}"/>
+                                requiredMessage="Password is required for login" class="form-control #{password.valid ? '' :'is-invalid'}"/>
                             <h:message for="password" class="invalid-feedback" />
 
                         </div>

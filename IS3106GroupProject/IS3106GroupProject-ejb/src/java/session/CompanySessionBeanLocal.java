@@ -23,5 +23,7 @@ public interface CompanySessionBeanLocal {
 
     public Company getCompany(Long cId) throws NoResultException;
 
-    public Company login(String companyName, String password) throws NoResultException;
+    public Company login(String companyUsername, String password) throws NoResultException;
+
+    public boolean checkDuplicate(String username);
 }
