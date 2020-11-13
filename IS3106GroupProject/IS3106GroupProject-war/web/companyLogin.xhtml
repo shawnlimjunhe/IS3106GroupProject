@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>Login</title>
     </h:head>
@@ -40,11 +41,11 @@
                     <div class="card-body">
                         <!-- username -->
                         <div class="form-group">
-                            <h:outputLabel for="companyUser">Company Username</h:outputLabel>
+                            <h:outputLabel for="companyUsername">Company Username</h:outputLabel>
                             <h:inputText
-                                binding="#{username}"
+                                binding="#{companyUsername}"
                                 id="username" value="#{companyAuthenticationManagedBean.companyUsername}" required="true"
-                                requiredMessage="Company username is required for login" class="form-control #{companyName.valid ? '' :'is-invalid'}"/>
+                                requiredMessage="Company username is required for login" class="form-control #{companyName.valid ? '' :'is-invalid'}" p:autofocus=""/>
                             <h:message for="companyUsername" class="invalid-feedback" />
                         </div>
 

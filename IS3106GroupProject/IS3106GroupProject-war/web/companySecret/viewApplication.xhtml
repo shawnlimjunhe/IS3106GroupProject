@@ -14,10 +14,66 @@
                     <f:event type="preRenderView"
                              listener="#{companyManagedBean.loadSelectedApplication}" />
                 </f:metadata>
+                #{companyManagedBean.selectedInfluencer.name}'s application
             </ui:define>
 
             <ui:define name="content">
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1 class="m-0 text-dark">
+                                    View #{companyManagedBean.selectedInfluencer.name}'s application
+                                </h1>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <section class="content">
+                    <div class="card card-light">
+                        <div class="card-header">
+                            <p class="card-title float-right">
+                                <a class="btn btn-outline-danger" href="#" role="button">End Post</a>
+                            </p>
+                        </div>
 
+                        <div class='card-body'>
+                            <dl class="row">
+                                <dt class="col-sm-2">Title</dt>
+                                <dd class="col-sm-10">#{companyManagedBean.selectedPost.title}</dd>
+
+                                <dt class="col-sm-2">Description</dt>
+                                <dd class="col-sm-10">#{companyManagedBean.selectedPost.description}</dd>
+
+
+
+                                <dt class="col-sm-2">Pay out</dt>
+                                <dd class="col-sm-10">$${companyManagedBean.selectedPost.salary}</dd>
+
+                                <dt class="col-sm-2">Active?</dt>
+                                <dd class="col-sm-10">some icon</dd>
+
+
+                                <dt class="col-sm-2">Applicants</dt>
+                                <dd class="col-sm-10">
+                                    <dl class="row">
+                                        <dd class="col-sm-4">Total ${companyManagedBean.selectedPost.applications.size()}</dd>
+                                        <dd class="col-sm-4">Accepted TODO</dd>
+                                        <dd class="col-sm-4">Pending Applicants: TODO</dd>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class='card-footer'>
+                            <a class="btn btn-primary block" href="#" role="button">Accept</a>
+                            <a class="btn btn-primary block" href="#" role="button">Reject</a>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /.content -->
             </ui:define>
 
             <ui:define name="script">
