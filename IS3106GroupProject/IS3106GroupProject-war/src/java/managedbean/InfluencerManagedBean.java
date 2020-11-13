@@ -78,10 +78,11 @@ public class InfluencerManagedBean implements Serializable {
             i.setNumberFollowers(followers);
 
             influencerSessionBeanLocal.createInfluencer(i);
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Account is successfully created!", ""));
             return "influencerLogin.xhtml?faces-redirect=true";
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to create influencer account!"));
-            return "index.xhtml?faces-redirect=true";
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Username is taken!", ""));
+            return "registerInfluencer.xhtml?faces-redirect=true";
         }
     }
 
