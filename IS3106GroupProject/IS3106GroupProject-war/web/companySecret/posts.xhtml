@@ -93,8 +93,8 @@
                                                 </h:outputText>
                                             </td>
                                             <td>
-                                                <span class="badge badge-success">Available</span>
-                                                <span class="badge badge-secondary">Finished</span>
+                                                <span class="badge badge-success" style="display: #{post.active? 'none' : 'in-line'}">Available</span>
+                                                <span class="badge badge-secondary" style="display: #{post.active? 'in-line' : 'none'}">Finished</span>
                                             </td>
                                         </tr>
 
