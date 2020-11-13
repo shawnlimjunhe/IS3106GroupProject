@@ -6,16 +6,11 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,10 +22,8 @@ public class Contract implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private Influencer influencer;
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private Company company;
+    private Long influencerId;
+    private Long companyId;
     private String link;
     @Temporal(TemporalType.DATE)
     private Date startDate; //to represent time limit
@@ -107,28 +100,28 @@ public class Contract implements Serializable {
         return "entity.Contract[ id=" + id + " ]";
     }
 
-    public Influencer getInfluencer() {
-        return influencer;
-    }
-
-    public void setInfluencer(Influencer influencer) {
-        this.influencer = influencer;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
     public String getLink() {
         return link;
     }
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public Long getInfluencerId() {
+        return influencerId;
+    }
+
+    public void setInfluencerId(Long influencerId) {
+        this.influencerId = influencerId;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
 }

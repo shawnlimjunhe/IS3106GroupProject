@@ -180,8 +180,10 @@ public class CompanyManagedBean implements Serializable {
             Date today = new Date();
             long ltime = today.getTime() + 5 * 24 * 60 * 60 * 1000;
             Date end = new Date(ltime);
-
-            contractSB.createContract(new Contract(today, end), selectedCompany.getId(), selectedInfluencer.getId());
+            Contract c = new Contract(today, end);
+            c.setCompanyId(selectedCompany.getId());
+            c.setInfluencerId(selectedInfluencer.getId());
+            contractSB.createContract(c);
         } catch (Exception e) {
         }
         return "";
