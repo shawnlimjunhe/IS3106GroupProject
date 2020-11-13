@@ -85,14 +85,14 @@
                                     <input
                                         class="form-control form-control-lg"
                                         id="username" required="true"
-                                        placeholder="Rejection reason"></input>
+                                        placeholder="Rejection reason" value="#{companyManagedBean.rejectionReason}"></input>
                                 </div>
                             </div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
                                 <h:form>
-                                    <h:commandButton class="btn btn-primary" action="#{companyManagedBean.rejectApplication}" value="modal" ></h:commandButton>
+                                    <h:commandButton class="btn btn-danger" action="#{companyManagedBean.rejectApplication}" value="Reject Application" ></h:commandButton>
                                 </h:form>
 
                             </div>

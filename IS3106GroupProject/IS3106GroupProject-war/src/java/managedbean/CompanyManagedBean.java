@@ -51,6 +51,7 @@ public class CompanyManagedBean implements Serializable {
 
     private String name;
     private String searchTerm;
+    private String rejectionReason;
 
     private Company selectedCompany;
 
@@ -232,6 +233,8 @@ public class CompanyManagedBean implements Serializable {
     public String rejectApplication() {
         try {
             appSB.setApplicationAccepted(selectedApplication.getId(), "rejected");
+            appSB.setApplicationRejectionReason(selectedApplication.getId(), rejectionReason);
+            rejectionReason = null;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -446,6 +449,14 @@ public class CompanyManagedBean implements Serializable {
 
     public void setContractId(Long contractId) {
         this.contractId = contractId;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
     }
 
 }
