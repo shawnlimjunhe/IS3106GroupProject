@@ -66,7 +66,7 @@
                                 <div class="form-group">
                                     <h:outputLabel for="postDescription">Post Description</h:outputLabel>
                                     <h:inputTextarea  id="postDescription"
-                                                      value="#{companyManagedBean.postDescription}" 
+                                                      value="#{companyManagedBean.postDescription}"
                                                       class="form-control" />
                                     <small class="form-text text-muted"> A description of what you want the Influencer to post</small>
                                 </div>
@@ -81,8 +81,8 @@
                                         <h:inputText binding="#{postDeadline}" id="postDeadline"
                                                      value="#{companyManagedBean.postDeadline}" required="true" requiredMessage="deadline
                                                      is required"
-                                                     converterMessage="Format should be dd/mm/yyyy" class="formcontrol datepicker #{postDeadline.valid ? '' :'is-invalid'}"
-                                                     a:datatarget="#postDeadlinepicker" a:data-toggle="datetimepicker">
+                                                     converterMessage="Format should be dd/mm/yyyy" class="form-control datepicker #{postDeadline.valid ? '' :'is-invalid'}"
+                                                     a:data-target="#postDeadlinepicker" a:data-toggle="datetimepicker">
                                             <f:convertDateTime pattern="dd/mm/yyyy" />
                                         </h:inputText>
                                         <h:message for="postDeadline" class="invalid-feedback" />
@@ -92,7 +92,7 @@
                                 <div class="form-group">
                                     <h:outputLabel for="postSalary">Salary</h:outputLabel>
                                     <h:inputText  id="postSalary"
-                                                  value="#{companyManagedBean.postSalary}" 
+                                                  value="#{companyManagedBean.postSalary}"
                                                   class="form-control" />
                                     <small class="form-text text-muted">Should be in 2 decimal places</small>
                                 </div>
