@@ -69,6 +69,7 @@ public class ApplicationManagedBean implements Serializable {
         try {
             Influencer i = influencerSessionBeanLocal.getInfluencer(influencerAuthenticationManagedBean.getInfluencerId());
             a.setInfluencerRank(i.getRanking());
+            a.setInfluencerId(influencerAuthenticationManagedBean.getInfluencerId());
             a.setCaption(caption);
             a.setCompanyName(companyName);
             a.setPostId(postId);

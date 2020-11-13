@@ -30,6 +30,7 @@ public class Application implements Serializable {
     private String rejectReason;
     //Influencer
     private Long postId;
+    private Long influencerId;
 
     public Application() {
     }
@@ -97,6 +98,14 @@ public class Application implements Serializable {
 
     public void setPostId(Long postId) {
         this.postId = postId;
+    }
+
+    public Long getInfluencerId() {
+        return influencerId;
+    }
+
+    public void setInfluencerId(Long influencerId) {
+        this.influencerId = influencerId;
     }
 
     @Override
