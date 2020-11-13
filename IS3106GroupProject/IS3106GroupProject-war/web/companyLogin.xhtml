@@ -45,8 +45,8 @@
                             <h:outputLabel for="companyUsername">Company Username</h:outputLabel>
                             <h:inputText
                                 binding="#{companyUsername}"
-                                id="username" value="#{companyAuthenticationManagedBean.companyUsername}" required="true"
-                                requiredMessage="Company username is required for login" class="form-control #{companyName.valid ? '' :'is-invalid'}" p:autofocus=""/>
+                                id="companyUsername" value="#{companyAuthenticationManagedBean.companyUsername}" required="true"
+                                requiredMessage="Company username is required for login" class="form-control #{companyUsername.valid ? '' :'is-invalid'}" p:autofocus=""/>
                             <h:message for="companyUsername" class="invalid-feedback" />
                         </div>
 
