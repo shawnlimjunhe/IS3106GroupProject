@@ -7,7 +7,11 @@ package managedbean;
 
 import entity.Application;
 import entity.Influencer;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +22,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
+import javax.servlet.http.Part;
 import session.InfluencerSessionBeanLocal;
 
 /**
@@ -63,6 +69,10 @@ public class InfluencerManagedBean implements Serializable {
     private Date deadline;
 
     private int difference;
+    
+    private Part uploadedfile;
+
+    private String filename = "";
 
     public InfluencerManagedBean() {
     }
@@ -105,10 +115,28 @@ public class InfluencerManagedBean implements Serializable {
         selectedInfluencer.setUsername(username);
         selectedInfluencer.setNumberFollowers(followers);
         try {
+            ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+
+            //get the deployment path
+            String UPLOAD_DIRECTORY = ctx.getRealPath("/") + "upload/";
+            System.out.println("#UPLOAD_DIRECTORY : " + UPLOAD_DIRECTORY);
+
+            //debug purposes
+            setFilename(Paths.get(uploadedfile.getSubmittedFileName()).getFileName().toString());
+            System.out.println("filename: " + getFilename());
+            selectedInfluencer.setFileName(getFilename());
+            //---------------------
+
+            //replace existing file
+            java.nio.file.Path path = Paths.get(UPLOAD_DIRECTORY + getFilename());
+            InputStream bytes = uploadedfile.getInputStream();
+            Files.copy(bytes, path, StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {}
+        try {
             influencerSessionBeanLocal.updateInfluencer(selectedInfluencer);
         } catch (Exception e) {
             //show with an error icon
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to update profile"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to update profile", ""));
         }
 
         context.addMessage(null, new FacesMessage("Successfully updated profile!", ""));
@@ -302,6 +330,22 @@ public class InfluencerManagedBean implements Serializable {
 
     public void setDifference(int difference) {
         this.difference = difference;
+    }
+
+    public Part getUploadedfile() {
+        return uploadedfile;
+    }
+
+    public void setUploadedfile(Part uploadedfile) {
+        this.uploadedfile = uploadedfile;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
 }

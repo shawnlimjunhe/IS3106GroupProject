@@ -32,6 +32,7 @@ public class Influencer implements Serializable {
     private int numberFollowers;
     private int ranking;
     private double balance; //maybe BigDecimal
+    private String fileName;
 
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Application> applications;
@@ -124,6 +125,14 @@ public class Influencer implements Serializable {
 
     public void setContracts(List<Contract> contracts) {
         this.contracts = contracts;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     @Override
