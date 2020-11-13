@@ -20,4 +20,8 @@ public interface ContractSessionBeanLocal {
     public List<Contract> searchContractsByInfluencer(Long iId) throws NoResultException;
 
     public List<Contract> searchContractsByCompany(Long cId) throws NoResultException;
+
+    public List<Contract> getInfPastContracts(Long iId) throws NoResultException;
+
+    public List<Contract> getInfOngoingContracts(Long iId) throws NoResultException;
 }
