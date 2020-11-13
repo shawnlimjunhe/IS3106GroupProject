@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <body>
+
+        <ui:composition template="./../layout/companyTemplate.xhtml">
+
+            <ui:define name="title">
+                title
+            </ui:define>
+
+
+            <ui:define name="content">
+                <f:metadata>
+                    <!-- to get the cId and bind it to a cId in managed bean -->
+                    <f:viewParam name="iId" value="#{companyManagedBean.cId}" />
+                    <!-- load the selected company -->
+                    <f:event type="preRenderView" listener="#{companyManagedBean.loadSelectedCompany}"/>
+                </f:metadata>
+
+                <h:form id="form" enctype="multipart/form-data">
+                    <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+
+                    <!-- Content Header (Page header) -->
+                    <div class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+                                    <h1 class="m-0 text-dark"></h1>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-6">
+                                    <ol class="breadcrumb float-sm-right">
+                                        <li class="breadcrumb-item">
+                                            <a href="#{request.contextPath}/companySecret/companyLandingPage.xhtml">Home</a>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <h:link outcome="viewCompanyProfile">
+                                                My Profile
+                                                <f:param name="iId" value="#{companyAuthenticationManagedBean.companyId}" />
+                                            </h:link>
+                                        </li>
+                                        <li class="breadcrumb-item active">
+                                            Edit Profile
+                                        </li>
+                                    </ol>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.container-fluid -->
+                    </div>
+                    <!-- /.content-header -->
+
+                    <section class="content">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    #{companyManagedBean.username} Business Profile
+                                </h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td width="200px">Company Name</td>
+                                        <td>
+                                            <h:inputText binding="#{name}" id="name" class="form-control #{name.valid ? '' :'is-invalid'}" p:placeholder="New company name" p:autofocus=""
+                                                         value="#{companyManagedBean.name}"
+                                                         required="true"
+                                                         requiredMessage="Company name is required"/>
+                                            <h:message for="name" class="invalid-feedback"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="200px">Username</td>
+                                        <td>
+                                            <h:inputText binding="#{username}" id="username" class="form-control #{username.valid ? '' :'is-invalid'}" p:placeholder="New username" p:autofocus=""
+                                                         value="#{companyManagedBean.username}"
+                                                         required="true"
+                                                         requiredMessage="Username is required"/>
+                                            <h:message for="username" class="invalid-feedback"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <span style="padding-right:375px;"/>
+                    <h:commandButton value="Update" class="btn btn-primary btn-block" action="#{companyManagedBean.updateCompany}">
+                    </h:commandButton>
+                    <br/>
+                    <br/>
+                    <span style="padding-right:350px;"/>
+                    <h:commandButton value="Delete Account" class="btn btn-outline-primary btn-block" action="#{companyManagedBean.deleteCompany}">
+                    </h:commandButton>
+
+                </h:form>
+            </ui:define>
+
+            <ui:define name="script">
+                script
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

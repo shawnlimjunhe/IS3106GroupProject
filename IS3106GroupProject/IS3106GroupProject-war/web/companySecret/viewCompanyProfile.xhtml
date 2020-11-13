@@ -18,6 +18,8 @@
             <f:event type="preRenderView" listener="#{companyManagedBean.loadSelectedCompany}"/>
         </f:metadata>
         <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+
+
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -43,6 +45,8 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
+
+
         <section class="content">
             <!-- general form elements -->
             <div class="card card-primary">
@@ -79,7 +83,6 @@
             <h:button value="Edit Profile" class="btn btn-primary" outcome="editCompanyProfile" rendered="#{companyManagedBean.cId == companyAuthenticationManagedBean.companyId}">
                 <f:param name="cId" value="#{companyAuthenticationManagedBean.companyId}" />
             </h:button>
-            <br/>
             <br/>
             <h:button value="View Transaction History OR Withdraw Balance" class="btn btn-primary" outcome=".." rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
                 <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />

@@ -53,6 +53,7 @@
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
+
             <section class="content">
                 <!-- general form elements -->
                 <div class="card card-primary">
@@ -67,8 +68,8 @@
                             <tr>
                                 <td width="200px">Username</td>
                                 <td>
-                                    <h:inputText binding="#{username}" id="username" class="form-control #{username.valid ? '' :'is-invalid'}" p:placeholder="Username" p:autofocus="" 
-                                                 value="#{influencerManagedBean.username}" 
+                                    <h:inputText binding="#{username}" id="username" class="form-control #{username.valid ? '' :'is-invalid'}" p:placeholder="Username" p:autofocus=""
+                                                 value="#{influencerManagedBean.username}"
                                                  required="true"
                                                  requiredMessage="Username is required"/>
                                     <h:message for="username" class="invalid-feedback"/>
@@ -90,10 +91,10 @@
                 </div>
             </section>
 
-            
+
 
             <span style="padding-right:375px;"/>
-            <h:commandButton value="Submit" class="btn btn-primary btn-block" action="#{influencerManagedBean.updateInfluencer}">
+            <h:commandButton value="Update" class="btn btn-primary btn-block" action="#{influencerManagedBean.updateInfluencer}">
             </h:commandButton>
             <br/>
             <br/>

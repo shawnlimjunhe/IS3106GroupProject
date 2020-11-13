@@ -21,6 +21,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import session.ApplicationSessionBeanLocal;
 import session.CompanySessionBeanLocal;
 import session.ContractSessionBeanLocal;
@@ -265,6 +266,17 @@ public class CompanyManagedBean implements Serializable {
             e.printStackTrace();
         }
         return "posts.xhtml?faces-redirect=true";
+    }
+
+    public String updateCompany() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        selectedCompany.setUsername(username);
+        selectedCompany.setName(name);
+        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+
+        context.addMessage(null, new FacesMessage("Successfully updated profile!", ""));
+        return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + cId + "&faces-redirect=true";
     }
 
     public String searchPosts() {
