@@ -106,9 +106,7 @@
                                                        Contract outcome: <span class="badge badge-warning">Pending</span>
                                                     </h:panelGroup>
                                                 </div>
-                                                <div class="icon">
-                                                    <i class="ion ion-person-add"></i>
-                                                </div>
+                                                
 
                                             </div>
 
@@ -128,7 +126,7 @@
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <ui:repeat var="contract" value="#{contractManagedBean.infPastContracts}">
-                                                <div class="small-box bg-warning">
+                                                 <div class="small-box card-outline card-warning">
                                                 <div class="inner">
                                                     <h3><b>#{companyManagedBean.getCompanyName(contract.companyId)}</b></h3>
 
@@ -150,12 +148,15 @@
                                                                 action="#{contractManagedBean.uploadLink(contract.id, link)}"
                                                                 />
                                                         </h:form>
+                                                    </h:panelGroup><br/>
+                                                    <h:panelGroup rendered="#{contract.approved}">
+                                                       Contract outcome: <span class="badge badge-success">Approved</span>
+                                                    </h:panelGroup>
+                                                    <h:panelGroup rendered="#{!contract.approved}">
+                                                       Contract outcome: <span class="badge bg-red">Rejected</span>
                                                     </h:panelGroup>
                                                 </div>
-                                                <div class="icon">
-                                                    <i class="ion ion-person-add"></i>
-                                                </div>
-
+                                         
                                             </div>
 
                                             </ui:repeat>
