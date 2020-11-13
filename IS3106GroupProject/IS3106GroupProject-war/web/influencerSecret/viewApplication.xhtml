@@ -80,10 +80,10 @@
                                     <span class="badge bg-red">Rejected</span>
                                 </h:panelGroup>
                             </dd>
-
-                            <dt class="col-sm-4">Reason for Rejection</dt>
-                            <dd class="col-sm-8">#{applicationManagedBean.selectedApplication.rejectReason}</dd>
-
+                            <h:panelGroup rendered="#{applicationManagedBean.rejected}">
+                                <dt class="col-sm-4">Reason for Rejection</dt>
+                                <dd class="col-sm-8">#{applicationManagedBean.selectedApplication.rejectReason}</dd>
+                            </h:panelGroup>
                         </dl>
                     </div>
                     <h:form>
