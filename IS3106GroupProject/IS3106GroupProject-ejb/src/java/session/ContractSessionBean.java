@@ -100,7 +100,8 @@ public class ContractSessionBean implements ContractSessionBeanLocal {
         Influencer inf = em.find(Influencer.class, iId);
 
         if (inf != null) {
-            Query q = em.createQuery("SELECT c FROM Contract c, Influencer i WHERE c MEMBER OF i.contracts AND (c.endDate < current_date OR c.approved = true)");
+            Query q = em.createQuery("SELECT c FROM Contract c, Influencer i WHERE i = :inf AND c MEMBER OF i.contracts AND (c.endDate < current_date OR c.approved = true)");
+            q.setParameter("inf", inf);
 
             return q.getResultList();
         } else {
@@ -113,7 +114,8 @@ public class ContractSessionBean implements ContractSessionBeanLocal {
         Influencer inf = em.find(Influencer.class, iId);
 
         if (inf != null) {
-            Query q = em.createQuery("SELECT c FROM Contract c, Influencer i WHERE c MEMBER OF i.contracts AND c.endDate >= current_date AND c.approved = false");
+            Query q = em.createQuery("SELECT c FROM Contract c, Influencer i WHERE i = :inf AND c MEMBER OF i.contracts AND c.endDate >= current_date AND c.approved = false");
+            q.setParameter("inf", inf);
 
             return q.getResultList();
         } else {

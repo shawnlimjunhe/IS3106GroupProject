@@ -83,7 +83,8 @@ public class ApplicationSessionBean implements ApplicationSessionBeanLocal {
         Influencer i = em.find(Influencer.class, iId);
         Query q;
         if (i != null) {
-            q = em.createQuery("SELECT a FROM Application a, Influencer i WHERE a MEMBER OF i.applications");
+            q = em.createQuery("SELECT a FROM Application a, Influencer i WHERE i = :inf AND a MEMBER OF i.applications");
+            q.setParameter("inf", i);
         } else {
             return null;
         }
@@ -107,8 +108,9 @@ public class ApplicationSessionBean implements ApplicationSessionBeanLocal {
         Influencer inf = em.find(Influencer.class, iId);
 
         if (inf != null) {
-            Query q = em.createQuery("SELECT a FROM Application a, Influencer i WHERE a MEMBER OF i.applications AND a.accepted = :accepted");
+            Query q = em.createQuery("SELECT a FROM Application a, Influencer i WHERE i = :inf AND a MEMBER OF i.applications AND a.accepted = :accepted");
             q.setParameter("accepted", accepted);
+            q.setParameter("inf", inf);
 
             return q.getResultList();
         } else {
