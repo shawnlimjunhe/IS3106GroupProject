@@ -40,7 +40,8 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
                             <div class="btn-group" role="group">
-
+                                <button type="button" class="btn btn-outline-secondary">All</button>
+                                <button type="button" class="btn btn-outline-secondary">Accepted</button>
                                 <button type="button" class="btn btn-outline-secondary">Pending</button>
                                 <button type="button" class="btn btn-outline-secondary">Rejected</button>
                             </div>
@@ -101,8 +102,13 @@
                                 <thead>
                                 </thead>
                                 <tbody>
-                                    <ui:repeat var="application" value="${companyManagedBean.applications}">
+                                    <ui:repeat var="app" value="${companyManagedBean.applications}">
+                                        <td>
+                                            <a href="/companySecret/viewApplication.xhtml?appId=#{app.id}">
+                                                #{app.id}
+                                            </a>
 
+                                        </td>
                                     </ui:repeat>
                                 </tbody>
                             </table>

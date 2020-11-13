@@ -18,6 +18,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import session.ApplicationSessionBeanLocal;
 import session.CompanySessionBeanLocal;
 import session.PostSessionBeanLocal;
 
@@ -36,6 +37,8 @@ public class CompanyManagedBean implements Serializable {
     private CompanySessionBeanLocal companySB;
     @EJB
     private PostSessionBeanLocal postSB;
+    @EJB
+    private ApplicationSessionBeanLocal appSB;
 
     private String name;
     private String searchTerm;
@@ -47,9 +50,11 @@ public class CompanyManagedBean implements Serializable {
     private List<Application> applications;
 
     private Post selectedPost;
+    private Application selectedApplication;
 
     private Long pId;
     private Long cId;
+    private Long appId;
 
     private double balance;
 
@@ -276,6 +281,22 @@ public class CompanyManagedBean implements Serializable {
 
     public void setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm;
+    }
+
+    public Application getSelectedApplication() {
+        return selectedApplication;
+    }
+
+    public void setSelectedApplication(Application selectedApplication) {
+        this.selectedApplication = selectedApplication;
+    }
+
+    public Long getAppId() {
+        return appId;
+    }
+
+    public void setAppId(Long appId) {
+        this.appId = appId;
     }
 
 }
