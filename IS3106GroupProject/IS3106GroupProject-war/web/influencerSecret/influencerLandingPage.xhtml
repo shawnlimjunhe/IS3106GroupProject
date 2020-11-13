@@ -60,7 +60,7 @@
                     </div>
 
                     <br/>
-                    
+
                     <h3 class="m-0 text-navy">
                         Discover other influencers
                     </h3>
@@ -70,7 +70,7 @@
                         <h:inputText style="width: 80%" p:placeholder="Enter username" value="#{influencerManagedBean.searchString}" p:autofocus="">
                             <f:ajax event="keyup" delay="150" render="table1" listener="#{influencerManagedBean.conductSearch}" />
                         </h:inputText>
-                        <h:commandButton style="" class="btn btn-secondary my-2 my-sm-0" action="#{influencerManagedBean.conductSearch}" value="Search Influencer"/>
+                        <h:commandButton style="" class="btn btn-warning btn-sm" action="#{influencerManagedBean.conductSearch}" value="Search Influencer"/>
                         <br/>
                     </nav>
                     <!-- /.card-header -->
