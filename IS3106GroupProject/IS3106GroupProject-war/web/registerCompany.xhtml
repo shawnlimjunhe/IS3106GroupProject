@@ -6,11 +6,15 @@
     xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 
-    <ui:define name="title">
-        Register Company Account
-    </ui:define>
+    <h:head>
+        <title>Register Company Account</title>
+    </h:head>
 
     <ui:composition template="./layout/default.xhtml">
+
+        <ui:define name="title">
+            Register Company Account
+        </ui:define>
 
         <ui:define name="content">
 
@@ -43,7 +47,7 @@
                             <h:outputLabel for="companyName">Company name</h:outputLabel>
                             <h:inputText
                                 binding="#{companyName}"
-                                id="name" value="#{companyManagedBean.name}" required="true"
+                                id="companyName" value="#{companyManagedBean.name}" required="true"
                                 requiredMessage="Company name is required" class="form-control #{companyName.valid ? '' :'is-invalid'}"/>
                             <h:message for="companyName" class="invalid-feedback" />
                         </div>
@@ -52,8 +56,8 @@
                             <h:outputLabel for="companyUsername">Account Username</h:outputLabel>
                             <h:inputText
                                 binding="#{companyUsername}"
-                                id="username" value="#{companyManagedBean.username}" required="true"
-                                requiredMessage="Company name is required and must be unique" class="form-control #{(companyUsername.valid) and (companyManagedBean.checkDuplicate()) ? '' :'is-invalid'}"/>
+                                id="companyUsername" value="#{companyManagedBean.username}" required="true"
+                                requiredMessage="Username is required and must be unique" class="form-control #{(companyUsername.valid) and (companyManagedBean.checkDuplicate()) ? '' :'is-invalid'}"/>
                             <h:message for="companyUsername" class="invalid-feedback" />
                         </div>
 
@@ -61,7 +65,7 @@
                             <h:outputLabel for="companyPassword">Password</h:outputLabel>
                             <h:inputSecret
                                 binding="#{companyPassword}"
-                                id="password" value="#{companyManagedBean.password}" required="true"
+                                id="companyPassword" value="#{companyManagedBean.password}" required="true"
                                 requiredMessage="Password is required" class="form-control #{companyPassword.valid ? '' :'is-invalid'}"/>
                             <h:message for="companyPassword" class="invalid-feedback" />
                         </div>
