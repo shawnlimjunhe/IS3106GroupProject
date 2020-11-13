@@ -9,6 +9,7 @@ import entity.Company;
 import entity.Contract;
 import entity.Post;
 import entity.Application;
+import entity.Influencer;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import session.ApplicationSessionBeanLocal;
 import session.CompanySessionBeanLocal;
+import session.InfluencerSessionBeanLocal;
 import session.PostSessionBeanLocal;
 
 /**
@@ -39,6 +41,8 @@ public class CompanyManagedBean implements Serializable {
     private PostSessionBeanLocal postSB;
     @EJB
     private ApplicationSessionBeanLocal appSB;
+    @EJB
+    private InfluencerSessionBeanLocal influencerSB;
 
     private String name;
     private String searchTerm;
@@ -51,6 +55,7 @@ public class CompanyManagedBean implements Serializable {
 
     private Post selectedPost;
     private Application selectedApplication;
+    private Influencer selectedInfluencer;
 
     private Long pId;
     private Long cId;
@@ -104,6 +109,17 @@ public class CompanyManagedBean implements Serializable {
         return this.createPost();
     }
 
+    // LOADING METHODS
+    public void loadSelectedApplication() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            selectedApplication = appSB.getApplication(appId);
+            selectedInfluencer = influencerSB.getInfluencer(selectedApplication.getInfluencerId());
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load posts"));
+        }
+    }
+
     public void loadcompanyPosts() {
         FacesContext context = FacesContext.getCurrentInstance();
 
@@ -114,7 +130,7 @@ public class CompanyManagedBean implements Serializable {
                 setPosts(selectedCompany.getPosts());
 
             } catch (Exception e) {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load posts"));
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load application"));
             }
         } else {
             posts = postSB.searchPostsFromCompany(searchTerm, caMB.getCompanyId());
@@ -144,7 +160,6 @@ public class CompanyManagedBean implements Serializable {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load post"));
             }
         }
-
     }
 
     public String searchPosts() {
@@ -297,6 +312,14 @@ public class CompanyManagedBean implements Serializable {
 
     public void setAppId(Long appId) {
         this.appId = appId;
+    }
+
+    public Influencer getSelectedInfluencer() {
+        return selectedInfluencer;
+    }
+
+    public void setSelectedInfluencer(Influencer selectedInfluencer) {
+        this.selectedInfluencer = selectedInfluencer;
     }
 
 }
