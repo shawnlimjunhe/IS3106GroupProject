@@ -128,4 +128,16 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
         return false;
     }
 
+    @Override
+    public void addContract(Long compId, Long contractId) throws NoResultException {
+        Company c = em.find(Company.class, compId);
+        Contract con = em.find(Contract.class, contractId);
+
+        if (c != null && con != null) {
+            c.getContracts().add(con);
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
+
 }

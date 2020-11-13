@@ -137,4 +137,17 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
         }
     }
 
+    @Override
+    public void addContract(Long iId, Long contractId) throws NoResultException {
+        Influencer i = em.find(Influencer.class, iId);
+        Contract con = em.find(Contract.class, contractId);
+
+        if (i != null && con != null) {
+            i.getContracts().add(con);
+        } else {
+            throw new NoResultException("Not found");
+        }
+
+    }
+
 }

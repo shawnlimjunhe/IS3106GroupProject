@@ -31,4 +31,6 @@ public interface InfluencerSessionBeanLocal {
     public void changePassword(Influencer i) throws NoResultException;
 
     public void addApplication(Influencer i, Application a) throws NoResultException;
+
+    public void addContract(Long iId, Long contractId) throws NoResultException;
 }

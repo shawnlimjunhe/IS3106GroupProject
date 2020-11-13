@@ -26,4 +26,6 @@ public interface CompanySessionBeanLocal {
     public Company login(String companyUsername, String password) throws NoResultException;
 
     public boolean checkDuplicate(String username);
+
+    public void addContract(Long compId, Long contractId) throws NoResultException;
 }

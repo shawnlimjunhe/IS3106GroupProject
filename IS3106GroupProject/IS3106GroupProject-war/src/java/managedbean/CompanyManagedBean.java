@@ -186,8 +186,8 @@ public class CompanyManagedBean implements Serializable {
             Long iId = selectedInfluencer.getId();
             Long compId = caMB.getCompanyId();
             contractSB.setContractCompanyandInfluencer(contractId, compId, iId);
-            // companySB.addContract(compId, contractId);
-            // influencerSB.addContract(iId, contractId);
+            companySB.addContract(compId, contractId);
+            influencerSB.addContract(iId, contractId);
 
         } catch (Exception e) {
             e.printStackTrace();
