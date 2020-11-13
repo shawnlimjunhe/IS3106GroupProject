@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../layout/influencerTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="title">
+        title
+    </ui:define>
+    <div class="col-sm-9" style="margin-auto">
+        <ui:define name="content">
+            <f:metadata>
+                <!-- to get the iId and bind it to a iId in managed bean -->
+                <f:viewParam name="applicationId" value="#{applicationManagedBean.applicationId}" />
+                <!-- load the selected user -->
+                <f:event type="preRenderView" listener="#{applicationManagedBean.loadSelectedApplication}"/>
+            </f:metadata>
+            <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark"></h1>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="#{request.contextPath}/influencerSecret/influencerLandingPage.xhtml">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#{request.contextPath}/influencerSecret/viewInfluencerJobs.xhtml?iId=#{influencerAuthenticationManagedBean.influencerId}">My Job Applications</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    My Application for #{applicationManagedBean.selectedApplication.companyName}
+                                </li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <section class="content">
+                <!-- form start -->
+                <div class="card card-secondary mb-3">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            My Application for Company #{applicationManagedBean.selectedApplication.companyName}
+                        </h3>
+                    </div>
+
+                    <div class='card-body'>
+                        <dl class="row">
+                            <dt class="col-sm-4">Company</dt>
+                            <dd class="col-sm-8">
+
+                                #{applicationManagedBean.selectedApplication.companyName}
+
+                            </dd>
+
+                            <dt class="col-sm-4">Caption</dt>
+                            <dd class="col-sm-8">#{applicationManagedBean.selectedApplication.caption}</dd>
+
+                            <dt class="col-sm-4">Application Outcome</dt>
+                            <dd class="col-sm-8">#{applicationManagedBean.selectedApplication.accepted}</dd>
+
+                            <dt class="col-sm-4">Reason for Rejection</dt>
+                            <dd class="col-sm-8">#{applicationManagedBean.selectedApplication.rejectReason}</dd>
+
+                        </dl>
+                    </div>
+                    <h:form>
+                        <h:commandButton value="Delete" class="btn btn-primary btn-block" action="#{applicationManagedBean.deleteApplication}">
+                            <f:param name="applicationId" value="#{applicationManagedBean.applicationId}" />
+                        </h:commandButton>
+                    </h:form>
+                </div>
+
+                <!-- /.card -->
+            </section>
+
+        </ui:define>
+    </div>
+
+    <ui:define name="script">
+        script
+    </ui:define>
+
+</ui:composition>

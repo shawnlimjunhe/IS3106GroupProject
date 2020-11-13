@@ -95,7 +95,7 @@
                                                     <div class="card-body">
                                                         <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
                                                         <p class="card-text">Caption: #{app.caption}</p>
-                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                        <a href="#{request.contextPath}/influencerSecret/viewApplication.xhtml?applicationId=#{app.id}" class="btn btn-primary">View</a>
                                                     </div>
                                                 </div>
                                             </c:forEach>
