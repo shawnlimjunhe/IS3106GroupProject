@@ -193,7 +193,16 @@ public class CompanyManagedBean implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "";
+        return "/companySecret/viewApplication.xhtml?appId=" + selectedApplication.getId();
+    }
+
+    public String rejectApplication() {
+        try {
+            appSB.setApplicationAccepted(selectedApplication.getId(), "rejected");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "/companySecret/viewApplication.xhtml?appId=" + selectedApplication.getId();
     }
 
     public String getCompanyName(Long cId) throws NoResultException {

@@ -54,8 +54,8 @@
                         </div>
                         <div class='card-footer'>
                             <h:form>
-                                <h:commandLink class="btn btn-outline-success btn-block" action="#{companyManagedBean.acceptApplication}" value="Accept application"/>
-                                <h:commandLink class="btn btn-outline-danger btn-block" value="Reject application"/>
+                                <h:commandLink class="btn btn-outline-success btn-block #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" action="#{companyManagedBean.acceptApplication}" value="Accept application"/>
+                                <h:commandLink class="btn btn-outline-danger btn-block #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" action="#{companyManagedBean.rejectApplication}" value="Reject application"/>
 
                             </h:form>
                         </div>
