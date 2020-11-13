@@ -10,6 +10,10 @@
 
     <ui:composition template="./layout/default.xhtml">
 
+        <ui:define name="title">
+            Register Influencer Account
+        </ui:define>
+
         <ui:define name="content">
 
             <div class="content-header">
@@ -60,7 +64,7 @@
                             <h:inputText
                                 binding="#{followers}"
                                 id="followers" value="#{influencerManagedBean.followers}" required="true"
-                                requiredMessage="Number of Followers is required" class="form-control #{followers.valid ? '' :'is-invalid'}" 
+                                requiredMessage="Number of Followers is required" class="form-control #{followers.valid ? '' :'is-invalid'}"
                                 converterMessage="Input should be a number"/>
                             <h:message for="followers" class="invalid-feedback" />
                         </div>

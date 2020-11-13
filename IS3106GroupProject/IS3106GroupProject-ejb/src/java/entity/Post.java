@@ -53,6 +53,7 @@ public class Post implements Serializable {
         this.salary = salary;
         this.minFollowers = minFollowers;
         this.applications = new ArrayList();
+        this.active = true;
     }
 
     public Long getId() {
