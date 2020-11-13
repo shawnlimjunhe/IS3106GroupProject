@@ -18,7 +18,7 @@
             <ui:define name="content">
                 <f:metadata>
                     <!-- to get the cId and bind it to a cId in managed bean -->
-                    <f:viewParam name="iId" value="#{companyManagedBean.cId}" />
+                    <f:viewParam name="cId" value="#{companyManagedBean.cId}" />
                     <!-- load the selected company -->
                     <f:event type="preRenderView" listener="#{companyManagedBean.loadSelectedCompany}"/>
                 </f:metadata>
@@ -42,7 +42,7 @@
                                         <li class="breadcrumb-item">
                                             <h:link outcome="viewCompanyProfile">
                                                 My Profile
-                                                <f:param name="iId" value="#{companyAuthenticationManagedBean.companyId}" />
+                                                <f:param name="cId" value="#{companyAuthenticationManagedBean.companyId}" />
                                             </h:link>
                                         </li>
                                         <li class="breadcrumb-item active">
