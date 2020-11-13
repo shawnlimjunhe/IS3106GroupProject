@@ -56,15 +56,18 @@
 
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <div class="card card-secondary mb-3">
+                    <div class="card card-light">
                         <div class="card-header">
-                            <h3 class="card-title">
-                                #{companyManagedBean.selectedPost.title}
-                            </h3>
+                            <p class="card-title float-right">
+                                <a class="btn btn-outline-danger" href="#" role="button">End Post</a>
+                            </p>
                         </div>
 
                         <div class='card-body'>
                             <dl class="row">
+                                <dt class="col-sm-2">Title</dt>
+                                <dd class="col-sm-10">#{companyManagedBean.selectedPost.title}</dd>
+
                                 <dt class="col-sm-2">Description</dt>
                                 <dd class="col-sm-10">#{companyManagedBean.selectedPost.description}</dd>
 
@@ -74,6 +77,7 @@
                                         <f:convertDateTime type="date" pattern="y-M-d"/>
                                     </h:outputText>
                                 </dd>
+
 
                                 <dt class="col-sm-2">Pay out</dt>
                                 <dd class="col-sm-10">$${companyManagedBean.selectedPost.salary}</dd>
@@ -85,8 +89,8 @@
                                 <dt class="col-sm-2">Applicants</dt>
                                 <dd class="col-sm-10">
                                     <dl class="row">
-                                        <dd class="col-sm-4">Total Applicants: ${companyManagedBean.selectedPost.applications.size()}</dd>
-                                        <dd class="col-sm-4">Successful Applicants: TODO</dd>
+                                        <dd class="col-sm-4">Total ${companyManagedBean.selectedPost.applications.size()}</dd>
+                                        <dd class="col-sm-4">Accepted TODO</dd>
                                         <dd class="col-sm-4">Pending Applicants: TODO</dd>
                                     </dl>
                                 </dd>

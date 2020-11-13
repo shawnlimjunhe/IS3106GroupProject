@@ -64,9 +64,12 @@
                         <div class='card-body'>
                             <table class="table table-hover" id="viewPost">
                                 <thead>
-                                    <th>Title </th>
-                                    <th>Deadline</th>
-                                    <th class="text-right">Applications</th>
+                                    <th>Job Title</th>
+                                    <th>Min. Followers</th>
+                                    <th >No. Applications</th>
+                                    <th>DeadLine</th>
+                                    <th>Status</th>
+
                                 </thead>
 
 
@@ -79,12 +82,19 @@
                                                 </a>
                                             </td>
                                             <td>
+                                                #{post.minFollowers}
+                                            </td>
+                                            <td>
+                                                #{post.applications.size()}
+                                            </td>
+                                            <td>
                                                 <h:outputText value="${post.deadline}">
                                                     <f:convertDateTime type="date" pattern="y-M-d"/>
                                                 </h:outputText>
                                             </td>
-                                            <td class="text-right">
-                                                #{post.applications.size()}
+                                            <td>
+                                                <span class="badge badge-success">Available</span>
+                                                <span class="badge badge-secondary">Finished</span>
                                             </td>
                                         </tr>
 
