@@ -128,7 +128,7 @@ public class PostSessionBean implements PostSessionBeanLocal {
         Application app = em.find(Application.class, a.getId());
 
         if (post != null && app != null) {
-            post.getApplications().add(a);
+            post.getApplications().add(app);
         } else {
             throw new NoResultException("Not found");
         }
