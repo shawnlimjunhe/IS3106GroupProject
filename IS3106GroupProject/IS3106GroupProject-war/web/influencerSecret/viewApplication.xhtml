@@ -87,7 +87,7 @@
                         </dl>
                     </div>
                     <h:form>
-                        <h:commandButton value="Delete" class="btn btn-primary btn-block" action="#{applicationManagedBean.deleteApplication}">
+                        <h:commandButton value="Delete" class="btn btn-primary btn-block" action="#{applicationManagedBean.deleteApplication}" rendered="#{applicationManagedBean.processing}">
                             <f:param name="applicationId" value="#{applicationManagedBean.applicationId}" />
                         </h:commandButton>
                     </h:form>
