@@ -31,6 +31,9 @@ public class ContractManagedBean implements Serializable {
     @Inject
     private InfluencerAuthenticationManagedBean influencerAuthenticationManagedBean;
 
+    public ContractManagedBean() {
+    }
+
     public List<Contract> getInfPastContracts() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
@@ -56,4 +59,21 @@ public class ContractManagedBean implements Serializable {
             return null;
         }
     }
+
+    public ContractSessionBeanLocal getContractSessionBeanLocal() {
+        return contractSessionBeanLocal;
+    }
+
+    public void setContractSessionBeanLocal(ContractSessionBeanLocal contractSessionBeanLocal) {
+        this.contractSessionBeanLocal = contractSessionBeanLocal;
+    }
+
+    public InfluencerAuthenticationManagedBean getInfluencerAuthenticationManagedBean() {
+        return influencerAuthenticationManagedBean;
+    }
+
+    public void setInfluencerAuthenticationManagedBean(InfluencerAuthenticationManagedBean influencerAuthenticationManagedBean) {
+        this.influencerAuthenticationManagedBean = influencerAuthenticationManagedBean;
+    }
+
 }
