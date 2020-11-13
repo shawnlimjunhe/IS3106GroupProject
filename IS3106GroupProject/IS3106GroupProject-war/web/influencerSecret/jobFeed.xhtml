@@ -52,74 +52,71 @@
             </div>
             <!-- /.container-fluid -->
         </div>
-        <h:form id="form">
-            <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
-            <section class="content">
-                <!-- general form elements -->
-                <nav class="navbar navbar-dark bg-lightblue" style="border-radius: 3px;">
-                    <h:form class="form-inline" style="align-content: center">
-                        <h:inputText style="width: 30%" class="form-control mr-sm-2" value="" p:autofocus="" p:placeholder="Enter job title keywords"/>
-                        <h:commandLink class="btn btn-secondary my-2 my-sm-0">Search Jobs</h:commandLink>
-                    </h:form>
-                </nav>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <div class="card card-lightblue mb-3">
-                    <div class='card-body'>
-                        <table class="table table-hover">
-                            <thead>
-                                <th class="text-left">Company </th>
-                                <th class="text-left">Job Title</th>
-                                <th class="text-left">Min. Followers</th>
-                                <th class="text-left">Pay out</th>
-                                <th class="text-left">Status</th>
-                            </thead>
-                            <tbody>
-                                <ui:repeat var="post" value="${applicationManagedBean.posts}">
-                                    <tr>
-                                        <td style="width: 15%">
-                                            <h:outputText value="#{post.company.name}" />
-                                        </td>
-                                        <td style="width: 30%">
-                                            <a href="#{request.contextPath}/influencerSecret/viewJob.xhtml?pId=#{post.id}">
-                                                #{post.title}
-                                            </a>
-                                        </td>
-                                        <td style="width: 20%">
-                                            <h:outputText value="#{post.minFollowers}" />
-                                        </td>
-                                        <td style="width: 10%">
-                                            <h:outputText value="#{post.salary}" />
-                                        </td>   
-                                        <td>
-                                            <h:outputText value="#{post.deadline}">
-                                                <f:convertDateTime pattern="y-M-d" type="date" />
-                                            </h:outputText>
 
-                                            <h:panelGroup>
-                                                <span class="badge badge-success">Available</span>
-                                            </h:panelGroup>
-                                        </td>
-                                    </tr>
+        <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
+        <section class="content">
+            <!-- general form elements -->
+            <!-- /.card-header -->
+            <!-- form start -->
+            <div class="card card-lightblue mb-3">
+                <div class='card-body'>
+                    <table id="jobs" class="table table-hover">
+                        <thead>
+                            <th class="text-left">Company </th>
+                            <th class="text-left">Job Title</th>
+                            <th class="text-left">Min. Followers</th>
+                            <th class="text-left">Pay out</th>
+                            <th class="text-left">Status</th>
+                        </thead>
+                        <tbody>
+                            <ui:repeat var="post" value="${applicationManagedBean.posts}">
+                                <tr>
+                                    <td style="width: 15%">
+                                        <h:outputText value="#{post.company.name}" />
+                                    </td>
+                                    <td style="width: 30%">
+                                        <a href="#{request.contextPath}/influencerSecret/viewJob.xhtml?pId=#{post.id}">
+                                            #{post.title}
+                                        </a>
+                                    </td>
+                                    <td style="width: 20%">
+                                        <h:outputText value="#{post.minFollowers}" />
+                                    </td>
+                                    <td style="width: 10%">
+                                        <h:outputText value="#{post.salary}" />
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{post.deadline}">
+                                            <f:convertDateTime pattern="y-M-d" type="date" />
+                                        </h:outputText>
 
-                                </ui:repeat>
-                            </tbody>
-                        </table>
+                                        <h:panelGroup>
+                                            <span class="badge badge-success">Available</span>
+                                        </h:panelGroup>
+                                    </td>
+                                </tr>
 
-                    </div>
-                    <div class='card-footer'>
-                    </div>
+                            </ui:repeat>
+                        </tbody>
+                    </table>
 
                 </div>
-                <!-- /.card -->
-            </section>
-            <!-- /.content -->
-        </h:form>
+                <div class='card-footer'>
+                </div>
+
+            </div>
+            <!-- /.card -->
+        </section>
+        <!-- /.content -->
 
     </ui:define>
 
     <ui:define name="script">
-        script
+        <script>
+            $(document).ready(function () {
+                $('#jobs').DataTable({"pagingType": "numbers"});
+            });
+        </script>
     </ui:define>
 
 </ui:composition>
