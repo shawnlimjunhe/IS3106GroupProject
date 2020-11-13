@@ -71,7 +71,7 @@
                                     <small class="form-text text-muted"> A description of what you want the Influencer to post</small>
                                 </div>
                                 <div class="form-group">
-                                    <h:outputLabel for="postDeadline">Date of Birth</h:outputLabel>
+                                    <h:outputLabel for="postDeadline">Deadline</h:outputLabel>
                                     <div class="input-group date" id="postDeadlinepicker" data-targetinput="nearest">
                                         <div class="input-group-prepend" data-target="#postDeadlinepicker" datatoggle="datetimepicker">
                                             <span class="input-group-text">
@@ -83,18 +83,18 @@
                                                      is required"
                                                      converterMessage="Format should be dd/mm/yyyy" class="formcontrol datepicker #{postDeadline.valid ? '' :'is-invalid'}"
                                                      a:datatarget="#postDeadlinepicker" a:data-toggle="datetimepicker">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/mm/yyyy" />
                                         </h:inputText>
                                         <h:message for="postDeadline" class="invalid-feedback" />
                                     </div>
-                                    <small class="form-text text-muted">Format should be dd/MM/yyyy</small>
+                                    <small class="form-text text-muted">Format should be dd/mm/yyyy</small>
                                 </div>
                                 <div class="form-group">
                                     <h:outputLabel for="postSalary">Salary</h:outputLabel>
                                     <h:inputText  id="postSalary"
                                                   value="#{companyManagedBean.postSalary}" 
                                                   class="form-control" />
-                                    <small class="form-text text-muted">Should in 2 decimal places</small>
+                                    <small class="form-text text-muted">Should be in 2 decimal places</small>
                                 </div>
                                 <div class="form-group">
                                     <h:outputLabel for="minFollowers">Min. Followers</h:outputLabel>
