@@ -104,7 +104,7 @@
                                 <tbody>
                                     <ui:repeat var="app" value="${companyManagedBean.applications}">
                                         <td>
-                                            <a href="/companySecret/viewApplication.xhtml?appId=#{app.id}">
+                                            <a href="#{request.contextPath}/companySecret/viewApplication.xhtml?appId=#{app.id}">
                                                 #{app.id}
                                             </a>
 
