@@ -39,18 +39,7 @@
                 <section class="content">
                     <!-- general form elements -->
                     <nav class="navbar navbar-dark bg-warning" style="border-radius: 3px;">
-                        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group" role="group">
-
-                                <button type="button" class="btn btn-outline-secondary">Active</button>
-                                <button type="button" class="btn btn-outline-secondary">Finished</button>
-                            </div>
-                        </div>
-
-                        <h:form class="form-inline">
-                            <h:inputText class="form-control mr-sm-2" value="#{companyManagedBean.searchTerm}"/>
-                            <h:commandLink class="btn btn-secondary my-2 my-sm-0" action="#{companyManagedBean.searchPosts}">Search Posts</h:commandLink>
-                        </h:form>
+                        
                     </nav>
 
                     <!-- /.card-header -->
@@ -59,6 +48,7 @@
                         <div class='card-body'>
                             <table class="table table-hover" id="viewPost">
                                 <thead>
+                                    <th>Contract ID</th>
                                     <th>Username</th>
                                     <th>Start Date</th>
                                     <th >End Date</th>
@@ -72,8 +62,11 @@
                                         <tr>
                                             <td>
                                                 <a href="#{request.contextPath}/companySecret/viewContract.xhtml?contractId=#{contract.id}">
-                                                    #{contract.influencerName}
+                                                    #{contract.id}
                                                 </a>
+                                            </td>
+                                            <td>
+                                                #{contract.influencerName}
                                             </td>
                                             <td>
                                                 <h:outputText value="${contract.startDate}">
