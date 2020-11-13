@@ -75,6 +75,7 @@ public class ApplicationManagedBean implements Serializable {
             a.setInfluencerRank(i.getRanking());
             a.setInfluencerId(influencerAuthenticationManagedBean.getInfluencerId());
             a.setCaption(caption);
+            System.out.print(caption);
             a.setCompanyName(companyName);
             a.setPostId(postId);
             a.setAccepted("processing"); //INITIAL VALUE SET TO PROCESSING, CHANGE TO 'accepted' or 'rejected' when application gets processed
@@ -100,7 +101,6 @@ public class ApplicationManagedBean implements Serializable {
                 influencer = influencerSessionBeanLocal.getInfluencer(influencerAuthenticationManagedBean.getInfluencerId());
                 List<Application> apps = influencer.getApplications();
                 for(Application a : apps) {
-                    System.out.print(a.getPostId());
                     if(a.getPostId().equals(postId)){
                         userApplied = true;
                     }
