@@ -70,7 +70,7 @@
                                         </div>
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            <ui:repeat var="app" value="#{influencerManagedBean.selectedInfluencer.applications}"> <!-- CANT NAME VAR="APPLICATION" JSF PROBLEMS -->
+                                            <ui:repeat var="app" value="#{applicationManagedBean.getApplicationsWithStatus('accepted')}"> <!-- CANT NAME VAR="APPLICATION" JSF PROBLEMS -->
                                                 <table class="table table-bordered">
                                                     <tr>
                                                         <td width="200px">Company</td>
@@ -103,19 +103,19 @@
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <table class="table table-bordered">
-                                                <c:forEach var="application" items="#{influencerManagedBean.selectedInfluencer.applications}">
+                                                <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('processing')}">
                                                     <tr>
                                                         <td width="200px">Company</td>
-                                                        <td>#{application.companyName}</td>
+                                                        <td>#{app.companyName}</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="200px">Caption</td>
-                                                        <td>#{application.caption}</td>
+                                                        <td>#{app.caption}</td>
                                                     </tr>
 
                                                     <tr>
                                                         <td width="200px">Accepted</td>
-                                                        <td>#{application.accepted}</td>
+                                                        <td>#{app.accepted}</td>
                                                     </tr>
                                                 </c:forEach>
                                             </table>
@@ -135,19 +135,19 @@
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <table class="table table-bordered">
-                                                <c:forEach var="application" items="#{influencerManagedBean.selectedInfluencer.applications}">
+                                                <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
                                                     <tr>
                                                         <td width="200px">Company</td>
-                                                        <td>#{application.companyName}</td>
+                                                        <td>#{app.companyName}</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="200px">Caption</td>
-                                                        <td>#{application.caption}</td>
+                                                        <td>#{app.caption}</td>
                                                     </tr>
 
                                                     <tr>
                                                         <td width="200px">Accepted</td>
-                                                        <td>#{application.accepted}</td>
+                                                        <td>#{app.accepted}</td>
                                                     </tr>
                                                 </c:forEach>
                                             </table>

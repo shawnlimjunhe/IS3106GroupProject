@@ -102,6 +102,19 @@ public class ApplicationManagedBean implements Serializable {
         }
     }
 
+    public List<Application> getApplicationsWithStatus(String status) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+
+        try {
+            List<Application> applications = applicationSessionBeanLocal.getApplicationsWithStatus(influencerAuthenticationManagedBean.getInfluencerId(), status);
+            return applications;
+        } catch (NoResultException ex) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to load applications", ""));
+            return null;
+        }
+    }
+
     public String getCaption() {
         return caption;
     }

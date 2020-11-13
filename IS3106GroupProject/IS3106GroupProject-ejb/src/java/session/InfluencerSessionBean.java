@@ -135,4 +135,5 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
             throw new NoResultException("Not found");
         }
     }
+
 }

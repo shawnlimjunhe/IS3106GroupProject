@@ -79,4 +79,18 @@ public class ApplicationSessionBean implements ApplicationSessionBeanLocal {
             throw new NoResultException("Not found");
         }
     }
+
+    @Override
+    public List<Application> getApplicationsWithStatus(Long iId, String accepted) throws NoResultException { // USE "accepted", "processing", "rejected" plz
+        Influencer inf = em.find(Influencer.class, iId);
+
+        if (inf != null) {
+            Query q = em.createQuery("SELECT a FROM Application a, Influencer i WHERE a MEMBER OF i.applications AND a.accepted = :accepted");
+            q.setParameter("accepted", accepted);
+
+            return q.getResultList();
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
 }
