@@ -69,7 +69,17 @@
                             <dd class="col-sm-8">#{applicationManagedBean.selectedApplication.caption}</dd>
 
                             <dt class="col-sm-4">Application Outcome</dt>
-                            <dd class="col-sm-8">#{applicationManagedBean.selectedApplication.accepted}</dd>
+                            <dd class="col-sm-8">
+                                <h:panelGroup rendered="#{applicationManagedBean.processing}">
+                                    <span class="badge badge-warning">Processing</span>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{applicationManagedBean.accepted}">
+                                    <span class="badge badge-success">Accepted</span>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{applicationManagedBean.rejected}">
+                                    <span class="badge bg-red">Rejected</span>
+                                </h:panelGroup>
+                            </dd>
 
                             <dt class="col-sm-4">Reason for Rejection</dt>
                             <dd class="col-sm-8">#{applicationManagedBean.selectedApplication.rejectReason}</dd>

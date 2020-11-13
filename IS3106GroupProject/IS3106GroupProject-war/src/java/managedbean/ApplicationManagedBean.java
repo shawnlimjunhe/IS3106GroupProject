@@ -10,17 +10,13 @@ import entity.Influencer;
 import entity.Post;
 import error.NoResultException;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import session.ApplicationSessionBean;
 import session.ApplicationSessionBeanLocal;
 import session.InfluencerSessionBeanLocal;
 import session.PostSessionBeanLocal;
@@ -62,6 +58,12 @@ public class ApplicationManagedBean implements Serializable {
     private Long applicationId;
     
     private Application selectedApplication;
+    
+    private boolean accepted;
+    
+    private boolean processing;
+    
+    private boolean rejected;
 
     public ApplicationManagedBean() {
     }
@@ -141,6 +143,13 @@ public class ApplicationManagedBean implements Serializable {
         if (applicationId != null) {
             try {
                 selectedApplication = applicationSessionBeanLocal.getApplication(applicationId);
+                if(selectedApplication.getAccepted().equals("processing")) {
+                    processing = true;
+                } else if(selectedApplication.getAccepted().equals("accepted")) {
+                    accepted = true;
+                } else {
+                    rejected = true;
+                }
           
             } catch (Exception e) {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to load application", ""));
@@ -232,6 +241,30 @@ public class ApplicationManagedBean implements Serializable {
 
     public void setSelectedApplication(Application selectedApplication) {
         this.selectedApplication = selectedApplication;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
+    public boolean isProcessing() {
+        return processing;
+    }
+
+    public void setProcessing(boolean processing) {
+        this.processing = processing;
+    }
+
+    public boolean isRejected() {
+        return rejected;
+    }
+
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
     }
 
 }
