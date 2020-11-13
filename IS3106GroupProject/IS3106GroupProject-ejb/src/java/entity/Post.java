@@ -34,6 +34,7 @@ public class Post implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date deadline;
     private double salary;
+    private boolean active;
 
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Company company;
@@ -145,6 +146,14 @@ public class Post implements Serializable {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
 }

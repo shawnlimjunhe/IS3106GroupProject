@@ -9,10 +9,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,7 +27,10 @@ public class Contract implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String companyName;
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Influencer influencer;
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Company company;
     private List<String> links;
     @Temporal(TemporalType.DATE)
     private Date startDate; //to represent time limit
@@ -36,21 +42,12 @@ public class Contract implements Serializable {
         this.links = new ArrayList<>();
     }
 
-    public Contract(String companyName, List<String> links, Date startDate, Date endDate, boolean approved) {
+    public Contract(List<String> links, Date startDate, Date endDate, boolean approved) {
         this();
-        this.companyName = companyName;
         this.links = links;
         this.startDate = startDate;
         this.endDate = endDate;
         this.approved = approved;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
     }
 
     public List<String> getLinks() {
@@ -116,6 +113,22 @@ public class Contract implements Serializable {
     @Override
     public String toString() {
         return "entity.Contract[ id=" + id + " ]";
+    }
+
+    public Influencer getInfluencer() {
+        return influencer;
+    }
+
+    public void setInfluencer(Influencer influencer) {
+        this.influencer = influencer;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
 }
