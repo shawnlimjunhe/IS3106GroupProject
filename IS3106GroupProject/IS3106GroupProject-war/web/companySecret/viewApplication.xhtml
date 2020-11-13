@@ -35,8 +35,9 @@
                 <section class="content">
                     <div class="card card-light">
                         <div class="card-header">
-                            <p class="card-title float-right">
-                            </p>
+                            <a href="#{request.contextPath}/companySecret/viewPost.xhtml?pId=#{companyManagedBean.selectedApplication.postId}" class="btn btn-outline-secondary">
+                                <i class="fa fa-arrow-left"></i>
+                            </a>
                         </div>
 
                         <div class='card-body'>
@@ -55,13 +56,52 @@
                         <div class='card-footer'>
                             <h:form>
                                 <h:commandLink class="btn btn-outline-success btn-block #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" action="#{companyManagedBean.acceptApplication}" value="Accept application"/>
-                                <h:commandLink class="btn btn-outline-danger btn-block #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" action="#{companyManagedBean.rejectApplication}" value="Reject application"/>
-
                             </h:form>
+
+                            <a class="nav-link #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" href="#modal" data-toggle="modal" data-target="#modal">
+                                <button class="btn btn-outline-danger btn-block #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}">Reject Application</button>
+                            </a>
+
                         </div>
                     </div>
                     <!-- /.card -->
                 </section>
+
+
+                <!-- .reject Modal -->
+                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal">Please provide reason for rejection</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card-body">
+                                    <h6> Feedback allows our influencers to improve the quality of their promos!</h6>
+                                    <input
+                                        class="form-control form-control-lg"
+                                        id="username" required="true"
+                                        placeholder="Rejection reason"></input>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                                <h:form>
+                                    <h:commandButton class="btn btn-primary" action="#{companyManagedBean.rejectApplication}" value="modal" ></h:commandButton>
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.reject Modal -->
+
                 <!-- /.content -->
             </ui:define>
 
