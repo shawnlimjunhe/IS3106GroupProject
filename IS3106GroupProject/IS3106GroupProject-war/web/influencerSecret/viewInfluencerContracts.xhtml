@@ -68,34 +68,23 @@
                                         </h3>
                                     </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <table class="table table-bordered">
-                                            <c:forEach var="contract" items="#{influencerManagedBean.selectedInfluencer.contracts}">
-                                                <tr>
-                                                    <td width="200px">Company</td>
-                                                    <td>#{contract.companyName}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="200px">Start Date</td>
-                                                    <td>#{contract.startDate}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td width="200px">End Date</td>
-                                                    <td>#{contract.endDate}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="200px">Approved</td>
-                                                    <td>#{contract.approved}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="200px">Links</td>
-                                                    <c:forEach var="link" items="#{contract.links}">
-                                                        <td>#{link}</td>
-                                                    </c:forEach>
-                                                </tr>
-                                            </c:forEach>
-                                        </table>
+                                    <div class="card card-primary">
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <ui:repeat var="contract" value="#{influencerManagedBean.selectedInfluencer.contracts}">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Contract with <b>#{contract.companyName}</b></h5>
+                                                        <p class="card-text">Start Date: #{contract.startDate}</p>
+                                                        <p class="card-text">End Date: #{contract.endDate}</p>
+                                                        <a href="#" class="btn btn-primary">Links</a> <!--mbe dialog box opens up to show all the links -->
+                                                        <c:forEach var="link" items="#{contract.links}">
+                                                            <td>#{link}</td>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+                                            </ui:repeat>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -106,35 +95,23 @@
                                             #{influencerManagedBean.username}'s Contracts
                                         </h3>
                                     </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <table class="table table-bordered">
-                                            <c:forEach var="contract" items="#{influencerManagedBean.selectedInfluencer.contracts}">
-                                                <tr>
-                                                    <td width="200px">Company</td>
-                                                    <td>#{contract.companyName}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="200px">Start Date</td>
-                                                    <td>#{contract.startDate}</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td width="200px">End Date</td>
-                                                    <td>#{contract.endDate}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="200px">Approved</td>
-                                                    <td>#{contract.approved}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="200px">Links</td>
-                                                    <c:forEach var="link" items="#{contract.links}">
-                                                        <td>#{link}</td>
-                                                    </c:forEach>
-                                                </tr>
-                                            </c:forEach>
-                                        </table>
+                                    <div class="card card-primary">
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <ui:repeat var="contract" value="#{influencerManagedBean.selectedInfluencer.contracts}">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Contract with <b>#{contract.companyName}</b></h5>
+                                                        <p class="card-text">Start Date: #{contract.startDate}</p>
+                                                        <p class="card-text">End Date: #{contract.endDate}</p>
+                                                        <a href="#" class="btn btn-primary">Links</a> <!--mbe dialog box opens up to show all the links -->
+                                                        <c:forEach var="link" items="#{contract.links}">
+                                                            <td>#{link}</td>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+                                            </ui:repeat>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
