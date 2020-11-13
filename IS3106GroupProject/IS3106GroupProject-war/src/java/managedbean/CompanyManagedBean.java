@@ -61,10 +61,12 @@ public class CompanyManagedBean implements Serializable {
     private Post selectedPost;
     private Application selectedApplication;
     private Influencer selectedInfluencer;
+    private Contract selectedContract;
 
     private Long pId;
     private Long cId;
     private Long appId;
+    private Long contractId;
 
     private double balance;
 
@@ -122,6 +124,16 @@ public class CompanyManagedBean implements Serializable {
         try {
             selectedApplication = appSB.getApplication(appId);
             selectedInfluencer = influencerSB.getInfluencer(selectedApplication.getInfluencerId());
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load posts"));
+        }
+    }
+
+    public void loadSelectedContract() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            setSelectedContract(contractSB.getContract(getContractId()));
+            selectedInfluencer = influencerSB.getInfluencer(selectedContract.getInfluencerId());
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load posts"));
         }
@@ -206,7 +218,15 @@ public class CompanyManagedBean implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/companySecret/viewApplication.xhtml?appId=" + selectedApplication.getId();
+        return "/companySecret/viewApplication.xhtml?appId=" + selectedApplication.getId() + "&faces-redirect=true";
+    }
+
+    public String acceptContract() {
+        return "";
+    }
+
+    public String rejectContract() {
+        return "";
     }
 
     public String rejectApplication() {
@@ -233,8 +253,10 @@ public class CompanyManagedBean implements Serializable {
             postSB.endPost(selectedPost.getId());
             List<Application> apps = selectedPost.getApplications();
             for (Application a : apps) {
-                appSB.setApplicationAccepted(a.getId(), "rejected");
-                appSB.setApplicationRejectionReason(a.getId(), "Company has manually ended the Job");
+                if (a.getAccepted().equals("pending")) {
+                    appSB.setApplicationAccepted(a.getId(), "rejected");
+                    appSB.setApplicationRejectionReason(a.getId(), "Company has manually ended the Job");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -408,6 +430,22 @@ public class CompanyManagedBean implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Contract getSelectedContract() {
+        return selectedContract;
+    }
+
+    public void setSelectedContract(Contract selectedContract) {
+        this.selectedContract = selectedContract;
+    }
+
+    public Long getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Long contractId) {
+        this.contractId = contractId;
     }
 
 }
