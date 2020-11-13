@@ -45,8 +45,6 @@
                 <!-- /.container-fluid -->
             </div>
             <!-- /.content-header -->
-            table of current applications. maybe can filter, or go by different tabs: past and ongoing
-            need add company name probably
 
             <div class="col-md-12">
                 <div class="card">
@@ -67,12 +65,12 @@
                             <div class="active tab-pane" id="accepted">
                                 <section class="content">
                                     <!-- general form elements -->
-                                    <div class="card card-primary">
+                                    
                                         <!-- /.card-header -->
 
                                         <ui:repeat var="app" value="#{applicationManagedBean.getApplicationsWithStatus('accepted')}"> <!-- CANT NAME VAR="APPLICATION" JSF PROBLEMS -->
                                             <div class="card-body">
-                                                <div class="small-box bg-warning">
+                                                <div class="small-box bg-success">
                                                     <div class="inner">
                                                         <h3><b>#{app.companyName}</b></h3>
 
@@ -86,13 +84,13 @@
                                             </div>
                                         </ui:repeat>
 
-                                    </div>
+                                    
                                 </section>
                             </div>
                             <div class="tab-pane" id="processing">
                                 <section class="content">
                                     <!-- general form elements -->
-                                    <div class="card card-primary">
+                                    
 
                                         <!-- /.card-header -->
 
@@ -112,26 +110,32 @@
                                             </div>
                                         </c:forEach>
 
-                                    </div>
+                                    
                                 </section>
                             </div>
                             <div class="tab-pane" id="rejected">
                                 <section class="content">
                                     <!-- general form elements -->
-                                    <div class="card card-primary">
+                                    
                                         <!-- /.card-header -->
 
                                         <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
-                                            <div class="card" style="width: 18rem;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
-                                                    <p class="card-text">Caption: #{app.caption}</p>
-                                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            <div class="card-body">
+                                                <div class="small-box bg-red">
+                                                    <div class="inner">
+                                                        <h3><b>#{app.companyName}</b></h3>
+
+                                                        <p>#{app.caption}</p>
+                                                    </div>
+                                                    <div class="icon">
+                                                        <i class="ion ion-person-add"></i>
+                                                    </div>
+                                                    <a href="#{request.contextPath}/influencerSecret/viewApplication.xhtml?applicationId=#{app.id}" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
                                                 </div>
                                             </div>
                                         </c:forEach>
 
-                                    </div>
+                                   
                                 </section>
                             </div>
                         </div>
