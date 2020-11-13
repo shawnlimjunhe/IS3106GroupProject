@@ -59,8 +59,10 @@
                     <!-- form start -->
                     <div class="card card-light">
                         <div class="card-header">
-                            <p class="card-title float-right">
-                                <a class="btn btn-outline-danger" href="#" role="button">End Post</a>
+                            <p class="card-title text-right">
+                                <h:form class="float-right">
+                                    <h:commandLink class="btn btn-outline-danger text-danger" value="End Post" action="#{companyManagedBean.endPost}"/>
+                                </h:form>
                             </p>
                         </div>
 

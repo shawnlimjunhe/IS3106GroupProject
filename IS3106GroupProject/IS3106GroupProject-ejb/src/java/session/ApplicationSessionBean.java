@@ -38,6 +38,12 @@ public class ApplicationSessionBean implements ApplicationSessionBeanLocal {
     }
 
     @Override
+    public void setApplicationRejectionReason(Long aId, String rejectionReason) {
+        Application a = em.find(Application.class, aId);
+        a.setRejectReason(rejectionReason);
+    }
+
+    @Override
     public void updateApplication(Application a) throws NoResultException {
         Application oldA = em.find(Application.class, a.getId());
         if (oldA != null) {

@@ -214,6 +214,21 @@ public class CompanyManagedBean implements Serializable {
         }
     }
 
+    public String endPost() {
+        try {
+            selectedPost = postSB.getPost(selectedPost.getId());
+            postSB.endPost(selectedPost.getId());
+            List<Application> apps = selectedPost.getApplications();
+            for (Application a : apps) {
+                appSB.setApplicationAccepted(a.getId(), "rejected");
+                appSB.setApplicationRejectionReason(a.getId(), "Company has manually ended the Job");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "posts.xhtml?faces-redirect=true";
+    }
+
     public String searchPosts() {
         return "posts.xhtml?searchTerm=" + searchTerm + "&faces-redirect=true";
     }

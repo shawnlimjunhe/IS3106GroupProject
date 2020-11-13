@@ -26,4 +26,6 @@ public interface ApplicationSessionBeanLocal {
     public List<Application> getApplicationsWithStatus(Long iId, String accepted) throws NoResultException;
 
     public void setApplicationAccepted(Long aId, String status);
+
+    public void setApplicationRejectionReason(Long aId, String rejectionReason);
 }

@@ -32,6 +32,12 @@ public class PostSessionBean implements PostSessionBeanLocal {
     }
 
     @Override
+    public void endPost(Long pId) throws NoResultException {
+        Post p = getPost(pId);
+        p.setActive(false);
+    }
+
+    @Override
     public Post getPost(Long pId) throws NoResultException {
         Post post = em.find(Post.class, pId);
 

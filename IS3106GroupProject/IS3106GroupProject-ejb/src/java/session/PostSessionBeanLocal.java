@@ -20,6 +20,8 @@ public interface PostSessionBeanLocal {
 
     public void deletePost(Long pId) throws NoResultException;
 
+    public void endPost(Long pId) throws NoResultException;
+
     public List<Post> searchPostsByCompany(Long cId) throws NoResultException;
 
     public Post getPost(Long pId) throws NoResultException;
