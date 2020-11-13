@@ -67,6 +67,7 @@ public class ApplicationManagedBean implements Serializable {
             a.setInfluencerRank(i.getRanking());
             a.setCaption(caption);
             a.setCompanyName(companyName);
+            a.setAccepted("processing"); //INITIAL VALUE SET TO PROCESSING, CHANGE TO 'accepted' or 'rejected' when application gets processed
             applicationSessionBeanLocal.createApplication(a);
             influencerSessionBeanLocal.addApplication(i, a);
             postSessionBeanLocal.addApplication(selectedPost, a);
