@@ -10,6 +10,7 @@ import entity.Contract;
 import entity.Post;
 import entity.Application;
 import entity.Influencer;
+import error.NoResultException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -193,6 +194,15 @@ public class CompanyManagedBean implements Serializable {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public String getCompanyName(Long cId) throws NoResultException {
+        Company comp = companySB.getCompany(cId);
+        if (comp != null) {
+            return comp.getName();
+        } else {
+            throw new NoResultException("Not found");
+        }
     }
 
     public String searchPosts() {

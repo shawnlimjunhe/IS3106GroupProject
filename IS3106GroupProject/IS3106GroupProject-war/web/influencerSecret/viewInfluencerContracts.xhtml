@@ -74,7 +74,7 @@
                                             <ui:repeat var="contract" value="#{contractManagedBean.infOngoingContracts}">
                                                 <div class="card" style="width: 18rem;">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">Contract with <b>#{contract.companyName}</b></h5>
+                                                        <h5 class="card-title">Contract with <b>#{companyManagedBean.getCompanyName(contract.companyId)}</b></h5>
                                                         <p class="card-text">Start Date: #{contract.startDate}</p>
                                                         <p class="card-text">End Date: #{contract.endDate}</p>
                                                         <a href="#" class="btn btn-primary">Links</a> <!--mbe dialog box opens up to show all the links -->
@@ -101,7 +101,7 @@
                                             <ui:repeat var="contract" value="#{contractManagedBean.infPastContracts}">
                                                 <div class="card" style="width: 18rem;">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">Contract with <b>#{contract.companyName}</b></h5>
+                                                        <h5 class="card-title">Contract with <b>#{companyManagedBean.getCompanyName(contract.companyId)}</b></h5>
                                                         <p class="card-text">Start Date: #{contract.startDate}</p>
                                                         <p class="card-text">End Date: #{contract.endDate}</p>
                                                         <a href="#" class="btn btn-primary">Links</a> <!--mbe dialog box opens up to show all the links -->
