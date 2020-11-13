@@ -56,6 +56,8 @@ public class ApplicationManagedBean implements Serializable {
     private List<Post> posts;
     
     private boolean userApplied;
+    
+    private Influencer influencer;
 
     public ApplicationManagedBean() {
     }
@@ -90,9 +92,8 @@ public class ApplicationManagedBean implements Serializable {
             try {
                 selectedPost = postSessionBeanLocal.getPost(postId);
                 companyName = selectedPost.getCompany().getName();
-                System.out.print(postId);
-                System.out.print(influencerAuthenticationManagedBean.getInfluencer().getApplications());
-                List<Application> apps = influencerAuthenticationManagedBean.getInfluencer().getApplications();
+                influencer = influencerSessionBeanLocal.getInfluencer(influencerAuthenticationManagedBean.getInfluencerId());
+                List<Application> apps = influencer.getApplications();
                 for(Application a : apps) {
                     System.out.print(a.getPostId());
                     if(a.getPostId().equals(postId)){
@@ -174,6 +175,14 @@ public class ApplicationManagedBean implements Serializable {
 
     public void setUserApplied(boolean userApplied) {
         this.userApplied = userApplied;
+    }
+
+    public Influencer getInfluencer() {
+        return influencer;
+    }
+
+    public void setInfluencer(Influencer influencer) {
+        this.influencer = influencer;
     }
 
 }
