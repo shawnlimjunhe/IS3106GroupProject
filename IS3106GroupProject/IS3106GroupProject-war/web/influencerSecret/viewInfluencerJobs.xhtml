@@ -71,21 +71,13 @@
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <ui:repeat var="app" value="#{applicationManagedBean.getApplicationsWithStatus('accepted')}"> <!-- CANT NAME VAR="APPLICATION" JSF PROBLEMS -->
-                                                <table class="table table-bordered">
-                                                    <tr>
-                                                        <td width="200px">Company</td>
-                                                        <td>#{app.companyName}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="200px">Caption</td>
-                                                        <td>#{app.caption}</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td width="200px">Status</td>
-                                                        <td>#{app.accepted}</td>
-                                                    </tr>
-                                                </table>
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
+                                                        <p class="card-text">Caption: #{app.caption}</p>
+                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                    </div>
+                                                </div>
                                             </ui:repeat>
                                         </div>
                                     </div>
@@ -102,21 +94,15 @@
                                         </div>
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered table-dark table-hover">
                                                 <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('processing')}">
-                                                    <tr>
-                                                        <td width="200px">Company</td>
-                                                        <td>#{app.companyName}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="200px">Caption</td>
-                                                        <td>#{app.caption}</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td width="200px">Accepted</td>
-                                                        <td>#{app.accepted}</td>
-                                                    </tr>
+                                                    <div class="card" style="width: 18rem;">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
+                                                            <p class="card-text">Caption: #{app.caption}</p>
+                                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                        </div>
+                                                    </div>
                                                 </c:forEach>
                                             </table>
                                         </div>
@@ -134,21 +120,15 @@
                                         </div>
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            <table class="table table-bordered">
+                                            <table class="table table-bordered table-dark">
                                                 <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
-                                                    <tr>
-                                                        <td width="200px">Company</td>
-                                                        <td>#{app.companyName}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="200px">Caption</td>
-                                                        <td>#{app.caption}</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td width="200px">Accepted</td>
-                                                        <td>#{app.accepted}</td>
-                                                    </tr>
+                                                    <div class="card" style="width: 18rem;">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
+                                                            <p class="card-text">Caption: #{app.caption}</p>
+                                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                        </div>
+                                                    </div>
                                                 </c:forEach>
                                             </table>
                                         </div>
