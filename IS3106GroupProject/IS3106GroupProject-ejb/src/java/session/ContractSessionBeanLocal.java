@@ -13,7 +13,7 @@ import javax.ejb.Local;
 @Local
 public interface ContractSessionBeanLocal {
 
-    public void createContract(Contract c, Long companyId, Long influencerId);
+    public void createContract(Contract c);
 
     public void deleteContract(Long cId) throws NoResultException;
 
