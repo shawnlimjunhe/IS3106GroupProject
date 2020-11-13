@@ -71,7 +71,7 @@
                                     <div class="card card-primary">
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            <ui:repeat var="contract" value="#{influencerManagedBean.selectedInfluencer.contracts}">
+                                            <ui:repeat var="contract" value="#{contractManagedBean.infOngoingContracts}">
                                                 <div class="card" style="width: 18rem;">
                                                     <div class="card-body">
                                                         <h5 class="card-title">Contract with <b>#{contract.companyName}</b></h5>
@@ -98,7 +98,7 @@
                                     <div class="card card-primary">
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            <ui:repeat var="contract" value="#{influencerManagedBean.selectedInfluencer.contracts}">
+                                            <ui:repeat var="contract" value="#{contractManagedBean.infPastContracts}">
                                                 <div class="card" style="width: 18rem;">
                                                     <div class="card-body">
                                                         <h5 class="card-title">Contract with <b>#{contract.companyName}</b></h5>
