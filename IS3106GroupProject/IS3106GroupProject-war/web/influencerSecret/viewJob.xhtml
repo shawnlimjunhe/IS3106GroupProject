@@ -76,8 +76,12 @@
                             </dl>
                         </div>
 
-                        <h:button value="Apply Now" class="btn btn-primary" outcome="createApplication">
+                        <h:commandButton disabled="true" value="Applied" rendered="#{applicationManagedBean.userApplied}">
+                            <f:param name="pId" value="#{applicationManagedBean.postId}" />
+                        </h:commandButton>
+                        <h:button value="Apply Now" class="btn btn-primary" outcome="createApplication" rendered="#{!applicationManagedBean.userApplied}">
                             <f:param name="pId" value="#{applicationManagedBean.selectedPost.id}" />
+                            <f:param name="pId" value="#{applicationManagedBean.postId}" />
                         </h:button>
                     </div>
 

@@ -54,6 +54,8 @@ public class ApplicationManagedBean implements Serializable {
     private Post selectedPost;
 
     private List<Post> posts;
+    
+    private boolean userApplied;
 
     public ApplicationManagedBean() {
     }
@@ -67,11 +69,13 @@ public class ApplicationManagedBean implements Serializable {
             a.setInfluencerRank(i.getRanking());
             a.setCaption(caption);
             a.setCompanyName(companyName);
+            selectedPost = postSessionBeanLocal.getPost(postId);
+            a.setPost(selectedPost);
             a.setAccepted("processing"); //INITIAL VALUE SET TO PROCESSING, CHANGE TO 'accepted' or 'rejected' when application gets processed
             applicationSessionBeanLocal.createApplication(a);
             influencerSessionBeanLocal.addApplication(i, a);
             postSessionBeanLocal.addApplication(selectedPost, a);
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Post successfully created!", ""));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Successfully applied for job!", ""));
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unable to apply for job right now!", ""));
             return "/influencerSecret/jobFeed.xhtml" + "&faces-redirect=true";
@@ -87,6 +91,15 @@ public class ApplicationManagedBean implements Serializable {
             try {
                 selectedPost = postSessionBeanLocal.getPost(postId);
                 companyName = selectedPost.getCompany().getName();
+                System.out.print(postId);
+                System.out.print(influencerAuthenticationManagedBean.getInfluencer().getApplications());
+                List<Application> apps = influencerAuthenticationManagedBean.getInfluencer().getApplications();
+                for(Application a : apps) {
+                    System.out.print(a.getPost().getId());
+                    if(a.getPost().getId().equals(postId)){
+                        userApplied = true;
+                    }
+                }
             } catch (Exception e) {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load post"));
             }
@@ -154,6 +167,14 @@ public class ApplicationManagedBean implements Serializable {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public boolean isUserApplied() {
+        return userApplied;
+    }
+
+    public void setUserApplied(boolean userApplied) {
+        this.userApplied = userApplied;
     }
 
 }
