@@ -30,6 +30,7 @@ public class Contract implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date endDate;
     private boolean approved;
+    private double salary;
 
     public Contract() {
         this.link = "";
@@ -122,6 +123,14 @@ public class Contract implements Serializable {
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
 }
