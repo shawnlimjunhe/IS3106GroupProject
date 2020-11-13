@@ -50,6 +50,11 @@
 
             <div class="col-md-12">
                 <div class="card">
+                    <div class="card-header text-white bg-primary mb-3">
+                        <h3 class="card-title">
+                            #{influencerManagedBean.username}'s Job Applications
+                        </h3>
+                    </div>
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
                             <li class="nav-item"><a class="nav-link active" href="#accepted" data-toggle="tab">Accepted</a></li>
@@ -63,11 +68,6 @@
                                 <section class="content">
                                     <!-- general form elements -->
                                     <div class="card card-primary">
-                                        <div class="card-header">
-                                            <h3 class="card-title">
-                                                #{influencerManagedBean.username}'s Job Applications (ACCEPTED LOGIK NOT DONE YET)
-                                            </h3>
-                                        </div>
                                         <!-- /.card-header -->
                                         <div class="card-body">
                                             <ui:repeat var="app" value="#{applicationManagedBean.getApplicationsWithStatus('accepted')}"> <!-- CANT NAME VAR="APPLICATION" JSF PROBLEMS -->
@@ -87,24 +87,18 @@
                                 <section class="content">
                                     <!-- general form elements -->
                                     <div class="card card-primary">
-                                        <div class="card-header">
-                                            <h3 class="card-title">
-                                                #{influencerManagedBean.username}'s Job Applications (PROCESSING)
-                                            </h3>
-                                        </div>
+
                                         <!-- /.card-header -->
                                         <div class="card-body">
-                                            <table class="table table-bordered table-dark table-hover">
-                                                <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('processing')}">
-                                                    <div class="card" style="width: 18rem;">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
-                                                            <p class="card-text">Caption: #{app.caption}</p>
-                                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                                        </div>
+                                            <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('processing')}">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
+                                                        <p class="card-text">Caption: #{app.caption}</p>
+                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
                                                     </div>
-                                                </c:forEach>
-                                            </table>
+                                                </div>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </section>
@@ -112,26 +106,18 @@
                             <div class="tab-pane" id="rejected">
                                 <section class="content">
                                     <!-- general form elements -->
-                                    <div class="card card-primary">
-                                        <div class="card-header">
-                                            <h3 class="card-title">
-                                                #{influencerManagedBean.username}'s Job Applications (REJECTED)
-                                            </h3>
-                                        </div>
-                                        <!-- /.card-header -->
-                                        <div class="card-body">
-                                            <table class="table table-bordered table-dark">
-                                                <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
-                                                    <div class="card" style="width: 18rem;">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
-                                                            <p class="card-text">Caption: #{app.caption}</p>
-                                                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </table>
-                                        </div>
+
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
+                                            <div class="card" style="width: 18rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
+                                                    <p class="card-text">Caption: #{app.caption}</p>
+                                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </section>
                             </div>
