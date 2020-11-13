@@ -31,6 +31,13 @@ public class ApplicationSessionBean implements ApplicationSessionBeanLocal {
     }
 
     @Override
+    public void setApplicationAccepted(Long aId, String status) {
+        Application a = em.find(Application.class, aId);
+        a.setAccepted(status);
+        System.out.print("set accepted to " + status);
+    }
+
+    @Override
     public void updateApplication(Application a) throws NoResultException {
         Application oldA = em.find(Application.class, a.getId());
         if (oldA != null) {
@@ -51,7 +58,7 @@ public class ApplicationSessionBean implements ApplicationSessionBeanLocal {
                 Influencer i = (Influencer) influencer;
                 i.getApplications().remove(a);
             }
-            
+
             Query q2 = em.createQuery("SELECT p FROM Post p WHERE :application MEMBER OF p.applications");
             q2.setParameter("application", a);
 
