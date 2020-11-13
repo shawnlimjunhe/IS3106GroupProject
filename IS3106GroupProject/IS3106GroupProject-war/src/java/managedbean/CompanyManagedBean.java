@@ -64,6 +64,7 @@ public class CompanyManagedBean implements Serializable {
     private double balance;
 
     private String password;
+    private String username;
 
     // variables for creating posts
     private String postTitle;
@@ -118,6 +119,11 @@ public class CompanyManagedBean implements Serializable {
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load posts"));
         }
+    }
+
+    // Returns true if no duplicates
+    public boolean checkDuplicate() {
+        return companySB.checkDuplicate(username);
     }
 
     public void loadcompanyPosts() {
@@ -320,6 +326,14 @@ public class CompanyManagedBean implements Serializable {
 
     public void setSelectedInfluencer(Influencer selectedInfluencer) {
         this.selectedInfluencer = selectedInfluencer;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }
