@@ -60,7 +60,8 @@
                             <h:inputText
                                 binding="#{followers}"
                                 id="followers" value="#{influencerManagedBean.followers}" required="true"
-                                requiredMessage="Number of Followers is required" class="form-control #{followers.valid ? '' :'is-invalid'}"/>
+                                requiredMessage="Number of Followers is required" class="form-control #{followers.valid ? '' :'is-invalid'}" 
+                                converterMessage="Input should be a number"/>
                             <h:message for="followers" class="invalid-feedback" />
                         </div>
 

@@ -29,8 +29,7 @@ public class Application implements Serializable {
     private String accepted;
     private String rejectReason;
     //Influencer
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private Post post;
+    private Long postId;
 
     public Application() {
     }
@@ -92,6 +91,14 @@ public class Application implements Serializable {
         this.id = id;
     }
 
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -116,13 +123,4 @@ public class Application implements Serializable {
     public String toString() {
         return "entity.Application[ id=" + id + " ]";
     }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
 }
