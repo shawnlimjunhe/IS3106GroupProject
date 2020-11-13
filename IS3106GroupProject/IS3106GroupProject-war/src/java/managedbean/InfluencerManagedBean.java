@@ -5,6 +5,7 @@
  */
 package managedbean;
 
+import entity.Application;
 import entity.Influencer;
 import java.io.Serializable;
 import java.util.Date;
@@ -58,9 +59,9 @@ public class InfluencerManagedBean implements Serializable {
     private double withdrawAmount;
 
     private Date today = new Date();
-    
+
     private Date deadline;
-    
+
     private int difference;
 
     public InfluencerManagedBean() {

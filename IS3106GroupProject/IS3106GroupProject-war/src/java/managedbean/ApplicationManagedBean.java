@@ -58,6 +58,10 @@ public class ApplicationManagedBean implements Serializable {
     private boolean userApplied;
     
     private Influencer influencer;
+    
+    private Long applicationId;
+    
+    private Application selectedApplication;
 
     public ApplicationManagedBean() {
     }
@@ -102,7 +106,7 @@ public class ApplicationManagedBean implements Serializable {
                     }
                 }
             } catch (Exception e) {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load post"));
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to load job", ""));
             }
         }
     }
@@ -129,6 +133,34 @@ public class ApplicationManagedBean implements Serializable {
             return null;
         }
     }
+    
+    public void loadSelectedApplication() {
+        System.out.print(applicationId);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        if (applicationId != null) {
+            try {
+                selectedApplication = applicationSessionBeanLocal.getApplication(applicationId);
+          
+            } catch (Exception e) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to load application", ""));
+            }
+        }
+    }
+    
+    public String deleteApplication() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+
+        try {
+            applicationSessionBeanLocal.deleteApplication(applicationId);
+            context.addMessage(null, new FacesMessage("Successfully deleted application!", ""));
+        } catch (Exception e) {
+            //show with an error icon
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Unable to delete application", ""));
+        }
+        return "/influencerSecret/viewInfluencerJobs.xhtml?iId=" + influencerAuthenticationManagedBean.getInfluencerId() + "&faces-redirect=true";
+    } //end delete
 
     public String getCaption() {
         return caption;
@@ -184,6 +216,22 @@ public class ApplicationManagedBean implements Serializable {
 
     public void setInfluencer(Influencer influencer) {
         this.influencer = influencer;
+    }
+
+    public Long getApplicationId() {
+        return applicationId;
+    }
+
+    public void setApplicationId(Long applicationId) {
+        this.applicationId = applicationId;
+    }
+
+    public Application getSelectedApplication() {
+        return selectedApplication;
+    }
+
+    public void setSelectedApplication(Application selectedApplication) {
+        this.selectedApplication = selectedApplication;
     }
 
 }

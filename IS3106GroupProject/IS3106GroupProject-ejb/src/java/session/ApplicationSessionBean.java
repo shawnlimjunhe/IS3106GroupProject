@@ -7,6 +7,7 @@ package session;
 
 import entity.Application;
 import entity.Influencer;
+import entity.Post;
 import error.NoResultException;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -49,6 +50,14 @@ public class ApplicationSessionBean implements ApplicationSessionBeanLocal {
             for (Object influencer : q.getResultList()) {
                 Influencer i = (Influencer) influencer;
                 i.getApplications().remove(a);
+            }
+            
+            Query q2 = em.createQuery("SELECT p FROM Post p WHERE :application MEMBER OF p.applications");
+            q2.setParameter("application", a);
+
+            for (Object post : q2.getResultList()) {
+                Post p = (Post) post;
+                p.getApplications().remove(a);
             }
             em.remove(a);
         } else {
