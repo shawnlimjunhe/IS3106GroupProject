@@ -81,13 +81,13 @@
                                         <h:inputText binding="#{postDeadline}" id="postDeadline"
                                                      value="#{companyManagedBean.postDeadline}" required="true" requiredMessage="deadline
                                                      is required"
-                                                     converterMessage="Format should be dd/mm/yyyy" class="form-control datepicker #{postDeadline.valid ? '' :'is-invalid'}"
+                                                     converterMessage="Format should be dd/MM/yyyy" class="form-control datepicker #{postDeadline.valid ? '' :'is-invalid'}"
                                                      a:data-target="#postDeadlinepicker" a:data-toggle="datetimepicker">
-                                            <f:convertDateTime pattern="dd/mm/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:inputText>
                                         <h:message for="postDeadline" class="invalid-feedback" />
                                     </div>
-                                    <small class="form-text text-muted">Format should be dd/mm/yyyy</small>
+                                    <small class="form-text text-muted">Format should be dd/MM/yyyy</small>
                                 </div>
                                 <div class="form-group">
                                     <h:outputLabel for="postSalary">Salary</h:outputLabel>
