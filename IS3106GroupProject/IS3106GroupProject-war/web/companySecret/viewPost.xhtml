@@ -107,7 +107,9 @@
                                             <a href="#{request.contextPath}/companySecret/viewApplication.xhtml?appId=#{app.id}">
                                                 #{app.id}
                                             </a>
-
+                                        </td>
+                                        <td>
+                                            #{app.accepted == "processing"? 'pending': app.accepted}
                                         </td>
                                     </ui:repeat>
                                 </tbody>
