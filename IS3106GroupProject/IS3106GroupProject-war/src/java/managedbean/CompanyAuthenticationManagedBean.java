@@ -56,6 +56,7 @@ public class CompanyAuthenticationManagedBean implements Serializable {
     }
 
     public String logout() {
+        companyUsername = null;
         companyName = null;
         password = null;
         companyId = new Long(-1);
