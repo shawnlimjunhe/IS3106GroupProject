@@ -92,8 +92,8 @@ public class CompanyManagedBean implements Serializable {
             companySB.createCompany(c);
             return "companyLogin.xhtml?faces-redirect=true";
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to create company account!"));
-            return "index.xhtml?faces-redirect=true";
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Account Username is taken!", ""));
+            return "registerCompany.xhtml?faces-redirect=true";
         }
     }
 

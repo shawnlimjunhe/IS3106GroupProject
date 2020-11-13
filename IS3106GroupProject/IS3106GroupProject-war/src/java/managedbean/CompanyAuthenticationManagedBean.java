@@ -47,7 +47,7 @@ public class CompanyAuthenticationManagedBean implements Serializable {
             companyUsername = null;
             password = null;
             companyId = new Long(-1);
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong login information"));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong login information", ""));
             return "companyLogin.xhtml?faces-redirect=true";
         } else {
             companyId = company.getId();

@@ -26,6 +26,7 @@ public class Company implements Serializable {
     private Long id;
 
     private String name;
+    @Column(nullable = false, unique = true)
     private String username;
     private double balance;
     private String password;
