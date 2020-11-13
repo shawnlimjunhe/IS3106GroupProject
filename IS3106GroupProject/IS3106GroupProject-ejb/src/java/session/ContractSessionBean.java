@@ -103,4 +103,22 @@ public class ContractSessionBean implements ContractSessionBeanLocal {
             throw new NoResultException("Not found");
         }
     }
+
+    @Override
+    public void updateContract(Contract c) throws NoResultException {
+        Contract oldC = em.find(Contract.class, c.getId());
+        System.out.print("updating contract");
+
+        if (oldC != null) {
+            System.out.print("found contract");
+            oldC.setApproved(c.isApproved());
+            oldC.setCompanyId(c.getCompanyId());
+            oldC.setInfluencerId(c.getInfluencerId());
+            oldC.setLink(c.getLink());
+            System.out.print("updated contract successfully");
+            //whats there to change for company
+        } else {
+            throw new NoResultException("Not found");
+        }
+    }
 }

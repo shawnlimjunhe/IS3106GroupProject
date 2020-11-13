@@ -24,4 +24,6 @@ public interface ContractSessionBeanLocal {
     public List<Contract> getInfPastContracts(Long iId) throws NoResultException;
 
     public List<Contract> getInfOngoingContracts(Long iId) throws NoResultException;
+
+    public void updateContract(Contract c) throws NoResultException;
 }
