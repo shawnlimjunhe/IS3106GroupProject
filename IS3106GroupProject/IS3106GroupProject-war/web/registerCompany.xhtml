@@ -50,7 +50,7 @@
 
                         <div class="form-group">
                             <h:outputLabel for="companyPassword">Password</h:outputLabel>
-                            <h:inputText
+                            <h:inputSecret
                                 binding="#{companyPassword}"
                                 id="password" value="#{companyManagedBean.password}" required="true"
                                 requiredMessage="Password is required" class="form-control #{companyPassword.valid ? '' :'is-invalid'}"/>

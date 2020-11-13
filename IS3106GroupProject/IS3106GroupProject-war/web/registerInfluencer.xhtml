@@ -7,7 +7,7 @@
     <h:head>
         <title>Register Influencer Account</title>
     </h:head>
-    
+
     <ui:composition template="./layout/default.xhtml">
 
         <ui:define name="content">
@@ -48,13 +48,13 @@
 
                         <div class="form-group">
                             <h:outputLabel for="password">Password</h:outputLabel>
-                            <h:inputText
+                            <h:inputSecret
                                 binding="#{password}"
                                 id="password" value="#{influencerManagedBean.password}" required="true"
                                 requiredMessage="Password is required" class="form-control #{password.valid ? '' :'is-invalid'}"/>
                             <h:message for="password" class="invalid-feedback" />
                         </div>
-                        
+
                         <div class="form-group">
                             <h:outputLabel for="followers">Number of Followers</h:outputLabel>
                             <h:inputText
