@@ -69,17 +69,23 @@
                                     <!-- general form elements -->
                                     <div class="card card-primary">
                                         <!-- /.card-header -->
-                                        <div class="card-body">
-                                            <ui:repeat var="app" value="#{applicationManagedBean.getApplicationsWithStatus('accepted')}"> <!-- CANT NAME VAR="APPLICATION" JSF PROBLEMS -->
-                                                <div class="card" style="width: 18rem;">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
-                                                        <p class="card-text">Caption: #{app.caption}</p>
-                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                                        <ui:repeat var="app" value="#{applicationManagedBean.getApplicationsWithStatus('accepted')}"> <!-- CANT NAME VAR="APPLICATION" JSF PROBLEMS -->
+                                            <div class="card-body">
+                                                <div class="small-box bg-warning">
+                                                    <div class="inner">
+                                                        <h3><b>#{app.companyName}</b></h3>
+
+                                                        <p>#{app.caption}</p>
                                                     </div>
+                                                    <div class="icon">
+                                                        <i class="ion ion-person-add"></i>
+                                                    </div>
+                                                    <a href="#{request.contextPath}/influencerSecret/viewApplication.xhtml?applicationId=#{app.id}" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
                                                 </div>
-                                            </ui:repeat>
-                                        </div>
+                                            </div>
+                                        </ui:repeat>
+
                                     </div>
                                 </section>
                             </div>
@@ -89,17 +95,23 @@
                                     <div class="card card-primary">
 
                                         <!-- /.card-header -->
-                                        <div class="card-body">
-                                            <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('processing')}">
-                                                <div class="card" style="width: 18rem;">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
-                                                        <p class="card-text">Caption: #{app.caption}</p>
-                                                        <a href="#{request.contextPath}/influencerSecret/viewApplication.xhtml?applicationId=#{app.id}" class="btn btn-primary">View</a>
+
+                                        <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('processing')}">
+                                            <div class="card-body">
+                                                <div class="small-box bg-warning">
+                                                    <div class="inner">
+                                                        <h3><b>#{app.companyName}</b></h3>
+
+                                                        <p>#{app.caption}</p>
                                                     </div>
+                                                    <div class="icon">
+                                                        <i class="ion ion-person-add"></i>
+                                                    </div>
+                                                    <a href="#{request.contextPath}/influencerSecret/viewApplication.xhtml?applicationId=#{app.id}" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
                                                 </div>
-                                            </c:forEach>
-                                        </div>
+                                            </div>
+                                        </c:forEach>
+
                                     </div>
                                 </section>
                             </div>
@@ -108,17 +120,17 @@
                                     <!-- general form elements -->
                                     <div class="card card-primary">
                                         <!-- /.card-header -->
-                                        <div class="card-body">
-                                            <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
-                                                <div class="card" style="width: 18rem;">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
-                                                        <p class="card-text">Caption: #{app.caption}</p>
-                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                                                    </div>
+
+                                        <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
+                                            <div class="card" style="width: 18rem;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
+                                                    <p class="card-text">Caption: #{app.caption}</p>
+                                                    <a href="#" class="btn btn-primary">Go somewhere</a>
                                                 </div>
-                                            </c:forEach>
-                                        </div>
+                                            </div>
+                                        </c:forEach>
+
                                     </div>
                                 </section>
                             </div>
