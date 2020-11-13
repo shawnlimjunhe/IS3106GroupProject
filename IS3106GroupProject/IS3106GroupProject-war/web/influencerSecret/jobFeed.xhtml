@@ -60,6 +60,7 @@
                             <th class="text-left">Job Title</th>
                             <th class="text-left">Min. Followers</th>
                             <th class="text-left">Pay out</th>
+                            <th class="text-left">Deadline</th>
                             <th class="text-left">Status</th>
                         </thead>
                         <tbody>
@@ -84,6 +85,14 @@
                                             <f:convertDateTime pattern="y-M-d" type="date" />
                                         </h:outputText>
 
+                                    </td>
+                                    <td style="width: 10%">
+                                        <h:panelGroup rendered="#{post.active}">
+                                            <span class="badge badge-success">Open</span>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{!post.active}">
+                                            <span class="badge bg-grey">Close</span>
+                                        </h:panelGroup>
                                     </td>
                                 </tr>
 
