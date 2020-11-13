@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
@@ -52,8 +53,11 @@
                             </dl>
                         </div>
                         <div class='card-footer'>
-                            <a class="btn btn-outline-success btn-block" href="#" role="button">Accept application</a>
-                            <a class="btn btn-outline-danger btn-block" href="#" role="button">Reject application</a>
+                            <h:form>
+                                <h:commandLink class="btn btn-outline-success btn-block" action="#{companyManagedBean.acceptApplication}" value="Accept application"/>
+                                <h:commandLink class="btn btn-outline-danger btn-block" value="Reject application"/>
+
+                            </h:form>
                         </div>
                     </div>
                     <!-- /.card -->
