@@ -84,9 +84,10 @@
                                 <div class="modal-body">
                                     <div class="card-body">
                                         <h6> Feedback allows our influencers to improve the quality of their promos!</h6>
+                                        <h:outputLabel for="rejection">Rejection reason</h:outputLabel>
                                         <h:inputText
                                             class="form-control form-control-lg"
-                                            id="username" required="true"
+                                            id="rejection" required="true"
                                             value="#{companyManagedBean.rejectionReason}"></h:inputText>
                                     </div>
                                 </div>
@@ -94,8 +95,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
 
-                                    <h:commandButton class="btn btn-danger" action="#{companyManagedBean.rejectApplication}" value="Reject Application" ></h:commandButton>
-
+                                    <h:commandButton class="btn btn-danger #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" action="#{companyManagedBean.rejectApplication}" value="Reject Application" ></h:commandButton>
 
                                 </div>
                             </h:form>
