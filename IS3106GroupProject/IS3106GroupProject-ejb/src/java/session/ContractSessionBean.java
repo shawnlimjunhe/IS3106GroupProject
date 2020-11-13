@@ -145,8 +145,10 @@ public class ContractSessionBean implements ContractSessionBeanLocal {
     @Override
     public void setContractCompanyandInfluencer(Long contractId, Long cId, Long iId) {
         Contract c = em.find(Contract.class, contractId);
+        Influencer i = em.find(Influencer.class, iId);
         c.setCompanyId(cId);
         c.setInfluencerId(iId);
+        c.setInfluencerName(i.getUsername());
         em.flush();
     }
 

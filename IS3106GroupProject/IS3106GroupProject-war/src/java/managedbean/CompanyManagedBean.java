@@ -53,6 +53,7 @@ public class CompanyManagedBean implements Serializable {
     private String name;
     private String searchTerm;
     private String rejectionReason;
+    private String influencerName;
 
     private Company selectedCompany;
 
@@ -475,6 +476,14 @@ public class CompanyManagedBean implements Serializable {
 
     public void setRejectionReason(String rejectionReason) {
         this.rejectionReason = rejectionReason;
+    }
+
+    public String getInfluencerName() {
+        return influencerName;
+    }
+
+    public void setInfluencerName(String influencerName) {
+        this.influencerName = influencerName;
     }
 
 }

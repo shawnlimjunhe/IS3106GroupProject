@@ -6,13 +6,10 @@
 package entity;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class Application implements Serializable {
@@ -31,6 +28,7 @@ public class Application implements Serializable {
     //Influencer
     private Long postId;
     private Long influencerId;
+    private String influencerUsername;
 
     public Application() {
     }
@@ -131,5 +129,13 @@ public class Application implements Serializable {
     @Override
     public String toString() {
         return "entity.Application[ id=" + id + " ]";
+    }
+
+    public String getInfluencerUsername() {
+        return influencerUsername;
+    }
+
+    public void setInfluencerUsername(String influencerUsername) {
+        this.influencerUsername = influencerUsername;
     }
 }

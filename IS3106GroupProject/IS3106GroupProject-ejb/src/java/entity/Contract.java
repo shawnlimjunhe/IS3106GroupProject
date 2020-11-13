@@ -31,6 +31,7 @@ public class Contract implements Serializable {
     private Date endDate;
     private boolean approved;
     private double salary;
+    private String influencerName;
 
     public Contract() {
         this.link = "";
@@ -132,6 +133,14 @@ public class Contract implements Serializable {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    public String getInfluencerName() {
+        return influencerName;
+    }
+
+    public void setInfluencerName(String influencerName) {
+        this.influencerName = influencerName;
     }
 
 }
