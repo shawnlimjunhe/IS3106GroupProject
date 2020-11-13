@@ -21,7 +21,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0 text-dark">
-                                View Post
+                                View Job
                             </h1>
                         </div>
                         <!-- /.row -->
@@ -75,14 +75,15 @@
 
                             </dl>
                         </div>
-
-                        <h:commandButton disabled="true" value="Applied" rendered="#{applicationManagedBean.userApplied}">
-                            <f:param name="pId" value="#{applicationManagedBean.postId}" />
-                        </h:commandButton>
-                        <h:button value="Apply Now" class="btn btn-primary" outcome="createApplication" rendered="#{!applicationManagedBean.userApplied}">
-                            <f:param name="pId" value="#{applicationManagedBean.selectedPost.id}" />
-                            <f:param name="pId" value="#{applicationManagedBean.postId}" />
-                        </h:button>
+                        <h:form>
+                            <h:commandButton class="btn btn-primary btn-block" disabled="true" value="Applied" rendered="#{applicationManagedBean.userApplied}">
+                                <f:param name="pId" value="#{applicationManagedBean.postId}" />
+                            </h:commandButton>
+                            <h:button value="Apply Now" class="btn btn-primary btn-block" outcome="createApplication" rendered="#{!applicationManagedBean.userApplied}">
+                                <f:param name="pId" value="#{applicationManagedBean.selectedPost.id}" />
+                                <f:param name="pId" value="#{applicationManagedBean.postId}" />
+                            </h:button>
+                        </h:form>
                     </div>
 
                     <!-- /.card -->

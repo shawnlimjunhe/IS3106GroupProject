@@ -19,49 +19,48 @@
                 <f:event type="preRenderView" listener="#{applicationManagedBean.loadSelectedPost}"/>
             </f:metadata>
             <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
-
-            <h:form id="form">
-
-                <!-- Content Header (Page header) -->
-                <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1 class="m-0 text-dark"></h1>
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item">
-                                        <a href="#{request.contextPath}/influencerSecret/influencerLandingPage.xhtml">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item">
-                                        <h:link outcome="viewJob">
-                                            View Job
-                                            <f:param name="pId" value="#{applicationManagedBean.postId}" />
-                                        </h:link>
-                                    </li>
-                                    <li class="breadcrumb-item active">
-                                        Create new application
-                                    </li>
-                                </ol>
-                            </div>
-                            <!-- /.col -->
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark"></h1>
                         </div>
-                        <!-- /.row -->
+                        <!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item">
+                                    <a href="#{request.contextPath}/influencerSecret/influencerLandingPage.xhtml">Home</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <h:link outcome="viewJob">
+                                        View Job
+                                        <f:param name="pId" value="#{applicationManagedBean.postId}" />
+                                    </h:link>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Create new application
+                                </li>
+                            </ol>
+                        </div>
+                        <!-- /.col -->
                     </div>
-                    <!-- /.container-fluid -->
+                    <!-- /.row -->
                 </div>
-                <!-- /.content-header -->
-                <section class="content">
-                    <!-- general form elements -->
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                New Job Application
-                            </h3>
-                        </div>
-                        <!-- /.card-header -->
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <section class="content">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            New Job Application
+                        </h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <h:form>
                         <div class="card-body">
                             <table class="table table-bordered">
                                 <tr>
@@ -91,16 +90,17 @@
                                 </tr>
                             </table>
                         </div>
-                    </div>
-                </section>
+                    </h:form>
+                </div>
+            </section>
 
-
-
-                <span style="padding-right:375px;"/>
-                <h:commandButton value="Submit" class="btn btn-primary" action="#{applicationManagedBean.createApplication}">
+            <h:form>
+                
+                <h:commandButton value="Submit" class="btn btn-primary btn-block" action="#{applicationManagedBean.createApplication}">
                 </h:commandButton>
-
             </h:form>
+
+
         </ui:define>
     </div>
 

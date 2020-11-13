@@ -106,18 +106,19 @@
                             <div class="tab-pane" id="rejected">
                                 <section class="content">
                                     <!-- general form elements -->
-
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
-                                            <div class="card" style="width: 18rem;">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
-                                                    <p class="card-text">Caption: #{app.caption}</p>
-                                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <div class="card card-primary">
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <c:forEach var="app" items="#{applicationManagedBean.getApplicationsWithStatus('rejected')}">
+                                                <div class="card" style="width: 18rem;">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Application to <b>#{app.companyName}</b></h5>
+                                                        <p class="card-text">Caption: #{app.caption}</p>
+                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </c:forEach>
+                                            </c:forEach>
+                                        </div>
                                     </div>
                                 </section>
                             </div>
