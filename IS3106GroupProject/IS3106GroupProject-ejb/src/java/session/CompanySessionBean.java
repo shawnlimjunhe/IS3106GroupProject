@@ -146,4 +146,10 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
         c.setBalance(c.getBalance() - salary);
     }
 
+    @Override
+    public void updateProfile(Long cId, String name) throws NoResultException {
+        Company c = getCompany(cId);
+        c.setName(name);
+    }
+
 }

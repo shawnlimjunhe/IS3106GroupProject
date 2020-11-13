@@ -28,16 +28,6 @@
                         <h1 class="m-0 text-dark"></h1>
                     </div>
                     <!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item">
-                                <a href="#{request.contextPath}/companySecret/companyLandingPage.xhtml">Home</a>
-                            </li>
-                            <li class="breadcrumb-item active">
-                                Company Profile
-                            </li>
-                        </ol>
-                    </div>
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
@@ -49,7 +39,7 @@
 
         <section class="content">
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-warning">
                 <div class="card-header">
                     <h4 class="card-title">
                         #{companyManagedBean.name}
@@ -75,19 +65,14 @@
 
                     </table>
                 </div>
+                <div class="card-footer">
+                    <a class="btn btn-warning" href="#{request.contextPath}/companySecret/editCompanyProfile.xhtml">Edit profile
+                    </a>
+                </div>
             </div>
         </section>
 
-        <h:form>
-            <span style="padding-right:500px;"/>
-            <h:button value="Edit Profile" class="btn btn-primary" outcome="editCompanyProfile" rendered="#{companyManagedBean.cId == companyAuthenticationManagedBean.companyId}">
-                <f:param name="cId" value="#{companyAuthenticationManagedBean.companyId}" />
-            </h:button>
-            <br/>
-            <h:button value="View Transaction History OR Withdraw Balance" class="btn btn-primary" outcome=".." rendered="#{influencerManagedBean.iid == influencerAuthenticationManagedBean.influencerId}">
-                <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
-            </h:button>
-        </h:form>
+
 
     </ui:define>
 

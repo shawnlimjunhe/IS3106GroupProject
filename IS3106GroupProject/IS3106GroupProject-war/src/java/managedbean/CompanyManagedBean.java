@@ -178,6 +178,18 @@ public class CompanyManagedBean implements Serializable {
 
     }
 
+    public void loadCompany() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            selectedCompany = companySB.getCompany(caMB.getCompanyId());
+            balance = selectedCompany.getBalance();
+            name = selectedCompany.getName();
+            username = selectedCompany.getUsername();
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load user"));
+        }
+    }
+
     public void loadSelectedCompany() {
         FacesContext context = FacesContext.getCurrentInstance();
         try {
@@ -278,12 +290,14 @@ public class CompanyManagedBean implements Serializable {
     public String updateCompany() {
         FacesContext context = FacesContext.getCurrentInstance();
         context.getExternalContext().getFlash().setKeepMessages(true);
-        selectedCompany.setUsername(username);
-        selectedCompany.setName(name);
-        ServletContext ctx = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+        try {
+            companySB.updateProfile(caMB.getCompanyId(), name);
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage("Failed to update profile!", ""));
+        }
 
         context.addMessage(null, new FacesMessage("Successfully updated profile!", ""));
-        return "/influencerSecret/viewInfluencerProfile.xhtml?iId=" + cId + "&faces-redirect=true";
+        return "/companySecret/viewCompanyProfile.xhtml?cId=" + caMB.getCompanyId() + "&faces-redirect=true";
     }
 
     public String searchPosts() {

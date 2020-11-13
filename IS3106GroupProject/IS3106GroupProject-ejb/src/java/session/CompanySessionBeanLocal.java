@@ -30,4 +30,6 @@ public interface CompanySessionBeanLocal {
     public void addContract(Long compId, Long contractId) throws NoResultException;
 
     public void debitInfluencer(Long cId, double salary) throws NoResultException;
+
+    public void updateProfile(Long cId, String name) throws NoResultException;
 }
