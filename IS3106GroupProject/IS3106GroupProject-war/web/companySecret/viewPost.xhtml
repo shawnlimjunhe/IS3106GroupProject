@@ -85,10 +85,9 @@
 
                                 <dt class="col-sm-2">Status</dt>
                                 <dd class="col-sm-10">
-                                    #{post.active}
 
-                                    <span class="badge badge-success" style="display: #{post.active? 'in-line' : 'none'}">Available</span>
-                                    <span class="badge badge-secondary" style="display: #{post.active? 'in-line' : 'none'}">Finished</span>
+                                    <span class="badge badge-success" style="display: #{companyManagedBean.selectedPost.active? 'in-line' : 'none'}">Active</span>
+                                    <span class="badge badge-secondary" style="display: #{companyManagedBean.selectedPost.active? 'none' : 'in-line'}">Finished</span>
                                 </dd>
 
 
@@ -118,7 +117,7 @@
                                             <td>
                                                 <span class="badge badge-success" style="display: #{app.accepted == 'accepted'? 'inline' : 'none'}">Accepted</span>
                                                 <span class="badge badge-warning" style="display: #{app.accepted == 'processing'? 'inline' : 'none'}">Pending</span>
-                                                <span class="badge badge-danger" style="display: #{app.accepted == 'rejected'? 'inline' : 'none'}">Rejected</span>
+                                                <span class="badge badge-secondary" style="display: #{app.accepted == 'rejected'? 'inline' : 'none'}">Rejected</span>
                                             </td>
                                         </tr>
                                     </ui:repeat>
