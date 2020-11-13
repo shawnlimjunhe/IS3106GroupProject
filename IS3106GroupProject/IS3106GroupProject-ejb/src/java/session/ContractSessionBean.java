@@ -38,6 +38,12 @@ public class ContractSessionBean implements ContractSessionBeanLocal {
     }
 
     @Override
+    public void acceptContract(Long cId) throws NoResultException {
+        Contract c = getContract(cId);
+        c.setApproved(true);
+    }
+
+    @Override
     public void deleteContract(Long cId) throws NoResultException {
         Contract c = em.find(Contract.class, cId);
         if (c != null) {

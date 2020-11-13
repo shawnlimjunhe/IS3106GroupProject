@@ -140,4 +140,10 @@ public class CompanySessionBean implements CompanySessionBeanLocal {
         }
     }
 
+    @Override
+    public void debitInfluencer(Long cId, double salary) throws NoResultException {
+        Company c = getCompany(cId);
+        c.setBalance(c.getBalance() - salary);
+    }
+
 }

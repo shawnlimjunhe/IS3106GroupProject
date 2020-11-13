@@ -150,4 +150,16 @@ public class InfluencerSessionBean implements InfluencerSessionBeanLocal {
 
     }
 
+    @Override
+    public void acceptContract(Long iId) throws NoResultException {
+        Influencer i = getInfluencer(iId);
+        i.setRanking(i.getRanking() + 5);
+    }
+
+    @Override
+    public void creditInfluencer(Long iId, double salary) throws NoResultException {
+        Influencer i = getInfluencer(iId);
+        i.setBalance(i.getBalance() + salary);
+    }
+
 }

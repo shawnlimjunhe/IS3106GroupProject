@@ -37,10 +37,11 @@ public class Contract implements Serializable {
         this.approved = false;
     }
 
-    public Contract(Date startDate, Date endDate) {
+    public Contract(Date startDate, Date endDate, double salary) {
         this();
         this.startDate = startDate;
         this.endDate = endDate;
+        this.salary = salary;
 
     }
 

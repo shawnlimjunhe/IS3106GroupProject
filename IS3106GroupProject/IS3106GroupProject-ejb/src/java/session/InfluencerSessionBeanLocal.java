@@ -33,4 +33,8 @@ public interface InfluencerSessionBeanLocal {
     public void addApplication(Influencer i, Application a) throws NoResultException;
 
     public void addContract(Long iId, Long contractId) throws NoResultException;
+
+    public void acceptContract(Long iId) throws NoResultException;
+
+    public void creditInfluencer(Long iId, double salary) throws NoResultException;
 }

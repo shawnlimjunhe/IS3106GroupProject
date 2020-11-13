@@ -32,4 +32,6 @@ public interface ContractSessionBeanLocal {
     public Contract getContract(Long cId) throws NoResultException;
 
     public void addLink(Long contractId, String link) throws NoResultException;
+
+    public void acceptContract(Long cId) throws NoResultException;
 }

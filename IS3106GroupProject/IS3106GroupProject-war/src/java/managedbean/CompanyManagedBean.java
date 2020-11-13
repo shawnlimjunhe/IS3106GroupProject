@@ -208,7 +208,8 @@ public class CompanyManagedBean implements Serializable {
             Date today = new Date();
             long ltime = today.getTime() + 5 * 24 * 60 * 60 * 1000;
             Date end = new Date(ltime);
-            Contract c = new Contract(today, end);
+            double salary = postSB.getPost(selectedApplication.getPostId()).getSalary();
+            Contract c = new Contract(today, end, salary);
             contractSB.createContract(c);
             Long contractId = c.getId();
             Long iId = selectedInfluencer.getId();
@@ -224,11 +225,16 @@ public class CompanyManagedBean implements Serializable {
     }
 
     public String acceptContract() {
-        return "";
-    }
-
-    public String rejectContract() {
-        return "";
+        // set contract to accepted
+        try {
+            contractSB.acceptContract(selectedContract.getId());
+            influencerSB.acceptContract(selectedInfluencer.getId());
+            influencerSB.creditInfluencer(selectedInfluencer.getId(), selectedContract.getSalary());
+            companySB.debitInfluencer(caMB.getCompanyId(), selectedContract.getSalary());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "/companySecret/viewContract.xhtml?contractId=" + selectedContract.getId();
     }
 
     public String rejectApplication() {

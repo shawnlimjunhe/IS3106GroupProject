@@ -28,4 +28,6 @@ public interface CompanySessionBeanLocal {
     public boolean checkDuplicate(String username);
 
     public void addContract(Long compId, Long contractId) throws NoResultException;
+
+    public void debitInfluencer(Long cId, double salary) throws NoResultException;
 }
