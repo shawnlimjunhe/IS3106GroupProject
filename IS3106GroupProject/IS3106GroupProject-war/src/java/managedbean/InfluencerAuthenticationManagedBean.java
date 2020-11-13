@@ -84,5 +84,13 @@ public class InfluencerAuthenticationManagedBean implements Serializable {
     public void setInfluencerId(Long influencerId) {
         this.influencerId = influencerId;
     }
+
+    public Influencer getInfluencer() {
+        return influencer;
+    }
+
+    public void setInfluencer(Influencer influencer) {
+        this.influencer = influencer;
+    }
     
 }

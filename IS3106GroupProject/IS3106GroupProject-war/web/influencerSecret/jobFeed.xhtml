@@ -18,12 +18,39 @@
             <!-- load the selected user -->
             <f:event type="preRenderView" listener="#{applicationManagedBean.loadAllPosts}"/>
         </f:metadata>
+
         <div class="content-header">
-            <p style="font-family: verdana">
-                <h3 class="m-0 text-blue">
-                    Start your job search here
-                </h3>
-            </p>
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <p style="font-family: verdana">
+                            <h3 class="m-0 text-blue">
+                                Start your job search here
+                            </h3>
+                        </p>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item">
+                                <a href="#{request.contextPath}/influencerSecret/influencerLandingPage.xhtml">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <h:link outcome="viewInfluencerProfile">
+                                    My Profile
+                                    <f:param name="iId" value="#{influencerAuthenticationManagedBean.influencerId}" />
+                                </h:link>
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Change Password
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
         <h:form id="form">
             <h:messages layout="table" id="messages" showSummary="true" style="color: red"/>
@@ -68,7 +95,7 @@
                                             <h:outputText value="#{post.deadline}">
                                                 <f:convertDateTime pattern="y-M-d" type="date" />
                                             </h:outputText>
-                                            
+
                                             <h:panelGroup>
                                                 <span class="badge badge-success">Available</span>
                                             </h:panelGroup>
