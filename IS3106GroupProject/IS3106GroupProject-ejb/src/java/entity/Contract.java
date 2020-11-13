@@ -31,7 +31,7 @@ public class Contract implements Serializable {
     private Influencer influencer;
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Company company;
-    private List<String> links;
+    private String link;
     @Temporal(TemporalType.DATE)
     private Date startDate; //to represent time limit
     @Temporal(TemporalType.DATE)
@@ -39,23 +39,15 @@ public class Contract implements Serializable {
     private boolean approved;
 
     public Contract() {
-        this.links = new ArrayList<>();
+        this.link = "";
+        this.approved = false;
     }
 
-    public Contract(List<String> links, Date startDate, Date endDate, boolean approved) {
+    public Contract(Date startDate, Date endDate) {
         this();
-        this.links = links;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.approved = approved;
-    }
 
-    public List<String> getLinks() {
-        return links;
-    }
-
-    public void setLinks(List<String> links) {
-        this.links = links;
     }
 
     public Date getStartDate() {
@@ -129,6 +121,14 @@ public class Contract implements Serializable {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
 }

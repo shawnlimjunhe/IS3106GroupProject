@@ -11,6 +11,7 @@ import entity.Post;
 import entity.Application;
 import entity.Influencer;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -173,6 +174,16 @@ public class CompanyManagedBean implements Serializable {
     }
 
     public String acceptApplication() {
+        try {
+            appSB.setApplicationAccepted(selectedApplication.getId(), "accepted");
+            List<String> links = new ArrayList();
+            Date today = new Date();
+            long ltime = today.getTime() + 5 * 24 * 60 * 60 * 1000;
+            Date end = new Date(ltime);
+
+            contractSB.createContract(new Contract(today, end), selectedCompany.getId(), selectedInfluencer.getId());
+        } catch (Exception e) {
+        }
         return "";
     }
 
