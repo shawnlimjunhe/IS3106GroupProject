@@ -58,8 +58,9 @@
                                 <h:commandLink class="btn btn-outline-success btn-block #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" action="#{companyManagedBean.acceptApplication}" value="Accept application"/>
                             </h:form>
 
-                            <a class="nav-link #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" href="#modal" data-toggle="modal" data-target="#modal">
-                                <button class="btn btn-outline-danger btn-block #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}">Reject Application</button>
+                            <a class="#{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" href="#modal" data-toggle="modal" 
+                               data-target="#modal" >
+                                <button class="btn btn-outline-danger btn-block #{companyManagedBean.selectedApplication.accepted == 'processing'?'':'disabled'}" style="margin-top: 5px">Reject Application</button>
                             </a>
 
                         </div>
