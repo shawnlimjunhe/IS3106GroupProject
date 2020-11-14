@@ -107,6 +107,7 @@ public class CompanyManagedBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         if (topup < 0) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sorry Top up cannot be negative", ""));
+            return;
         }
         try {
             companySB.topup(caMB.getCompanyId(), topup);
