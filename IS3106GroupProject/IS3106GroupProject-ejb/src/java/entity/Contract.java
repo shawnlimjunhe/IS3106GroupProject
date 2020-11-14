@@ -32,6 +32,9 @@ public class Contract implements Serializable {
     private boolean approved;
     private double salary;
     private String influencerName;
+    private String postTitle;
+    private String postDesc;
+    private Long postId;
 
     public Contract() {
         this.link = "";
@@ -43,7 +46,6 @@ public class Contract implements Serializable {
         this.startDate = startDate;
         this.endDate = endDate;
         this.salary = salary;
-
     }
 
     public Date getStartDate() {
@@ -141,6 +143,30 @@ public class Contract implements Serializable {
 
     public void setInfluencerName(String influencerName) {
         this.influencerName = influencerName;
+    }
+
+    public String getPostTitle() {
+        return postTitle;
+    }
+
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
+    public String getPostDesc() {
+        return postDesc;
+    }
+
+    public void setPostDesc(String postDesc) {
+        this.postDesc = postDesc;
     }
 
 }

@@ -54,6 +54,7 @@ public class CompanyManagedBean implements Serializable {
     private String searchTerm;
     private String rejectionReason;
     private String influencerName;
+    private String sort = "";
 
     private Company selectedCompany;
 
@@ -221,8 +222,30 @@ public class CompanyManagedBean implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         if (pId != null) {
             try {
+                applications = new ArrayList();
                 selectedPost = postSB.getPost(pId);
-                applications = selectedPost.getApplications();
+                List<Application> apps = selectedPost.getApplications();
+                if (sort.equals("")) {
+                    applications = apps;
+                } else if (sort.equals("accepted")) {
+                    for (Application a : apps) {
+                        if (a.getAccepted().equals("accepted")) {
+                            applications.add(a);
+                        }
+                    }
+                } else if (sort.equals("processing")) {
+                    for (Application a : apps) {
+                        if (a.getAccepted().equals("processing")) {
+                            applications.add(a);
+                        }
+                    }
+                } else {
+                    for (Application a : apps) {
+                        if (a.getAccepted().equals("rejected")) {
+                            applications.add(a);
+                        }
+                    }
+                }
             } catch (Exception e) {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load post"));
             }
@@ -242,7 +265,7 @@ public class CompanyManagedBean implements Serializable {
             Long contractId = c.getId();
             Long iId = selectedInfluencer.getId();
             Long compId = caMB.getCompanyId();
-            contractSB.setContractCompanyandInfluencer(contractId, compId, iId);
+            contractSB.setContractCompanyandInfluencer(contractId, compId, iId, selectedApplication.getPostId());
             companySB.addContract(compId, contractId);
             influencerSB.addContract(iId, contractId);
 
@@ -265,7 +288,7 @@ public class CompanyManagedBean implements Serializable {
         return "/companySecret/viewContract.xhtml?contractId=" + selectedContract.getId();
     }
 
-    public String rejectApplication() {
+    public void rejectApplication() {
         try {
             appSB.setApplicationAccepted(selectedApplication.getId(), "rejected");
             appSB.setApplicationRejectionReason(selectedApplication.getId(), rejectionReason);
@@ -273,7 +296,6 @@ public class CompanyManagedBean implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/companySecret/viewApplication.xhtml?appId=" + selectedApplication.getId();
     }
 
     public String getCompanyName(Long cId) throws NoResultException {
@@ -521,6 +543,14 @@ public class CompanyManagedBean implements Serializable {
 
     public void setTopup(double topup) {
         this.topup = topup;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 
 }

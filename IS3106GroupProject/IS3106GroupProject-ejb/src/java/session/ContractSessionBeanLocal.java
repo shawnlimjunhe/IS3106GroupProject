@@ -27,7 +27,7 @@ public interface ContractSessionBeanLocal {
 
     public void updateContract(Contract c) throws NoResultException;
 
-    public void setContractCompanyandInfluencer(Long contractId, Long cId, Long iId);
+    public void setContractCompanyandInfluencer(Long contractId, Long cId, Long iId, Long postId);
 
     public Contract getContract(Long cId) throws NoResultException;
 
