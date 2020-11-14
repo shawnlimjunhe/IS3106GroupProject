@@ -77,7 +77,7 @@ public class ApplicationManagedBean implements Serializable {
             Post p = postSessionBeanLocal.getPost(postId);
             if (p.getMinFollowers() > i.getNumberFollowers()) {
                 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sorry you couldn't apply for that job because you do not meet the minimum number of followers requirement.", ""));
-                return "/influencerSecret/jobFeed.xhtml" + "&faces-redirect=true";
+                return "/influencerSecret/viewJob.xhtml?pId=" + postId +"&faces-redirect=true";
             }
             a.setInfluencerRank(i.getRanking());
             a.setInfluencerId(influencerAuthenticationManagedBean.getInfluencerId());
@@ -93,10 +93,10 @@ public class ApplicationManagedBean implements Serializable {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Successfully applied for job!", ""));
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Unable to apply for job right now!", ""));
-            return "/influencerSecret/jobFeed.xhtml" + "&faces-redirect=true";
+            return "/influencerSecret/viewJob.xhtml?pId=" + postId +"&faces-redirect=true";
         }
 
-        return "/influencerSecret/viewInfluencerJobs.xhtml?iId=" + influencerAuthenticationManagedBean.getInfluencerId() + "&faces-redirect=true";
+        return "/influencerSecret/viewJob.xhtml?pId=" + postId +"&faces-redirect=true";
     }
 
     public void loadSelectedPost() {
