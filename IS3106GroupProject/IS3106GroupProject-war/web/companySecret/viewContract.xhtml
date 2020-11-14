@@ -75,7 +75,7 @@
                         </div>
                         <div class='card-footer'>
                             <h:form>
-                                <h:commandLink class="btn btn-outline-success btn-block" action="#{companyManagedBean.acceptContract}" value="Accept Post"/>
+                                <h:commandLink class="btn btn-outline-success btn-block #{companyManagedBean.selectedContract.approved? 'disabled': ''}" action="#{companyManagedBean.acceptContract}" value="Accept Post"/>
                             </h:form>
                         </div>
                     </div>
