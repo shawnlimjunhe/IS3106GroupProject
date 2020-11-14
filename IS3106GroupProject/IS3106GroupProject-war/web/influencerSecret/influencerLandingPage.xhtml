@@ -106,15 +106,66 @@
                             </table>
 
                         </div>
-                        <div class='card-footer'>
-                        </div>
 
+                        <div class='card-footer' >
+                            <a href="#emailModal" data-toggle="modal" data-target="#emailModal" role="button">
+                                <button class="btn btn-outline-primary btn-block"> Invite friends to influenza</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </h:form>
+
+        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emailModalLabel">Send an invite to your friend</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <input
+                                class="form-control form-control-lg"
+                                id="email" required="true"
+                                placeholder="example@gmail.com"></input>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No thanks</button>
+                        <a class="nav-link" href="#sentEmailModal" data-toggle="modal" data-dismiss="modal" data-target="#sentEmailModal">
+                            <button class="btn btn-primary"  >Send invite</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="sentEmailModal" tabindex="-1" role="dialog" aria-labelledby="sentEmailModal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="sentEmailModalLabel">Invite sent!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Thanks for sharing :)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </ui:define>
+
 
     <ui:define name="script">
         script
