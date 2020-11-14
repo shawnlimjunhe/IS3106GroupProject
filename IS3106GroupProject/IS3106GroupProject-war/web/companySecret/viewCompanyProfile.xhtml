@@ -43,9 +43,11 @@
             <!-- general form elements -->
             <div class="card card-warning">
                 <div class="card-header">
-                    <h3 class="card-title">
-                        #{companyManagedBean.name}
-                    </h3>
+                    <b>
+                        <h2 class="card-title">
+                            #{companyManagedBean.name}
+                        </h2>
+                    </b>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -68,9 +70,9 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-secondary" href="#{request.contextPath}/companySecret/editCompanyProfile.xhtml">Edit profile
+                    <a class="btn btn-outline-warning" href="#{request.contextPath}/companySecret/editCompanyProfile.xhtml">Edit profile
                     </a>
-                    <a class="btn btn-warning float-right" href="#modal" data-toggle="modal">Top up your account
+                    <a class="btn btn-outline-warning float-right" href="#modal" data-toggle="modal">Top up balance
                     </a>
                 </div>
             </div>
