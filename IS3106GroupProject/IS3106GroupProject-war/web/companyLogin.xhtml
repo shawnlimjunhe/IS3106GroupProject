@@ -22,7 +22,7 @@
                     <div class="col-sm-7">
                         <p style="font-family: verdana">
                             <font size = "20">
-                                <h1 class="m-0 text-blue">
+                                <h1 class="m-0 text-yellow">
                                     Ready for viral growth?
                                 </h1>
                             </font>
@@ -32,10 +32,12 @@
             </div>
             <h:messages globalOnly="true" layout="table" id="messages" showSummary="true" style="color: red"/>
 
-            <div class="card card-blue">
+            <div class="card card-warning">
                 <div class="card-header ">
                     <h3 class="card-title">
-                        Login to Influenza
+                        <b>
+                            Login to Influenza
+                        </b>
                     </h3>
                 </div>
                 <h:form>
@@ -70,7 +72,7 @@
                         <div class="col-md-12 text-center">
                             <h:commandButton
                                 value="Login"
-                                class="btn btn-outline-primary btn-block"
+                                class="btn btn-outline-warning btn-block"
                                 action="#{companyAuthenticationManagedBean.login}"
                                 />
                         </div>
