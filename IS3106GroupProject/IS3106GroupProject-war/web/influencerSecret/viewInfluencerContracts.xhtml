@@ -136,10 +136,10 @@
                                                     End Date: <h:outputText value="#{contract.endDate}">
                                                         <f:convertDateTime type="date" pattern="y-M-d"/>
                                                     </h:outputText><br/>
-                                                    <h:panelGroup rendered="#{contract.link != null}">
+                                                    <h:panelGroup rendered="#{contract.link != ''}">
                                                        Link: <h:outputText value="#{contract.link}"/>
                                                     </h:panelGroup>
-                                                    <h:panelGroup rendered="#{contract.link == null}">
+                                                    <h:panelGroup rendered="#{contract.link == ''}">
                                                         <h:form>
                                                             <h:inputText id="link" value="#{link}" required="true" style="width: 100%"/>
                                                             <h:commandButton

@@ -283,6 +283,7 @@ public class CompanyManagedBean implements Serializable {
             Date end = new Date(ltime);
             double salary = postSB.getPost(selectedApplication.getPostId()).getSalary();
             Contract c = new Contract(today, end, salary);
+            c.setLink(null);
             contractSB.createContract(c);
             Long contractId = c.getId();
             Long iId = selectedInfluencer.getId();
