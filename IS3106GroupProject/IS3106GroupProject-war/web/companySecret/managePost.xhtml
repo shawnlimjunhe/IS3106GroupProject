@@ -72,15 +72,18 @@
                                 </div>
                                 <div class="form-group">
                                     <h:outputLabel for="postDeadline">Deadline</h:outputLabel>
-                                    <div class="input-group date" >
-                                        <h:inputText binding="#{postDeadline}" id="postDeadline"
-                                                     value="#{companyManagedBean.postDeadline}" required="true" requiredMessage="deadline
-                                                     is required"
-                                                     converterMessage="Format should be dd/MM/yyyy" class="form-control datepicker #{postDeadline.valid ? '' :'is-invalid'}"
-                                                     a:data-target="#postDeadlinepicker" a:data-toggle="datetimepicker">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                        <h:inputText binding="#{deadline}" id="deadline" class="form-control datetimepicker-input #{deadline.valid ? '' :'is-invalid'}"
+                                                     value="#{companyManagedBean.postDeadline}" 
+                                                     required="true"
+                                                     requiredMessage="Deadline is required"
+                                                     converterMessage="Format should be dd/mm/yyy">
+                                            <f:convertDateTime pattern="dd/MM/yyy" />
                                         </h:inputText>
-                                        <h:message for="postDeadline" class="invalid-feedback" />
+                                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                        <h:message for="deadline" class="invalid-feedback"/>
                                     </div>
                                     <small class="form-text text-muted">Format should be dd/MM/yyyy</small>
                                 </div>
@@ -114,7 +117,7 @@
             <ui:define name="script">
                 <script>
                     //Date picker
-                    $('#postDeadlinepicker').datetimepicker({
+                    $('#reservationdate').datetimepicker({
                         format: 'DD/MM/YYYY'
                     });
                 </script>
