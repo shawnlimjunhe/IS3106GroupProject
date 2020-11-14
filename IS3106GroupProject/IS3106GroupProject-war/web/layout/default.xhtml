@@ -67,7 +67,8 @@
                             <!-- Add icons to the links using the .nav-icon class
                                 with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/registerInfluencer.xhtml" class="nav-link #{(request.requestURI == '/CRM-war/registerInfluencer.xhtml' and request.queryString == null) ? 'active' : ''}">
+                                <a href="#{request.contextPath}/registerInfluencer.xhtml" 
+                                   class="nav-link #{(request.requestURI == '/IS3106GroupProject-war/registerInfluencer.xhtml' and request.queryString == null) ? 'active' : ''}">
                                     <i class="fas fa-user-check"></i>
                                     <p>
                                         Register As Influencer <!-- for UI/UX we probably want this to be 2 expandable buttons Company/Influencer then under these 2 we have login/register but this will do for now -->
@@ -75,7 +76,8 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/influencerLogin.xhtml" class="nav-link #{request.requestURI == '/CRM-war/influencerLogin.xhtml' ? 'active' : ''}">
+                                <a href="#{request.contextPath}/influencerLogin.xhtml"
+                                   class="nav-link #{request.requestURI == '/IS3106GroupProject-war/influencerLogin.xhtml' ? 'active' : ''}">
                                     <i class="fas fa-sign-in-alt"></i>
                                     <p>
                                         Log in As Influencer
@@ -83,7 +85,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/registerCompany.xhtml" class="nav-link #{request.requestURI == '/CRM-war/registerCompany.xhtml' ? 'active' : ''}">
+                                <a href="#{request.contextPath}/registerCompany.xhtml" 
+                                   class="nav-link #{request.requestURI == '/IS3106GroupProject-war/registerCompany.xhtml' ? 'text-dark' : ''}"
+                                   style = "background-color: #{request.requestURI == '/IS3106GroupProject-war/registerCompany.xhtml' ? '#ffc107' : ''}">
                                     <i class="fas fa-briefcase"></i>
                                     <p>
                                         Register As Company
@@ -91,7 +95,9 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#{request.contextPath}/companyLogin.xhtml" class="nav-link #{request.requestURI == '/CRM-war/companyLogin.xhtml' ? 'active' : ''}">
+                                <a href="#{request.contextPath}/companyLogin.xhtml"
+                                   class="nav-link #{request.requestURI == '/IS3106GroupProject-war/companyLogin.xhtml' ? 'text-dark' : ''}"
+                                   style = "background-color: #{request.requestURI == '/IS3106GroupProject-war/companyLogin.xhtml' ? '#ffc107' : ''}">
                                     <i class="fas fa-sign-in-alt"></i>
                                     <p>
                                         Log in As Company
