@@ -41,13 +41,13 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
                             <div class="btn-group" role="group">
-                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == ''? 'active': ''}" 
+                                <a type="button" class="btn btn-light #{companyManagedBean.sort == ''? 'active': ''}" 
                                    href="#{request.contextPath}/companySecret/viewPost.xhtml?pId=#{companyManagedBean.selectedPost.id}">All</a>
-                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == 'accepted'? 'active': ''}"
+                                <a type="button" class="btn btn-light #{companyManagedBean.sort == 'accepted'? 'active': ''}"
                                    href="#{request.contextPath}/companySecret/viewPost.xhtml?pId=#{companyManagedBean.selectedPost.id}&amp;sort=accepted">Accepted</a>
-                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == 'processing'? 'active': ''}"
+                                <a type="button" class="btn btn-light #{companyManagedBean.sort == 'processing'? 'active': ''}"
                                    href="#{request.contextPath}/companySecret/viewPost.xhtml?pId=#{companyManagedBean.selectedPost.id}&amp;sort=processing">Pending</a>
-                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == 'rejected'? 'active': ''}"
+                                <a type="button" class="btn btn-light #{companyManagedBean.sort == 'rejected'? 'active': ''}"
                                    href="#{request.contextPath}/companySecret/viewPost.xhtml?pId=#{companyManagedBean.selectedPost.id}&amp;sort=rejected">Rejected</a>
                             </div>
                         </div>

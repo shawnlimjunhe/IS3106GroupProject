@@ -40,18 +40,18 @@
                     <nav class="navbar navbar-dark bg-warning" style="border-radius: 3px;">
                         <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="btn-group mr-2" role="group">
-                                <a class="btn btn-outline-success" href="#{request.contextPath}/companySecret/managePost.xhtml"
+                                <a class="btn btn-light" href="#{request.contextPath}/companySecret/managePost.xhtml"
                                    role="button">
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </div>
 
                             <div class="btn-group" role="group">
-                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == ''? 'active': ''}" 
+                                <a type="button" class="btn btn-light #{companyManagedBean.sort == ''? 'active': ''}" 
                                    href="#{request.contextPath}/companySecret/posts.xhtml">All</a>
-                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == 'active'? 'active': ''}" 
+                                <a type="button" class="btn btn-light #{companyManagedBean.sort == 'active'? 'active': ''}" 
                                    href="#{request.contextPath}/companySecret/posts.xhtml?sort=active">Active</a>
-                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == 'finished'? 'active': ''}" 
+                                <a type="button" class="btn btn-light #{companyManagedBean.sort == 'finished'? 'active': ''}" 
                                    href="#{request.contextPath}/companySecret/posts.xhtml?sort=finished">Finished</a>
                             </div>
                         </div>
