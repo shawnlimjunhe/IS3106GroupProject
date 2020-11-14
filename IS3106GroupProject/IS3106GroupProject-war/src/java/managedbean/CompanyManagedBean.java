@@ -297,7 +297,7 @@ public class CompanyManagedBean implements Serializable {
         return "/companySecret/viewApplication.xhtml?appId=" + selectedApplication.getId() + "&faces-redirect=true";
     }
 
-    public String acceptContract() {
+    public void acceptContract() {
         // set contract to accepted
         try {
             contractSB.acceptContract(selectedContract.getId());
@@ -307,7 +307,6 @@ public class CompanyManagedBean implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/companySecret/viewContract.xhtml?contractId=" + selectedContract.getId();
     }
 
     public void rejectApplication() {

@@ -107,6 +107,7 @@
                                 <thead>
                                     <th>Username</th>
                                     <th>Status</th>
+                                    <th>Rating</th>
                                 </thead>
                                 <tbody>
                                     <ui:repeat var="app" value="${companyManagedBean.applications}">
@@ -120,6 +121,9 @@
                                                 <span class="badge badge-success" style="display: #{app.accepted == 'accepted'? 'inline' : 'none'}">Accepted</span>
                                                 <span class="badge badge-warning" style="display: #{app.accepted == 'processing'? 'inline' : 'none'}">Pending</span>
                                                 <span class="badge badge-secondary" style="display: #{app.accepted == 'rejected'? 'inline' : 'none'}">Rejected</span>
+                                            </td>
+                                            <td>
+                                                #{app.influencerRank}
                                             </td>
                                         </tr>
                                     </ui:repeat>
