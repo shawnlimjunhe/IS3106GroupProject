@@ -72,14 +72,27 @@
 
                                 <dt class="col-sm-2">Pay out</dt>
                                 <dd class="col-sm-10">$${applicationManagedBean.selectedPost.salary}</dd>
+                                
+                                <dt class="col-sm-2">Status</dt>
+                                <dd class="col-sm-10">
+                                    <h:panelGroup rendered="#{applicationManagedBean.selectedPost.active}">
+                                            <span class="badge badge-success">Open</span>
+                                        </h:panelGroup>
+                                        <h:panelGroup rendered="#{!applicationManagedBean.selectedPost.active}">
+                                            <span class="badge badge-warning">Close</span>
+                                        </h:panelGroup>
+                                </dd>
 
                             </dl>
                         </div>
                         <h:form>
+                            <h:commandButton class="btn btn-primary btn-block" disabled="true" value="Application closed" rendered="#{!applicationManagedBean.selectedPost.active}">
+                                <f:param name="pId" value="#{applicationManagedBean.postId}" />
+                            </h:commandButton>
                             <h:commandButton class="btn btn-primary btn-block" disabled="true" value="Applied" rendered="#{applicationManagedBean.userApplied}">
                                 <f:param name="pId" value="#{applicationManagedBean.postId}" />
                             </h:commandButton>
-                            <h:button value="Apply Now" class="btn btn-primary btn-block" outcome="createApplication" rendered="#{!applicationManagedBean.userApplied}">
+                            <h:button value="Apply Now" class="btn btn-primary btn-block" outcome="createApplication" rendered="#{!applicationManagedBean.userApplied and applicationManagedBean.selectedPost.active}">
                                 <f:param name="pId" value="#{applicationManagedBean.selectedPost.id}" />
                                 <f:param name="pId" value="#{applicationManagedBean.postId}" />
                             </h:button>
