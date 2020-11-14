@@ -12,6 +12,7 @@
             <ui:define name="title">
                 <f:metadata>
                     <f:viewParam name="searchTerm" value="#{companyManagedBean.searchTerm}" />
+                    <f:viewParam name="sort" value="#{companyManagedBean.sort}" />
                     <f:event type="preRenderView"
                              listener="#{companyManagedBean.loadcompanyPosts}" />
                 </f:metadata>
@@ -46,9 +47,12 @@
                             </div>
 
                             <div class="btn-group" role="group">
-
-                                <button type="button" class="btn btn-outline-secondary">Active</button>
-                                <button type="button" class="btn btn-outline-secondary">Finished</button>
+                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == ''? 'active': ''}" 
+                                   href="#{request.contextPath}/companySecret/posts.xhtml">All</a>
+                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == 'active'? 'active': ''}" 
+                                   href="#{request.contextPath}/companySecret/posts.xhtml?sort=active">Active</a>
+                                <a type="button" class="btn btn-outline-secondary #{companyManagedBean.sort == 'finished'? 'active': ''}" 
+                                   href="#{request.contextPath}/companySecret/posts.xhtml?sort=finished">Finished</a>
                             </div>
                         </div>
 

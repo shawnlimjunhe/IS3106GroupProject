@@ -163,24 +163,6 @@ public class CompanyManagedBean implements Serializable {
         return companySB.checkDuplicate(username);
     }
 
-    public void loadcompanyPosts() {
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        if (searchTerm == null) {
-            System.out.print("reloading");
-            try {
-                setSelectedCompany(companySB.getCompany(caMB.getCompanyId()));
-                setPosts(selectedCompany.getPosts());
-
-            } catch (Exception e) {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load application"));
-            }
-        } else {
-            posts = postSB.searchPostsFromCompany(searchTerm, caMB.getCompanyId());
-            setSearchTerm(null);
-        }
-    }
-
     public void loadcompanyContracts() {
         FacesContext context = FacesContext.getCurrentInstance();
 
@@ -215,6 +197,46 @@ public class CompanyManagedBean implements Serializable {
             posts = selectedCompany.getPosts();
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load user"));
+        }
+    }
+
+    private List<Post> sortPosts(List<Post> p) {
+        List<Post> result = new ArrayList();
+        if (sort.equals("")) {
+            return p;
+        } else if (sort.equals("active")) {
+            for (Post post : p) {
+                if (post.isActive()) {
+                    result.add(post);
+                }
+            }
+        } else {
+            for (Post post : p) {
+                if (!post.isActive()) {
+                    result.add(post);
+                }
+            }
+        }
+        return result;
+    }
+
+    public void loadcompanyPosts() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        if (searchTerm == null) {
+            System.out.print("reloading");
+            try {
+                setSelectedCompany(companySB.getCompany(caMB.getCompanyId()));
+                List<Post> p = selectedCompany.getPosts();
+                posts = sortPosts(p);
+
+            } catch (Exception e) {
+                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Unable to load application"));
+            }
+        } else {
+            List<Post> p = postSB.searchPostsFromCompany(searchTerm, caMB.getCompanyId());
+            posts = sortPosts(p);
+            setSearchTerm(null);
         }
     }
 
@@ -338,7 +360,11 @@ public class CompanyManagedBean implements Serializable {
     }
 
     public String searchPosts() {
-        return "posts.xhtml?searchTerm=" + searchTerm + "&faces-redirect=true";
+        if (sort == null || sort.equals("")) {
+            return "posts.xhtml?searchTerm=" + searchTerm + "&faces-redirect=true";
+        } else {
+            return "posts.xhtml?searchTerm=" + searchTerm + "&sort=" + sort + "&faces-redirect=true";
+        }
     }
 
     public String searchApplications() {
