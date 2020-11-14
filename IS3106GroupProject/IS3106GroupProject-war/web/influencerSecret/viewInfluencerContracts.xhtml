@@ -26,10 +26,10 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <p style="font-family: verdana">
-                            <h3 class="m-0 text-blue">
-                                My Contracts
-                            </h3>
-                        </p>
+                                <h3 class="m-0 text-blue">
+                                    My Contracts
+                                </h3>
+                            </p>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
@@ -87,26 +87,27 @@
                                                         <f:convertDateTime type="date" pattern="y-M-d"/>
                                                     </h:outputText><br/>
                                                     <h:panelGroup rendered="#{contract.link != null}">
-                                                       Link: <h:outputText value="#{contract.link}"/>
+                                                        Link: <h:outputText value="#{contract.link}"/>
                                                     </h:panelGroup>
                                                     <h:panelGroup rendered="#{contract.link == null}">
                                                         <h:form>
-                                                            <h:inputText id="link" value="#{link}" required="true" style="width: 100%"/>
+                                                            <h:inputText id="link" value="#{link}" required="true" style="width: 30%"/>
                                                             <h:commandButton
                                                                 value="Upload Link"
+                                                                style="width: 30%"
                                                                 class="btn btn-primary btn-block"
                                                                 action="#{contractManagedBean.uploadLink(contract.id, link)}"
                                                                 />
                                                         </h:form>
                                                     </h:panelGroup><br/>
                                                     <h:panelGroup rendered="#{contract.approved}">
-                                                       Contract outcome: <span class="badge badge-success">Approved</span>
+                                                        Contract outcome: <span class="badge badge-success">Approved</span>
                                                     </h:panelGroup>
                                                     <h:panelGroup rendered="#{!contract.approved}">
-                                                       Contract outcome: <span class="badge badge-warning">Pending</span>
+                                                        Contract outcome: <span class="badge badge-warning">Pending</span>
                                                     </h:panelGroup>
                                                 </div>
-                                                
+
 
                                             </div>
 
@@ -122,11 +123,11 @@
                                             #{influencerManagedBean.username}'s Past Contracts
                                         </h3>
                                     </div>
-                                    
-                                        <!-- /.card-header -->
-                                        <div class="card-body">
-                                            <ui:repeat var="contract" value="#{contractManagedBean.infPastContracts}">
-                                                 <div class="small-box card-outline card-warning">
+
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <ui:repeat var="contract" value="#{contractManagedBean.infPastContracts}">
+                                            <div class="small-box card-outline card-warning">
                                                 <div class="inner">
                                                     <h3><b>#{companyManagedBean.getCompanyName(contract.companyId)}</b></h3>
 
@@ -137,7 +138,7 @@
                                                         <f:convertDateTime type="date" pattern="y-M-d"/>
                                                     </h:outputText><br/>
                                                     <h:panelGroup rendered="#{contract.link != ''}">
-                                                       Link: <h:outputText value="#{contract.link}"/>
+                                                        Link: <h:outputText value="#{contract.link}"/>
                                                     </h:panelGroup>
                                                     <h:panelGroup rendered="#{contract.link == ''}">
                                                         <h:form>
@@ -150,18 +151,18 @@
                                                         </h:form>
                                                     </h:panelGroup><br/>
                                                     <h:panelGroup rendered="#{contract.approved}">
-                                                       Contract outcome: <span class="badge badge-success">Approved</span>
+                                                        Contract outcome: <span class="badge badge-success">Approved</span>
                                                     </h:panelGroup>
                                                     <h:panelGroup rendered="#{!contract.approved}">
-                                                       Contract outcome: <span class="badge bg-red">Rejected</span>
+                                                        Contract outcome: <span class="badge bg-red">Rejected</span>
                                                     </h:panelGroup>
                                                 </div>
-                                         
+
                                             </div>
 
-                                            </ui:repeat>
-                                        </div>
-                                    
+                                        </ui:repeat>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
