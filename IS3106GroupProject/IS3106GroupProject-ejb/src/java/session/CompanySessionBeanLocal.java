@@ -32,4 +32,7 @@ public interface CompanySessionBeanLocal {
     public void debitInfluencer(Long cId, double salary) throws NoResultException;
 
     public void updateProfile(Long cId, String name) throws NoResultException;
+
+    public void topup(Long companyId, double topup) throws NoResultException;
+
 }

@@ -82,6 +82,7 @@ public class CompanyManagedBean implements Serializable {
     private Date postDeadline;
     private double postSalary;
     private int minFollowers;
+    private double topup = 50.0;
 
     public CompanyManagedBean() {
     }
@@ -99,6 +100,19 @@ public class CompanyManagedBean implements Serializable {
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Account Username is taken!", ""));
             return "registerCompany.xhtml?faces-redirect=true";
+        }
+    }
+
+    public void topup() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (topup < 0) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sorry Top up cannot be negative", ""));
+        }
+        try {
+            companySB.topup(caMB.getCompanyId(), topup);
+            topup = 50.0;
+        } catch (Exception e) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error: Top up failed", ""));
         }
     }
 
@@ -498,6 +512,14 @@ public class CompanyManagedBean implements Serializable {
 
     public void setInfluencerName(String influencerName) {
         this.influencerName = influencerName;
+    }
+
+    public double getTopup() {
+        return topup;
+    }
+
+    public void setTopup(double topup) {
+        this.topup = topup;
     }
 
 }

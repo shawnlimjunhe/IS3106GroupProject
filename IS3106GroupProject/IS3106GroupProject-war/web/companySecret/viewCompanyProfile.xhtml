@@ -25,7 +25,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"></h1>
+                        <h1 class="m-0 text-dark">
+                            View your profile
+                        </h1>
                     </div>
                     <!-- /.col -->
                     <!-- /.col -->
@@ -66,12 +68,53 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-warning" href="#{request.contextPath}/companySecret/editCompanyProfile.xhtml">Edit profile
+                    <a class="btn btn-secondary" href="#{request.contextPath}/companySecret/editCompanyProfile.xhtml">Edit profile
+                    </a>
+                    <a class="btn btn-warning float-right" href="#modal" data-toggle="modal">Top up your account
                     </a>
                 </div>
             </div>
         </section>
 
+
+
+        <!-- .reject Modal -->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+
+                <div class="modal-content">
+                    <h:form>
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal">Please provide your card details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card-body">
+                                <h:outputLabel for="rejection">Amount</h:outputLabel>
+                                <h:inputText
+                                    class="form-control form-control"
+                                    id="rejection" required="true"
+                                    value="#{companyManagedBean.topup}"></h:inputText>
+                                <br/>
+                                <label for="rejection">Card Number</label>
+                                <input type="text"
+                                       class="form-control form-control"
+                                       id="rejection" required="true"></input>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+
+                            <h:commandButton class="btn btn-warning" action="#{companyManagedBean.topup}" value="Top up account" ></h:commandButton>
+
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
 
 
     </ui:define>
